@@ -6,8 +6,8 @@ String.prototype.replaceAll = function(search, replacement) {return this.replace
 var app={
     defaultPage:'profileTemplate',
     currentUrl:'',
-    baseUrl:'http://sateweb.com/gava/web/index.php/api/',
-    //baseUrl:'http://localhost/gava/web/api/',
+    //baseUrl:'http://sateweb.com/gava/web/index.php/api/',
+    baseUrl:'http://localhost/gava/web/api/',
     mainContainer:$('#contentView'),
     id:'',
     loader:$('#mLoader'),
