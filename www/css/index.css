@@ -7,3 +7,57 @@ input{
 .detail p{
     margin: 0;
 }
+.side-nav li:hover, .side-nav li.active{
+    background-color: #64dd17 !important;
+}
+.sidebg{
+    background:url("../img/sidebg.jpg");
+}
+body{
+    background:url("../img/map_img.png");
+}
+.margin0{
+    margin: 0;
+}
+.padding0{
+    padding: 0 !important;
+}
+.height80{
+    height: 80px;
+}
+.marginL10{
+    margin-left: 10px;
+}
+.imageHW{
+    height: 73px !important;width: 73px;
+}
+.sidebar-text{
+    width: 145px;
+}
+.lineheight26{
+    line-height: 26px !important;
+}
+.marginT10{
+    margin-top: 10px;
+}
+.flotbtn{
+    top: -15px;
+    right: -25px;
+}
+.imgfiletbtn{
+    left: -30px;
+}
+.imgFileInput{
+    opacity: 0;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    left: -67px;
+    z-index: 20;
+
+}
+.detail{background-color: white;}
+#contentView{opacity:0.9}
+.margin30{
+    margin: 30px;
+}

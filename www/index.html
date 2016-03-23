@@ -6,27 +6,33 @@
         <meta name="msapplication-tap-highlight" content="no">
 
         <!--Import Google Icon Font-->
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link href="js/rateit/rateit.css" rel="stylesheet" type="text/css">
         <title>GAWA</title>
     </head>
     <body>
     <!-- Header Start -->
     <div class="navbar-fixed">
-        <nav class="light-blue lighten-1" role="navigation">
+        <nav class="light-green accent-4" role="navigation">
             <div class="nav-wrapper container">
                 <a id="logo-container"  class="brand-logo">GAWA</a>
                 <ul id="slide-out" class="side-nav">
-                    <li id="userLogo" class="auth">
-                        <img src="" alt="" style="height: 73px;width: 73px;" class="circle user-img responsive-img">
+                    <li id="userLogo" class="auth lineheight26 padding0" >
+
                     </li>
-                    <li class="active site-login"><a href="site/login" >Login</a></li>
-                    <li class="site-profile auth" style="display: none;"><a href="site/profile" >Profile</a></li>
-                    <li class="site-logout auth" style="display: none;"><a href="site/login"  onclick="app.setUserLogout();">Logout</a></li>
+                    <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate',this);" >Login</a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="homeLink" onclick="app.loadHome(this);" >Home</a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="profileLink" onclick="app.loadProfile(this);" >Profile</a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="vaultLink" onclick="app.loadVault(this);" >Vault</a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="distanceLink" onclick="app.loadPage('distanceTemplate',this);">Distance</a></li>
+                    <li class="" ><a href="#" id="aboutLink" onclick="app.loadPage('aboutTemplate',this);">About</a></li>
+                    <li class="" ><a href="#" id="supportLink" onclick="app.loadPage('supportTemplate',this);">Support</a></li>
+                    <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();">Logout</a></li>
                 </ul>
                 <a  data-activates="slide-out" class="button-collapse hide-on-large"><i class="mdi-navigation-menu"></i></a>
             </div>
@@ -34,7 +40,7 @@
     </div>
     <!-- Header End -->
     <!-- page loader start-->
-    <div id="mLoader" style="/*display: none;*/">
+    <div id="mLoader" style="display: none;">
     <div class="loader-wrapepr">
         <div class=" preloader-wrapper big active">
             <div class="spinner-layer spinner-blue">
@@ -83,17 +89,246 @@
     <!-- page loader end-->
     <!-- Page Content Start -->
     <div id="contentView">
+
     </div>
     <!-- Page Content End -->
 
-    <script type="text/html" id="userProfileTemplate">
-        <img src="" alt="" style="height: 73px;width: 73px;" class="circle user-img responsive-img">
+    <script type="text/html" id="vaultDataTemplate">
+
+        <tr>
+            <td>_o_type_</td>
+            <td>$_o_amount_</td>
+            <td>_o_created_</td>
+        </tr>
+
     </script>
+    <script type="text/html" id="vaultTemplate">
+        <div class="row detail margin30"  >
+            <div class="col s12 m12 z-depth-1 center" >
+                <a href="#" onclick="app.loadDefaultPage();" class="btn-floating  waves-effect waves-light red right flotbtn" ><i class="fa fa-times"></i></a>
+                <h5>Vault</h5>
+                <table class="bordered">
+                    <thead>
+                    <tr>
+                        <th data-field="id">Type</th>
+                        <th data-field="name">Amount</th>
+                        <th data-field="price">Date</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="vaultData">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </script>
+    <script type="text/html" id="homeTemplate">
+        <div id="googleMap" ></div>
+    </script>
+    <script type="text/html" id="profileTemplate">
+        <br>
+        <div class="row detail margin30"  >
+
+            <div class="col s12 m12 z-depth-1" >
+                <div class="col s12 m4 center" >
+                    <form enctype="multipart/form-data" action="site/profile" onsubmit="app.profileForm(this);" method="post">
+
+                        <img src="_img_" alt="" style="height: 73px;width: 73px;" class="circle user-img responsive-img">
+                        <a href="#" class="btn-floating  waves-effect waves-light transparent  imgfiletbtn" ><i class="fa fa-camera fa-2x blue-text"></i></a>
+
+                        <input type="file" name="s_logo" class="imgFileInput">
+                        <input type="hidden" name="s_id"  value="_s_id_">
+                        <input type="hidden" name="s_logo"  value="_s_logo_">
+                        <div class="row">
+                            <input type="hidden" value="2.5" id="backing6">
+                            <div id="rateit6"  data-rateit-resetable="false">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h5 class="center indigo-text">
+                                _s_name_
+                            </h5>
+                            <p class="light center">
+
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="text" name="s_email" value="_s_email_" class="validate ">
+                                <label for="email" class="active">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="s_contact" type="text" name="s_contact" class="validate" value="_s_contact_">
+                                <label for="s_contact" class="active">Contact</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="s_address" type="text" name="s_address" class="validate" value="_s_address_">
+                                <label for="s_address" class="active">Address</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 center">
+                                <button type="submit" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Submit<i class="material-icons right"></i></button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="aboutTemplate">
+        <div class="row detail"  style="margin: 30px;   ">
+            <div class="col s12 m12 z-depth-1 center" >
+                <a href="#" onclick="app.loadDefaultPage();" class="btn-floating  waves-effect waves-light red right flotbtn" ><i class="fa fa-times"></i></a>
+                <h5>about</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            </div>
+        </div>
+    </script>
+    <script type="text/html" id="supportTemplate">
+        <div class="row detail"  style="margin: 30px;   ">
+            <div class="col s12 m12 z-depth-1 center" >
+                <a href="#" onclick="app.loadDefaultPage();" class="btn-floating  waves-effect waves-light red right flotbtn" ><i class="fa fa-times"></i></a>
+                <h5>support</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="signupTemplate">
+        <div class="row detail margin30"  >
+            <div class="col s12 m12 z-depth-1 center" >
+            <form class="col s12" role="form" enctype="multipart/form-data" action="/site/signup" onsubmit="event.preventDefault();app.signupForm(this);" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="s_name" type="text" name="s_name" class="validate">
+                        <label for="email">Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="text" name="s_email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" name="s_password" type="password" class="validate">
+                        <label for="password" >Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="s_contact" type="text" name="s_contact" class="validate">
+                        <label for="s_contact">Contact</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="s_zip" type="text" name="s_zip" class="validate">
+                        <label for="s_zip">Postcode</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 center">
+                        <button type="submit" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Submit<i class="material-icons right"></i></button>
+                    </div>
+                </div>
+
+            </form>
+        </div></div>
+</script>
+    <script type="text/html" id="loginTemplate">
+        <div class="row detail margin30"  >
+
+            <div class="col s12 m12 z-depth-1" >
+            <form class="col s12" role="form" enctype="multipart/form-data" action="/site/login" onsubmit="app.loginForm(this);" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="text" name="s_email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" name="s_password" type="password" class="validate">
+                        <label for="password" >Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <button type="submit" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <a href="#" onclick="app.loadPage('signupTemplate',$('loginLink'));" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Signup<i class="material-icons right"></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                        </fb:login-button>
+
+                        <div id="status">
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="distanceTemplate">
+        <div class="row detail margin30"  >
+            <div class="col s12 m12 z-depth-1 center" >
+                <a href="#" onclick="app.loadDefaultPage();" class="btn-floating  waves-effect waves-light red right flotbtn" ><i class="fa fa-times"></i></a>
+                <h5>Distance</h5>
+                <p>Lorem Ipsum is simply dummy text</p>
+                <br>
+                <div style="height: 100px;width: 100px;margin: auto;" class=" blue circle">
+                    <i class="fa fa-map-marker fa-2x red-text" style="margin-top: 33px;" ></i>
+                </div>
+                <input style="width: 33%;" value="3.5" type="number" id="distance"  onchange="localStorage['distance']=this.value;"><span>Km</span>
+                <br>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="userProfileTemplate">
+        <div class="sidebg height80 ">
+
+        <div class="left height80">
+
+            <img src="_img_" alt=""  class="circle user-img responsive-img marginL10 imageHW">
+        </div>
+        <div class="sidebar-text right height80 marginT10">
+            _s_name_ <br>_s_email_
+        </div>
+        </div>
+
+    </script>
+
     <!-- Jacascript Start-->
     <script type="text/javascript" src="cordova.js"></script>
 
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/rateit/jquery.rateit.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
 
     <script type="text/javascript" src="js/index.js"></script>
     <!-- Jacascript end-->
