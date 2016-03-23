@@ -1,0 +1,9 @@
+input{
+    font-size: 16px;}
+.loader-wrapepr{
+    position: absolute;
+    left: 45%;top:45%
+}
+.detail p{
+    margin: 0;
+}

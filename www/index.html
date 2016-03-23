@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>GAWA</title>
+    </head>
+    <body>
+    <!-- Header Start -->
+    <div class="navbar-fixed">
+        <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+                <a id="logo-container"  class="brand-logo">GAWA</a>
+                <ul id="slide-out" class="side-nav">
+                    <li id="userLogo" class="auth">
+                        <img src="" alt="" style="height: 73px;width: 73px;" class="circle user-img responsive-img">
+                    </li>
+                    <li class="active site-login"><a href="site/login" >Login</a></li>
+                    <li class="site-profile auth" style="display: none;"><a href="site/profile" >Profile</a></li>
+                    <li class="site-logout auth" style="display: none;"><a href="site/login"  onclick="app.setUserLogout();">Logout</a></li>
+                </ul>
+                <a  data-activates="slide-out" class="button-collapse hide-on-large"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </nav>
+    </div>
+    <!-- Header End -->
+    <!-- page loader start-->
+    <div id="mLoader" style="/*display: none;*/">
+    <div class="loader-wrapepr">
+        <div class=" preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- page loader end-->
+    <!-- Page Content Start -->
+    <div id="contentView">
+    </div>
+    <!-- Page Content End -->
+
+    <script type="text/html" id="userProfileTemplate">
+        <img src="" alt="" style="height: 73px;width: 73px;" class="circle user-img responsive-img">
+    </script>
+    <!-- Jacascript Start-->
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <!-- Jacascript end-->
+    </body>
+</html>
