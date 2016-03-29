@@ -80,18 +80,6 @@ var app={
         $('.auth').hide();
         $('.site-login').show();
 
-        var func=function(response){
-            app.stopLoader();
-            if(response.message){app.alert(response.message);}
-            if(response.status) {
-                var obj=$('#loginLink');
-                app.loadPage('loginTemplate',obj);
-                $(obj).parent().addClass('active').siblings().removeClass('active');
-                localStorage['id']=app.id='';
-            }
-
-        };
-        app.callAjax('site/logout','',func);
 
     },
     setUserLogin:function(){
@@ -131,8 +119,17 @@ var app={
     setProfileData:function(data){
         $('#userLogo').html(app.creteHtml('userProfileTemplate',data));
     },
+    loadProfile2:function(){
+        var response={"status":1,"data":{"s_id":"13","s_email":"hhh@gmail.com","s_name":"hhh","s_zip":"9999","s_contact":" 789879855","s_password":"$2y$13$BcLqRwSAsIy0gvjOafvKBO3j82yYepHiubk4R7GOeDOgZirKfdZqq","s_auth_key":"","s_password_reset_token":"","s_logo":"1458678099.jpg","s_address":"fgdfhgfh","s_lat":"","s_long":"","s_created":"1458267296","s_modified":"1458678726","img":"http://localhost/gava/web/upload/profile/1458678099.jpg"}};
+        app.stopLoader();
+        if(response.message){app.alert(response.message);}
+        if(response.status) {
+            app.loadPage('profileTemplate', response.data);
+            app.setProfileData(response.data);
+        }
 
-    loadProfile:function(obj){
+    },
+    /*loadProfile:function(obj){
         var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
@@ -145,7 +142,7 @@ var app={
 
         };
         app.callAjax('site/profile','',func);
-    },
+    },*/
     loginForm:function(obj){
         var func=function(response){
 
@@ -160,7 +157,7 @@ var app={
         this.postAjax(obj,func,'');
     },
     signupForm:function(obj){
-        var func=function(response){
+        /*var func=function(response){
 
             app.stopLoader();
             if(response.message){app.alert(response.message);}
@@ -168,15 +165,19 @@ var app={
                 app.loadPage('loginTemplate',$('#loginLink'));
             }
         };
-        this.postAjax(obj,func,'');
+        this.postAjax(obj,func,'');*/
+        app.loadPage('loginTemplate',$('#loginLink'));
+        app.alert('Signup successfully.');
     },
     profileForm:function(obj){
-        var func=function(response){
+        /*var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
             if(response.status){app.loadProfile($('#profileLink'));}
         };
-        this.postAjax(obj,func,'');
+        this.postAjax(obj,func,'');*/
+        app.loadProfile2();app.setSidebar($('profileLink'));app.setUserLogin();
+        app.alert('Profile updated successsfully');
     },
 
 };
