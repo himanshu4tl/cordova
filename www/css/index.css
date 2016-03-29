@@ -8,7 +8,7 @@ input{
     margin: 0;
 }
 .side-nav li:hover, .side-nav li.active{
-    background-color: #64dd17 !important;
+    background-color: #fcfcfc !important;
 }
 .sidebg{
     background:url("../img/sidebg.jpg");
@@ -60,4 +60,32 @@ body{
 #contentView{opacity:0.9}
 .margin30{
     margin: 30px;
+}
+
+.logo
+{
+	width: 80px;
+padding-top: 5px;
+}
+.msg_icon
+{
+	 left: 75%;
+position: relative;
+width: 60px;
+padding: 15px;
+}
+.menu_icon
+{
+	width: 30px;
+    vertical-align: middle;
+}
+
+.inlineblock{display: inline-block;}
+.notificationList .notificationBlock{
+    padding: 5px 10px 10px 0;
+    border-bottom: 1px dotted grey;
+}
+.notificationList .notificationText{
+    display: inline-block;
+    width: Calc(100% - 100px);
 }

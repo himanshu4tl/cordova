@@ -1308,7 +1308,7 @@
 }
 
 .light-green.accent-4 {
-  background-color: #64dd17 !important;
+  background-color: #fcfcfc !important;
 }
 
 .light-green-text.text-accent-4 {
@@ -9779,7 +9779,7 @@ select {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: #fff;
+  background-color: #2b2b2a;
   z-index: 999;
   overflow-y: auto;
   will-change: left;
@@ -9806,9 +9806,9 @@ select {
 }
 
 .side-nav a {
-  color: #444;
+  color: #b2b3b1;
   display: block;
-  font-size: 1rem;
+  font-size: 20px;
   height: 64px;
   line-height: 64px;
   padding: 0 15px;
