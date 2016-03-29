@@ -26,9 +26,7 @@
 
                     </li>
                     <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate',this);" >Login</a></li>
-                    <li class="auth" style="display: none;"><a href="#" id="homeLink" onclick="app.loadHome(this);" >Home</a></li>
                     <li class="auth" style="display: none;"><a href="#" id="profileLink" onclick="app.loadProfile(this);" >Profile</a></li>
-                    <li class="auth" style="display: none;"><a href="#" id="vaultLink" onclick="app.loadVault(this);" >Vault</a></li>
                     <li class="auth" style="display: none;"><a href="#" id="distanceLink" onclick="app.loadPage('distanceTemplate',this);">Distance</a></li>
                     <li class="" ><a href="#" id="aboutLink" onclick="app.loadPage('aboutTemplate',this);">About</a></li>
                     <li class="" ><a href="#" id="supportLink" onclick="app.loadPage('supportTemplate',this);">Support</a></li>
@@ -93,40 +91,6 @@
     </div>
     <!-- Page Content End -->
 
-    <script type="text/html" id="vaultDataTemplate">
-
-        <tr>
-            <td>_o_type_</td>
-            <td>$_o_amount_</td>
-            <td>_o_created_</td>
-        </tr>
-
-    </script>
-    <script type="text/html" id="vaultTemplate">
-        <div class="row detail margin30"  >
-            <div class="col s12 m12 z-depth-1 center" >
-                <a href="#" onclick="app.loadDefaultPage();" class="btn-floating  waves-effect waves-light red right flotbtn" ><i class="fa fa-times"></i></a>
-                <h5>Vault</h5>
-                <table class="bordered">
-                    <thead>
-                    <tr>
-                        <th data-field="id">Type</th>
-                        <th data-field="name">Amount</th>
-                        <th data-field="price">Date</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="vaultData">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </script>
-    <script type="text/html" id="homeTemplate">
-        <div id="googleMap" ></div>
-    </script>
     <script type="text/html" id="profileTemplate">
         <br>
         <div class="row detail margin30"  >
@@ -292,21 +256,6 @@
         </div>
     </script>
 
-    <script type="text/html" id="distanceTemplate">
-        <div class="row detail margin30"  >
-            <div class="col s12 m12 z-depth-1 center" >
-                <a href="#" onclick="app.loadDefaultPage();" class="btn-floating  waves-effect waves-light red right flotbtn" ><i class="fa fa-times"></i></a>
-                <h5>Distance</h5>
-                <p>Lorem Ipsum is simply dummy text</p>
-                <br>
-                <div style="height: 100px;width: 100px;margin: auto;" class=" blue circle">
-                    <i class="fa fa-map-marker fa-2x red-text" style="margin-top: 33px;" ></i>
-                </div>
-                <input style="width: 33%;" value="3.5" type="number" id="distance"  onchange="localStorage['distance']=this.value;"><span>Km</span>
-                <br>
-            </div>
-        </div>
-    </script>
 
     <script type="text/html" id="userProfileTemplate">
         <div class="sidebg height80 ">
