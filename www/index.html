@@ -32,7 +32,7 @@
                     <li><a href="#" ><img src="img/resaturant.png" class="menu_icon"> &nbsp; Restaurants </a></li>
                     <li><a href="#" ><img src="img/coupen.png" class="menu_icon"> &nbsp; Coupons </a></li>
                     <li><a href="#" ><img src="img/msg.png" class="menu_icon"> &nbsp; Messages </a></li>
-                    <li><a href="#" ><img src="img/setting.png" class="menu_icon"> &nbsp; Settings </a></li>
+                    <li><a href="#" id="profileLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));"><img src="img/setting.png" class="menu_icon"> &nbsp; Settings </a></li>
                     
                     
                     <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));">Logout</a></li>
@@ -331,7 +331,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <a href="#" onclick="app.loadProfile2();app.setSidebar($('profileLink'));app.setUserLogin();" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></a>
+                        <a href="#" onclick="app.loadProfile2();app.setSidebar($('#profileLink'));app.setUserLogin();" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></a>
                     </div>
                 </div>
                 <div class="row">
