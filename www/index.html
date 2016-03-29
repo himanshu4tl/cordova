@@ -25,11 +25,11 @@
                     <li id="userLogo" class="auth lineheight26 padding0" >
 
                     </li>
-                    <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate',this);" >Login</a></li>
+                    <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate');app.setSidebar(this);" >Login</a></li>
                     <li class="auth" style="display: none;"><a href="#" id="profileLink" onclick="app.loadProfile(this);" >Profile</a></li>
-                    <li class="auth" style="display: none;"><a href="#" id="distanceLink" onclick="app.loadPage('distanceTemplate',this);">Distance</a></li>
-                    <li class="" ><a href="#" id="aboutLink" onclick="app.loadPage('aboutTemplate',this);">About</a></li>
-                    <li class="" ><a href="#" id="supportLink" onclick="app.loadPage('supportTemplate',this);">Support</a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="distanceLink" onclick="app.loadPage('distanceTemplate');app.setSidebar(this);">Distance</a></li>
+                    <li class="" ><a href="#" id="aboutLink" onclick="app.loadPage('aboutTemplate');app.setSidebar(this);">About</a></li>
+                    <li class="" ><a href="#" id="supportLink" onclick="app.loadPage('supportTemplate');app.setSidebar(this);">Support</a></li>
                     <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();">Logout</a></li>
                 </ul>
                 <a  data-activates="slide-out" class="button-collapse hide-on-large"><i class="mdi-navigation-menu"></i></a>
@@ -237,7 +237,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <a href="#" onclick="app.loadPage('signupTemplate',$('loginLink'));" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Signup<i class="material-icons right"></i></a>
+                        <a href="#" onclick="app.loadPage('signupTemplate');app.setSidebar($('loginLink'));" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Signup<i class="material-icons right"></i></a>
                     </div>
                 </div>
                 <div class="row">

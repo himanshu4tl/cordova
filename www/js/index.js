@@ -109,14 +109,16 @@ var app={
     stopLoader:function(){
         app.loader.hide();
     },
-    loadPage:function(templateId,obj,data){
-        $(obj).parent().addClass('active').siblings().removeClass('active');
+    loadPage:function(templateId,data){
         if(!data){data={}}
         console.log(templateId);
         this.renderHtml(this.creteHtml(templateId,data));
         app.stopLoader();
         this.pageInit();
         this.afterLoadPage(templateId);
+    },
+    setSidebar:function(obj){
+        $(obj).parent().addClass('active').siblings().removeClass('active');
     },
     afterLoadPage:function(templateId){
         if(templateId=="loginTemplate"){
