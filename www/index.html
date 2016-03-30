@@ -23,16 +23,20 @@
                 <a id="logo-container"  class="brand-logo"><img src="img/logo.jpg" class="logo"></a>
                 <a id="msg_ico"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
                 <ul id="slide-out" class="side-nav">
-                    <li id="userLogo" class="auth lineheight26 padding0" >
+                    <li  class="auth lineheight26 padding0" >
+                        <a  href="#" id="profileLink" onclick="app.loadProfile2(this);app.setSidebar($('#profileLink'));" >
+                            <div id="userLogo">
 
+                            </div>
+                        </a>
                     </li>
                     <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate');app.setSidebar(this);" >Login</a></li>
-                    <li class="auth site-profile"  style="display: none;"><a href="#" id="profileLink" onclick="app.loadProfile2(this);app.setSidebar($('#profileLink'));" ><img src="img/home.png" class="menu_icon"> &nbsp; Home </a></li>
+                    <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));" ><img src="img/home.png" class="menu_icon"> &nbsp; Home</a></li>
                     
                     <li><a href="#" ><img src="img/resaturant.png" class="menu_icon"> &nbsp; Restaurants </a></li>
                     <li><a href="#" ><img src="img/coupen.png" class="menu_icon"> &nbsp; Coupons </a></li>
                     <li><a href="#" ><img src="img/msg.png" class="menu_icon"> &nbsp; Messages </a></li>
-                    <li><a href="#" id="profileLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));"><img src="img/setting.png" class="menu_icon"> &nbsp; Settings </a></li>
+                    <li><a href="#" id="settingLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));"><img src="img/setting.png" class="menu_icon"> &nbsp; Settings </a></li>
                     
                     
                     <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));">Logout</a></li>
@@ -155,6 +159,15 @@
         </div>
     </script>
 
+    <script type="text/html" id="homeTemplate">
+        <div class="row detail"  style="margin: 30px;   ">
+            <div class="col s12 m12  center" >
+                <a href="#" onclick="app.loadDefaultPage();" class="btn-floating  waves-effect waves-light red right flotbtn" ><i class="fa fa-times"></i></a>
+                <h5>home</h5>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            </div>
+        </div>
+    </script>
     <script type="text/html" id="aboutTemplate">
         <div class="row detail"  style="margin: 30px;   ">
             <div class="col s12 m12  center" >
