@@ -44,40 +44,5 @@
     </platform>
 
     <icon src="icon.png" />
-    <splash src="splash.png" />
-    <splash src="splash.png" />
-
-    <splash src="res/screen/android/ldpi.png" platform="android" qualifier="ldpi" />
-    <splash src="res/screen/android/mdpi.png" platform="android" qualifier="mdpi" />
-    <splash src="res/screen/android/hdpi.png" platform="android" qualifier="hdpi" />
-    <splash src="res/screen/android/xhdpi.png" platform="android" qualifier="xhdpi" />
-
-    <!-- iPhone and iPod touch -->
-    <splash src="res/screen/ios/Default.png" platform="ios" width="320" height="480" />
-    <splash src="res/screen/ios/Default@2x.png" platform="ios" width="640" height="960" />
-
-    <!-- iPhone 5 / iPod Touch (5th Generation) -->
-    <splash src="res/screen/ios/Default-568h@2x.png" platform="ios" width="640" height="1136" />
-
-    <!-- iPhone 6 -->
-    <splash src="res/screen/ios/Default-667h@2x.png" platform="ios" width="750" height="1334" />
-    <splash src="res/screen/ios/Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
-    <splash src="res/screen/ios/Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" />
-
-    <!-- iPad -->
-    <splash src="res/screen/ios/Default-Portrait.png" platform="ios" width="768" height="1024" />
-    <splash src="res/screen/ios/Default-Landscape.png" platform="ios" width="1024" height="768" />
-
-    <!-- Retina iPad -->
-    <splash src="res/screen/ios/Default-Portrait@2x.png" platform="ios" width="1536" height="2048" />
-    <splash src="res/screen/ios/Default-Landscape@2x.png" platform="ios" width="2048" height="1536" />
-
-    <preference name="ShowSplashScreenSpinner" value="false" />
-    <preference name="AutoHideSplashScreen" value="false" />
-    <preference name="SplashScreenDelay" value="10000" />
-    <preference name="DisallowOverscroll" value="true" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
-
-    <access origin="*" />
 
 </widget>
