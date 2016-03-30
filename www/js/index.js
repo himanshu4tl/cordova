@@ -124,7 +124,8 @@ var app={
         app.stopLoader();
         if(response.message){app.alert(response.message);}
         if(response.status) {
-            app.loadPage('profileTemplate', response.data);
+            app.loadPage('homeTemplate', response.data);
+            app.setSidebar($('#homeLink'));
             app.setProfileData(response.data);
         }
 
