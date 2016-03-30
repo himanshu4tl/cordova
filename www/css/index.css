@@ -80,7 +80,7 @@ padding: 15px;
     vertical-align: middle;
 }
 
-.inlineblock{display: inline-block;}
+.inlineblock{display: inline-block !important;}
 .notificationList .notificationBlock{
     padding: 5px 10px 10px 0;
     border-bottom: 1px dotted grey;
@@ -92,15 +92,15 @@ padding: 15px;
 .home_profile_img
 {
 
-    margin-top: 15px;
+    margin-top: 15px !important;
 	background-image:url("/img/profile_bg.png");
 }
 .home_close_like_icon
 {
-	width:110px;
+	width:100px !important;
 }
 .home_search_icon
 {
-	width: 90px;
+	width: 80px !important;
     margin-bottom: 5px;
 }

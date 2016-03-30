@@ -5,14 +5,18 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
 
-        <!--Import Google Icon Font-->
-        <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!--Import font-awesome Icon Font-->
+        <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="libs/materialize/css/materialize.css"  media="screen,projection"/>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <!--custom css-->
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link href="js/rateit/rateit.css" rel="stylesheet" type="text/css">
+
+        <!--crosole slider css-->
+        <link rel="stylesheet" href="libs/owl.carousel/assets/owl.carousel.css">
+
         <title>Feel</title>
     </head>
     <body>
@@ -31,7 +35,7 @@
                         </a>
                     </li>
                     <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate');app.setSidebar(this);" >Login</a></li>
-                    <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));" ><img src="img/home.png" class="menu_icon">  Home</a></li>
+                    <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();" ><img src="img/home.png" class="menu_icon">  Home</a></li>
                     
                     <li><a href="#" ><img src="img/resaturant.png" class="menu_icon"> &nbsp; Restaurants </a></li>
                     <li><a href="#" ><img src="img/coupen.png" class="menu_icon"> &nbsp; Coupons </a></li>
@@ -161,17 +165,38 @@
 
     <script type="text/html" id="homeTemplate">
         <div class="row detail"  >
-            <div class="col s12 m12  center" >
-			<div class="home_profile_img">
-				<img src="img/profile_pic_03.png" style="width:90%"/>
-			</div>
-            </div>
-			 <div class="col s12 m12 center" style="vertical-align:middle" >
 
-                <img class="inlineblock home_close_like_icon" src="img/close.jpg" />
-				<img class="inlineblock home_search_icon" src="img/search.jpg"/>
-				<img class="inlineblock home_close_like_icon" src="img/like.png"/>
+            <div class="owl-carousel">
+                <div class="item center" style="width: 100%;">
+                    <div class="" >
+                        <div class="home_profile_img">
+                            <img src="img/profile_pic_03.png" style="width:90%; margin: 0 24px !important"/>
+                        </div>
+                    </div>
+                    <div class="" style="vertical-align:middle" >
+
+                        <img class="inlineblock home_close_like_icon" src="img/close.jpg" />
+                        <img class="inlineblock home_search_icon" src="img/search.jpg"/>
+                        <img class="inlineblock home_close_like_icon" src="img/like.png"/>
+                    </div>
+                </div>
+
+                <div class="item center" style="width: 100%;">
+                    <div class="" >
+                        <div class="home_profile_img">
+                            <img src="img/profile_pic_03.png" style="width:90%; margin: 0 24px !important"/>
+                        </div>
+                    </div>
+                    <div class="" style="vertical-align:middle" >
+
+                        <img class="inlineblock home_close_like_icon" src="img/close.jpg" />
+                        <img class="inlineblock home_search_icon" src="img/search.jpg"/>
+                        <img class="inlineblock home_close_like_icon" src="img/like.png"/>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </script>
     <script type="text/html" id="aboutTemplate">
@@ -350,7 +375,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <a href="#" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.loadlogin();" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></a>
+                        <a href="#" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.loadlogin();" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></a>
                     </div>
                 </div>
                 <div class="row">
@@ -382,10 +407,11 @@
     <!-- Jacascript Start-->
     <script type="text/javascript" src="cordova.js"></script>
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
-
+    <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="libs/materialize/js/materialize.min.js"></script>
+    <!--owl crosole js start-->
+    <script type="text/javascript" src="libs/owl.carousel/owl.carousel.js"></script>
+    <!--owl crosole js end-->
     <script type="text/javascript" src="js/index.js"></script>
     <!-- Jacascript end-->
     </body>

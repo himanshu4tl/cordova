@@ -141,6 +141,14 @@ var app={
         }
 
     },
+    homeInit:function(){
+        $(".owl-carousel").owlCarousel({
+            items:1,
+            loop:true,
+            margin:5,
+        });
+
+    },
     /*loadProfile:function(obj){
         var func=function(response){
             app.stopLoader();
