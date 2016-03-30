@@ -127,6 +127,7 @@ var app={
             app.loadPage('homeTemplate', response.data);
             app.setSidebar($('#homeLink'));
             app.setProfileData(response.data);
+            app.setUserLogin();
         }
 
     },

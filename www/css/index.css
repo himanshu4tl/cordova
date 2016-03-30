@@ -32,7 +32,7 @@ body{
     height: 73px !important;width: 73px;
 }
 .sidebar-text{
-    width: 145px;
+    width: 120px;
 }
 .lineheight26{
     line-height: 26px !important;
@@ -88,4 +88,19 @@ padding: 15px;
 .notificationList .notificationText{
     display: inline-block;
     width: Calc(100% - 100px);
+}
+.home_profile_img
+{
+
+    margin-top: 15px;
+	background-image:url("/img/profile_bg.png");
+}
+.home_close_like_icon
+{
+	width:110px;
+}
+.home_search_icon
+{
+	width: 90px;
+    margin-bottom: 5px;
 }
