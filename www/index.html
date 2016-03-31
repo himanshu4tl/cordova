@@ -14,12 +14,15 @@
         <!--custom css-->
         <link rel="stylesheet" type="text/css" href="css/index.css">
 
+        <link rel="stylesheet" type="text/css" href="libs/noUiSlider/nouislider.css">
+
         <!--crosole slider css-->
         <link rel="stylesheet" href="libs/owl.carousel/assets/owl.carousel.css">
+        <link rel="stylesheet" href="libs/owl.carousel/assets/owl.theme.default.min.css">
 
         <title>Feel</title>
     </head>
-    <body>
+    <body class="height100vh">
     <!-- Header Start -->
     <div class="navbar-fixed">
         <nav class="light-green accent-4" role="navigation">
@@ -27,7 +30,7 @@
                 <a id="logo-container"  class="brand-logo"><img src="img/logo.jpg" class="logo"></a>
                 <a id="msg_ico"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
                 <ul id="slide-out" class="side-nav">
-                    <li  class="auth sidebg height80 padding0" >
+                    <li  class="auth sidebg height80 padding0"  style="display: none;">
                         <a  href="#" id="profileLink" onclick="app.loadProfile2(this);" >
                             <div id="userLogo">
 
@@ -35,15 +38,15 @@
                         </a>
                     </li>
                     <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate');app.setSidebar(this);" >Login</a></li>
-                    <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();" ><img src="img/home.png" class="menu_icon">  Home</a></li>
+                    <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();" ><i class="fa fa-globe fa-2x"></i> &nbsp; Home</a></li>
                     
-                    <li><a href="#" ><img src="img/resaturant.png" class="menu_icon"> &nbsp; Restaurants </a></li>
-                    <li><a href="#" ><img src="img/coupen.png" class="menu_icon"> &nbsp; Coupons </a></li>
-                    <li><a href="#" ><img src="img/msg.png" class="menu_icon"> &nbsp; Messages </a></li>
-                    <li><a href="#" id="settingLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));"><img src="img/setting.png" class="menu_icon"> &nbsp; Settings </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="restaurentLink" onclick="app.loadPage('restaurentTemplate');app.setSidebar($('#restaurentLink'));app.restaurentInit();" ><i class="fa fa-glass fa-2x"></i> &nbsp; Restaurants </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="couponLink" onclick="app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));"><i class="fa fa-money fa-2x"></i> &nbsp; Coupons </a></li>
+                    <li class="auth" style="display: none;"><a href="#" ><i class="fa fa-envelope-o fa-2x"></i> &nbsp; Messages </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="settingLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();"><i class="fa fa-cog fa-2x"></i> &nbsp; Settings </a></li>
                     
                     
-                    <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));">Logout</a></li>
+                    <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
                 </ul>
                 <a  data-activates="slide-out" class="button-collapse hide-on-large"><i class="mdi-navigation-menu" style="color:#666666"></i></a>
             </div>
@@ -99,11 +102,32 @@
     </div>
     <!-- page loader end-->
     <!-- Page Content Start -->
-    <div id="contentView">
+    <div id="contentView" class="height100vh">
 
     </div>
     <!-- Page Content End -->
 
+    <script type="text/html" id="restaurentTemplate">
+        <div class="row detail"  >
+
+            <div class="owl-carousel">
+                <div class="item center" >
+                    <img src="img/slider1.jpg" style="height: 360px;"/>
+                </div>
+
+                <div class="item center" >
+
+                    <img src="img/slider2.jpg" style="height: 360px;"/>
+                </div>
+            </div>
+            <div class="center" style="width: 100% !important;position: relative;top: -130px;z-index: 1;height: 100px;">
+                <img src="img/profile_bakground_bottom_02.png" width="100% !important" >
+                <div class="center" style="width: 100% !important; position: absolute;top:125px;margin-left:auto;margin-right: auto">
+                    <div style="margin-left: 20px;margin-right: 20px;background-color: white;">sadsadsdasdsadadsad</div>
+                </div>
+            </div>
+        </div>
+</script>
     <script type="text/html" id="profileTemplate">
         <br>
         <div class="row "  >
@@ -151,7 +175,7 @@
                         </div>
                         <div class="row">
                             <div class="col s12 center">
-                                <button type="submit" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Submit<i class="material-icons right"></i></button>
+                                <button type="submit" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">Submit<i class="material-icons right"></i></button>
                             </div>
                         </div>
 
@@ -164,40 +188,53 @@
     </script>
 
     <script type="text/html" id="homeTemplate">
-        <div class="row detail"  >
+        <div class="row detail " >
+            <div class="">
+                <!--item -->
+                <div class=" center" style="width: 100%;">
 
-            <div class="owl-carousel">
-                <div class="item center" style="width: 100%;">
-                    <div class="" >
-                        <div class="home_profile_img">
-                            <img src="img/profile_pic_03.png" style="width:90%; margin: 0 24px !important"/>
+                    <div class="col s12 m12  center " >
+                        <div style="position: relative; left: 0; top: 2px;">
+                            <img src="img/profile_bg.png" style="position: absolute;/* top: 10px; */left: 0px;width:100%;height: 460px;"/>
+                            <img src="img/profile_pic_03.png" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                        </div>
+                        <div style="position: relative; left: 0; top:2px;color:#81827f">
+                            <h4>KEITLIN (26)</h4>
+                            <hr width="50px">
+                        </div>
+
+                        <div class="center" >
+                            <div style="position: relative;display: inline-block;">
+                                <img src="img/user_mini.jpg" class="pro_mini_ico"/><br>
+
+                            </div>
+
+                            <div style="position: relative;display: inline-block;" >
+                                <img src="img/book.jpg" class="pro_mini_ico"/><br>
+
+                            </div>
+                        </div>
+                        <div class="center" >
+                            <div style="position: relative;display: inline-block;">
+                                <span class="span_txt">4</span>
+                            </div>
+
+                            <div style="position: relative;display: inline-block;" >
+                                <span class="span_txt">32</span>
+                            </div>
+                        </div>
+                        <div class="bottom_btn" style="position:relative;top:14px;">
+
+                            <img class="inlineblock home_close_like_icon" src="img/close.png" />
+                            <img class="inlineblock home_search_icon" src="img/search.png"/>
+                            <img class="inlineblock home_close_like_icon" src="img/like.png"/>
                         </div>
                     </div>
-                    <div class="" style="vertical-align:middle" >
-
-                        <img class="inlineblock home_close_like_icon" src="img/close.jpg" />
-                        <img class="inlineblock home_search_icon" src="img/search.jpg"/>
-                        <img class="inlineblock home_close_like_icon" src="img/like.png"/>
-                    </div>
                 </div>
+                <!--/item-->
 
-                <div class="item center" style="width: 100%;">
-                    <div class="" >
-                        <div class="home_profile_img">
-                            <img src="img/profile_pic_03.png" style="width:90%; margin: 0 24px !important"/>
-                        </div>
-                    </div>
-                    <div class="" style="vertical-align:middle" >
-
-                        <img class="inlineblock home_close_like_icon" src="img/close.jpg" />
-                        <img class="inlineblock home_search_icon" src="img/search.jpg"/>
-                        <img class="inlineblock home_close_like_icon" src="img/like.png"/>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+			</div>
+		</div>
     </script>
     <script type="text/html" id="aboutTemplate">
         <div class="row detail"  style="margin: 30px;   ">
@@ -255,22 +292,22 @@
 
                 <div class="row">
                     <div class="col s12 center">
-                        <button type="submit" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Submit<i class="material-icons right"></i></button>
+                        <button type="submit" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">Submit<i class="material-icons right"></i></button>
                     </div>
                 </div>
 
             </form>
         </div></div>
 </script>
-<!--Settings start-->
-    <script type="text/html" id="settingTemplate">
-        <div class="row grey darken-4 white-text"  >
+<!--Notifications start-->
+<script type="text/html" id="notificationTemplate">
+        <div class="row grey darken-4 white-text height100vh margin0"   >
             <br>
             <br>
             <div class="col s12 m12 notificationList" >
                 <div class="notificationBlock">
 
-                     <div class="notificationText">
+                    <div class="notificationText">
                         <span >New matches</span>
                     </div>
 
@@ -344,19 +381,158 @@
             <div class="col s12 m12  center" >
                 <br>
                 <br>
-                    <button class="waves-effect waves-light btn white black-text" >Log oout</button>
+                <button class="waves-effect waves-light btn white black-text" onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));">Log out</button>
             </div>
             <div class="col s12 m12  center" >
-                    <p>feel version 1.0</p>
+                <p>feel version 1.0</p>
             </div>
             <div class="col s12 m12  center" >
-                    <p class="red-text">Delete account</p>
+                <p class="red-text">Delete account</p>
             </div>
         </div>
+    </script>
+
+    <!--Notifications end-->
+
+    <!--Coupon start-->
+    <script type="text/html" id="couponTemplate">
+        <div class="couponss">
+
+        <h4 class="center">My coupons</h4>
+        <ul class="collection">
+            <li class="collection-item row">
+                <div class="col s3 padding0">
+                    <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                </div>
+                <div class="col s5">
+                    <h5>Troika</h5>
+                    <p class="margin5">+98298989899</p>
+                    <p class="margin5">hhh@gmail.com</p>
+                </div>
+                <div class="col s4 grey lighten-5">
+                    <h6 class="center deep-orange-text orangeFont">dinner for two</h6>
+                    <p class="blueFont blue-text center">New</p>
+                    <p class="font10 center" style="line-height: 0.6rem;">valid throught 01.02.16</p>
+                </div>
+            </li>
+            <li class="collection-item row">
+                <div class="col s3 padding0">
+                    <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                </div>
+                <div class="col s5">
+                    <h5>Troika</h5>
+                    <p class="margin5">+98298989899</p>
+                    <p class="margin5">hhh@gmail.com</p>
+                </div>
+                <div class="col s4 grey lighten-5">
+                    <h6 class="center deep-orange-text orangeFont">dinner for two</h6>
+                    <p class="blueFont blue-text center">New</p>
+                    <p class="font10 center" style="line-height: 0.6rem;">valid throught 01.02.16</p>
+                </div>
+            </li>
+            <li class="collection-item row">
+                <div class="col s3 padding0">
+                    <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                </div>
+                <div class="col s5">
+                    <h5>Troika</h5>
+                    <p class="margin5">+98298989899</p>
+                    <p class="margin5">hhh@gmail.com</p>
+                </div>
+                <div class="col s4 grey lighten-5">
+                    <h6 class="center deep-orange-text orangeFont">dinner for two</h6>
+                    <p class="blueFont blue-text center">New</p>
+                    <p class="font10 center" style="line-height: 0.6rem;">valid throught 01.02.16</p>
+                </div>
+            </li>
+            <li class="collection-item row">
+                <div class="col s3 padding0">
+                    <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                </div>
+                <div class="col s5">
+                    <h5>Troika</h5>
+                    <p class="margin5">+98298989899</p>
+                    <p class="margin5">hhh@gmail.com</p>
+                </div>
+                <div class="col s4 grey lighten-5">
+                    <h6 class="center deep-orange-text orangeFont">dinner for two</h6>
+                    <p class="blueFont blue-text center">New</p>
+                    <p class="font10 center" style="line-height: 0.6rem;">valid throught 01.02.16</p>
+                </div>
+            </li>
+            <li class="collection-item row">
+                <div class="col s3 padding0">
+                    <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                </div>
+                <div class="col s5">
+                    <h5>Troika</h5>
+                    <p class="margin5">+98298989899</p>
+                    <p class="margin5">hhh@gmail.com</p>
+                </div>
+                <div class="col s4 grey lighten-5">
+                    <h6 class="center deep-orange-text orangeFont">dinner for two</h6>
+                    <p class="blueFont blue-text center">New</p>
+                    <p class="font10 center" style="line-height: 0.6rem;">valid throught 01.02.16</p>
+                </div>
+            </li>
+
+        </ul>
+        </div>
+
+    </script>
+    <!--Coupon end-->
+
+    <!--Settings start-->
+    <script type="text/html" id="settingTemplate">
+        <div class="row grey darken-4 white-text center "  >
+            <br>
+            <p>interested in</p>
+            <button class="btn btn-round white black-text">men</button>
+            <button class="btn btn-round white black-text">women</button>
+            <br>
+            <p>show users aged: <span class="orange-text">25 - 30</span></p>
+
+            <div id="test5" class="margin10"></div>
+
+            <br>
+                <p>distance: <span class="orange-text">10 km</span> </p>
+                <p class="range-field margin10">
+                    <input type="range" id="dlldl" min="0" max="100" />
+                </p>
+                <p>Free coupon: <span class="orange-text">100 likes</span> </p>
+                <p class="range-field margin10" >
+                    <input type="range" min="0" id="llfl" max="100" />
+                </p>
+            <div class="row ">
+
+            <div class="col s6 padding5" >
+                <button onclick="app.loadPage('notificationTemplate');app.setSidebar($('#notificationLink'));" class="wordwrap btn  btn-round white black-text">Notifications</button>
+
+            </div>
+            <div class="col s6 padding5" >
+                <button class="wordwrap btn btn-round white black-text ">Report a problem</button>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col s6 padding5" >
+                <button class="wordwrap btn btn-round white black-text">invite friends</button>
+            </div>
+            <div class="col s6 padding5" >
+                <button class="wordwrap btn btn-round white black-text">need help?</button>
+            </div>
+            </div>
+            <div class="col-s12">
+                <button class="btn btn-round white black-text margin30">Buy premium feel</button>
+            </div>
+            <br>
+            <p>What is premupm feel? Read more!</p>
+        </div>
+
     </script>
 <!--Settings end-->
 
     <script type="text/html" id="loginTemplate">
+        <br>
         <div class="row "  >
 
             <div class="col s12 m12 " >
@@ -375,12 +551,12 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <a href="#" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.loadlogin();" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></a>
+                    <a href="#" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.loadlogin();app.homeInit();" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <a href="#" onclick="app.loadPage('signupTemplate');app.setSidebar($('#loginLink'));" class="waves-effect waves-light btn light-green accent-4" name="loginBtn">Signup<i class="material-icons right"></i></a>
+                        <a href="#" onclick="app.loadPage('signupTemplate');app.setSidebar($('#loginLink'));" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">Signup<i class="material-icons right"></i></a>
                     </div>
                 </div>
 
@@ -412,6 +588,7 @@
     <!--owl crosole js start-->
     <script type="text/javascript" src="libs/owl.carousel/owl.carousel.js"></script>
     <!--owl crosole js end-->
+    <script src="libs/noUiSlider/nouislider.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <!-- Jacascript end-->
     </body>

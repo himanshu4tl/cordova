@@ -131,8 +131,23 @@ var app={
         }
 
     },
+    loadSetting:function(){
+        var slider = document.getElementById('test5');
+        noUiSlider.create(slider, {
+            start: [20, 80],
+            connect: true,
+            step: 1,
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            format: wNumb({
+                decimals: 0
+            })
+        });
+    },
     loadlogin:function(){
-        var response={"status":1,"data":{"s_id":"13","s_email":"hhh@gmail.com","s_name":"hhh","s_zip":"9999","s_contact":" 789879855","s_password":"$2y$13$BcLqRwSAsIy0gvjOafvKBO3j82yYepHiubk4R7GOeDOgZirKfdZqq","s_auth_key":"","s_password_reset_token":"","s_logo":"1458678099.jpg","s_address":"fgdfhgfh","s_lat":"","s_long":"","s_created":"1458267296","s_modified":"1458678726","img":"http://localhost/gava/web/upload/profile/1458678099.jpg"}};
+        var response={"status":1,"data":{"s_id":"13","s_email":"hhh@gmail.com","s_name":"hhh","s_zip":"9999","s_contact":" 789879855","s_password":"$2y$13$BcLqRwSAsIy0gvjOafvKBO3j82yYepHiubk4R7GOeDOgZirKfdZqq","s_auth_key":"","s_password_reset_token":"","s_logo":"profile_pic_03.png","s_address":"fgdfhgfh","s_lat":"","s_long":"","s_created":"1458267296","s_modified":"1458678726","img":"img/profile_pic_03.png"}};
         app.stopLoader();
         if(response.message){app.alert(response.message);}
         if(response.status) {
@@ -144,8 +159,16 @@ var app={
     homeInit:function(){
         $(".owl-carousel").owlCarousel({
             items:1,
+            loop:false,
+            dots:true,
+        });
+
+    },
+    restaurentInit:function(){
+        $(".owl-carousel").owlCarousel({
+            items:1,
             loop:true,
-            margin:5,
+            nav:false,
         });
 
     },
@@ -202,3 +225,16 @@ var app={
 
 };
 app.appInit();
+
+document.addEventListener("backbutton", onBackKeyDown, false);
+var i=1;
+function onBackKeyDown(e) {
+    // Handle the back button
+    app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    app.device=device;
+}

@@ -7,6 +7,10 @@ input{
 .detail p{
     margin: 0;
 }
+.side-nav li:hover a, .side-nav li.active a{
+    color: black;
+
+}
 .side-nav li:hover, .side-nav li.active{
     background-color: #fcfcfc !important;
 }
@@ -15,6 +19,7 @@ input{
 }
 body{
     background:url("../img/map_img.png");
+	background-color:#f7f8f3;
 }
 .margin0{
     margin: 0;
@@ -56,7 +61,7 @@ body{
     z-index: 20;
 
 }
-.detail{background-color: white;}
+.detail{background-color: #f7f8f3;}
 #contentView{opacity:0.9}
 .margin30{
     margin: 30px;
@@ -91,16 +96,64 @@ padding: 15px;
 }
 .home_profile_img
 {
-
-    margin-top: 15px !important;
-	background-image:url("/img/profile_bg.png");
+	height:573px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-top: 15px;
+	background-image:url("../img/profile_bg.png");
 }
 .home_close_like_icon
 {
-	width:100px !important;
+	width:105px !important;
 }
 .home_search_icon
 {
 	width: 80px !important;
     margin-bottom: 5px;
+}
+.pro_mini_ico
+{
+    width: 22px !important;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #b9bab6;
+}
+.span_txt
+{
+	margin-left: 10px;
+    margin-right: 10px;
+}
+.wordwrap{
+    width: 100%;
+    font-size: 10px;
+    letter-spacing: 0;
+    line-height:1;
+    word-wrap: break-word;
+}
+.btn-round{
+    border-radius: 25px;
+
+}
+.margin10{
+    margin: 10px;
+}
+.margin5{
+    margin: 5px;
+}
+.couponImg{
+    width: 80px;
+
+}
+
+.couponss .collection .collection-item {
+    line-height: 0.5rem;
+}
+.font10{
+    font-size: 10px;
+}
+.orangeFont{
+    text-transform: uppercase;
+}
+.height100vh{
+    height: 91vh;
 }
