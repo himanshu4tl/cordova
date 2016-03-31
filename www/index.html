@@ -27,8 +27,8 @@
     <div class="navbar-fixed">
         <nav class="light-green accent-4" role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container"  class="brand-logo"><img src="img/logo.jpg" class="logo"></a>
-                <a id="msg_ico"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
+                <a  onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();" style="display: none;" data-activates="slide-out" class="hide-on-large nHeader"><i class="fa fa-angle-left fa-2x" style="color:#666666"></i></a>
+                <a id="logo-container"  class="brand-logo black-text" style="font-size: 1.6rem;"><img src="img/logo.jpg" class="logo "></a>
                 <ul id="slide-out" class="side-nav">
                     <li  class="auth sidebg height80 padding0"  style="display: none;">
                         <a  href="#" id="profileLink" onclick="app.loadProfile2(this);" >
@@ -38,17 +38,18 @@
                         </a>
                     </li>
                     <li class="active site-login"><a href="#" id="loginLink" onclick="app.loadPage('loginTemplate');app.setSidebar(this);" >Login</a></li>
-                    <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();" ><i class="fa fa-globe fa-2x"></i> &nbsp; Home</a></li>
+                    <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();" ><i class="fa fa-globe fa-2x"></i> &nbsp; Home</a></li>
                     
-                    <li class="auth" style="display: none;"><a href="#" id="restaurentLink" onclick="app.loadPage('restaurentTemplate');app.setSidebar($('#restaurentLink'));app.restaurentInit();" ><i class="fa fa-glass fa-2x"></i> &nbsp; Restaurants </a></li>
-                    <li class="auth" style="display: none;"><a href="#" id="couponLink" onclick="app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));"><i class="fa fa-money fa-2x"></i> &nbsp; Coupons </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="restaurentLink" onclick="app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');" ><i class="fa fa-glass fa-2x"></i> &nbsp; Restaurants </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="couponLink" onclick="app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));app.setTitle('COUPONS');"><i class="fa fa-money fa-2x"></i> &nbsp; Coupons </a></li>
                     <li class="auth" style="display: none;"><a href="#" ><i class="fa fa-envelope-o fa-2x"></i> &nbsp; Messages </a></li>
-                    <li class="auth" style="display: none;"><a href="#" id="settingLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();"><i class="fa fa-cog fa-2x"></i> &nbsp; Settings </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="settingLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('SETTINGS');"><i class="fa fa-cog fa-2x"></i> &nbsp; Settings </a></li>
                     
                     
-                    <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
+                    <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));app.setTitle();"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
                 </ul>
-                <a  data-activates="slide-out" class="button-collapse hide-on-large"><i class="mdi-navigation-menu" style="color:#666666"></i></a>
+                <a  data-activates="slide-out" class="button-collapse hide-on-large" ><i class="mdi-navigation-menu dHeader" style="color:#666666"></i></a>
+                <a id="msg_ico" class="msg_a dHeader"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
             </div>
         </nav>
     </div>
@@ -106,6 +107,97 @@
 
     </div>
     <!-- Page Content End -->
+    <script type="text/html" id="restaurentListTemplate">
+        <div class="margin10">
+
+        <h5 class="black-text">&nbsp; Restaurants in tallin <a class='dropdown-button right black-text' data-beloworigin="true" href='#' data-activates='dropdown1' >Sort <i id="iconnn" class="fa fa-angle-down"></i></a></h5>
+        <!-- Dropdown Trigger -->
+
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content '>
+            <li><a href="#!" class="black-text">one</a></li>
+            <li><a href="#!" class="black-text">two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!" class="black-text">three</a></li>
+        </ul>
+
+        <div class="row "  >
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+
+
+<div class="col  s3 padding0 restaurantOffset" >
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+<div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+
+            <div class="col s3 padding0 restaurantOffset">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0 ">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+
+            <div class="col s3 padding0 restaurantOffset">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0 ">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+            </div>
+
+
+
+        </div>
+        </div>
+    </script>
 
     <script type="text/html" id="restaurentTemplate">
         <div class="row detail"  >
@@ -120,70 +212,59 @@
                     <img src="img/slider2.jpg" style="height: 360px;"/>
                 </div>
             </div>
-            <div class="center" style="width: 100% !important;position: relative;top: -131px;z-index: 1;height: 100px;">
+            <div class="center" style="width: 100% !important;position: relative;top: -89px;z-index: 1;height: 100px;">
                 <img src="img/profile_bakground_bottom_02.png" width="100% !important" >
-                <div class="center" style="width: 100% !important; position: absolute;top:125px;margin-left:auto;margin-right: auto">
-                    <div style="margin-left: 20px;margin-right: 20px;background-color: white;">sadsadsdasdsadadsad</div>
+                <div class="center" style="width: 100% !important; position: absolute;margin-left:auto;margin-right: auto">
+                    <div class="row detail" style="margin-left: 20px;margin-right: 20px;background-color: white;" >
+                        <div class="col s4 m3" style="font-size: x-large;">Alexander</div>
+                        <div class="col s6 m3" style="font-size: small;vertical-align: middle;text-align: end;padding: 10px;">sadasdsadada</div>
+                        <div class="col s12 m12  center" >
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                    </div>
+
+                    <!--<div style="margin-left: 20px;margin-right: 20px;background-color: white;">asd</div>-->
                 </div>
             </div>
+
+
         </div>
-</script>
+    </script>
     <script type="text/html" id="profileTemplate">
-        <br>
-        <div class="row "  >
+        <div class="height100vh" style="background-color: #2b2b2a">
+        <div class="center edit_profile_txt">Edit Profile</div>
+        <div class="row edit_profile "  >
 
-            <div class="col s12 m12 " >
-                <div class="col s12 m4 center" >
-                    <form enctype="multipart/form-data" action="site/profile" onsubmit="event.preventDefault();app.profileForm(this);" method="post">
-
-                        <img src="_img_" alt="" style="height: 73px;width: 73px;" class="circle user-img responsive-img">
-                        <a href="#" class="btn-floating  waves-effect waves-light transparent  imgfiletbtn" ><i class="fa fa-camera fa-2x blue-text"></i></a>
-
-                        <input type="file" name="s_logo" class="imgFileInput">
-                        <input type="hidden" name="s_id"  value="_s_id_">
-                        <input type="hidden" name="s_logo"  value="_s_logo_">
-                        <div class="row">
-                            <input type="hidden" value="2.5" id="backing6">
-                            <div id="rateit6"  data-rateit-resetable="false">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <h5 class="center indigo-text">
-                                _s_name_
-                            </h5>
-                            <p class="light center">
-
-                            </p>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="email" type="text" name="s_email" value="_s_email_" class="validate ">
-                                <label for="email" class="active">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="s_contact" type="text" name="s_contact" class="validate" value="_s_contact_">
-                                <label for="s_contact" class="active">Contact</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="s_address" type="text" name="s_address" class="validate" value="_s_address_">
-                                <label for="s_address" class="active">Address</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s12 center">
-                                <button type="submit" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">Submit<i class="material-icons right"></i></button>
-                            </div>
-                        </div>
-
-                    </form>
-
+                <div class="row padding_margin_null" >
+                <div class="col s8 m8 padding_margin_null">
+                    <img src="img/edit_profile_big.jpg" class="responsive-img" >
                 </div>
-
+                <div class="col s4 m4 padding_margin_null" >
+                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                </div>
+                <div class="col s4 m4 padding_margin_null" >
+                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                </div>
+                </div>
+                <div class="row padding_margin_null" >
+                <div class="col s4 m4 padding_margin_null">
+                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                </div>
+                <div class="col s4 m4 padding_margin_null">
+                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                </div>
+                <div class="col s4 m4 padding_margin_null">
+                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                </div>
+                </div>
+        </div>
+            <div class="row edit_profile_about_txt">
+                <div class="col s6 m6"><span >About</span></div>
+                <div class="col s6 m6" style="text-align: end"><span >240/500</span></div>
             </div>
+        <div class="col s12 m12 edit_profile_bottom" >
+            <P>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</P>
+        </div>
         </div>
     </script>
 
@@ -191,12 +272,13 @@
         <div class="row detail " >
             <div class="">
                 <!--item -->
-                <div class=" center" style="width: 100%;">
+                <div class="item center" style="width: 100%;">
 
                     <div class="col s12 m12  center " >
-                        <div style="position: relative; left: 0; top: 2px;">
-                            <img src="img/profile_bg.png" style="position: absolute;/* top: 10px; */left: 0px;width:100%;height: 460px;"/>
-                            <img src="img/profile_pic_03.png" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                        <div class="pro_box" onclick="app.loadPage('userTemplate');app.userInit();">
+                            <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
+                            <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+
                         </div>
                         <div style="position: relative; left: 0; top:2px;color:#81827f">
                             <h4>KEITLIN (26)</h4>
@@ -205,12 +287,12 @@
 
                         <div class="center" >
                             <div style="position: relative;display: inline-block;">
-                                <img src="img/user_mini.jpg" class="pro_mini_ico"/><br>
+                                <img src="img/user_mini.jpg" class="pro_mini_ico"/>
 
                             </div>
 
                             <div style="position: relative;display: inline-block;" >
-                                <img src="img/book.jpg" class="pro_mini_ico"/><br>
+                                <img src="img/book.jpg" class="pro_mini_ico"/>
 
                             </div>
                         </div>
@@ -229,6 +311,18 @@
                             <img class="inlineblock home_search_icon" src="img/search.png"/>
                             <img class="inlineblock home_close_like_icon" src="img/like.png"/>
                         </div>
+                        <!--
+                        <div class="row detail " style="position:relative;top:14px;">
+                            <div class="col s3 m3 center">
+                                <img class="responsive-img" src="img/close.png" />
+                            </div>
+                            <div class="col s3 m3 center" >
+                                <img class="responsive-img" src="img/search.png"/>
+                            </div>
+                            <div class="col s3 m3 center">
+                                <img class="responsive-img" src="img/like.png"/>
+                            </div>
+                        </div>-->
                     </div>
                 </div>
                 <!--/item-->
@@ -521,8 +615,8 @@
                 <button class="wordwrap btn btn-round white black-text">need help?</button>
             </div>
             </div>
-            <div class="col-s12">
-                <button class="btn btn-round white black-text margin30">Buy premium feel</button>
+            <div class="col-s12" >
+                <button class="btn btn-round  black-text color_btn " >Buy premium feel</button>
             </div>
             <br>
             <p>What is premupm feel? Read more!</p>
@@ -562,6 +656,37 @@
 
             </form>
         </div>
+        </div>
+    </script>
+    <script type="text/html" id="userTemplate">
+        <div class="row detail"  >
+
+            <div class="owl-carousel">
+                <div class="item center" >
+                    <img src="img/slider1.jpg" style="height: 360px;"/>
+                </div>
+
+                <div class="item center" >
+
+                    <img src="img/slider2.jpg" style="height: 360px;"/>
+                </div>
+            </div>
+            <div class="center" style="width: 100% !important;position: relative;top: -89px;z-index: 1;height: 100px;">
+                <img src="img/profile_bakground_bottom_02.png" width="100% !important" >
+                <div class="center" style="width: 100% !important; position: absolute;margin-left:auto;margin-right: auto">
+                    <div class="row detail" style="margin-left: 20px;margin-right: 20px;background-color: white;" >
+                        <div class="col s4 m3" style="font-size: x-large;">Alexander</div>
+                        <div class="col s6 m3" style="font-size: small;vertical-align: middle;text-align: end;padding: 10px;">sadasdsadada</div>
+                        <div class="col s12 m12  center" >
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                    </div>
+
+                    <!--<div style="margin-left: 20px;margin-right: 20px;background-color: white;">asd</div>-->
+                </div>
+            </div>
+
+
         </div>
     </script>
 

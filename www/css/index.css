@@ -74,10 +74,14 @@ padding-top: 5px;
 }
 .msg_icon
 {
-	 left: 75%;
+	 right: 3px;
 position: relative;
 width: 60px;
 padding: 15px;
+}
+.msg_a{
+    position: absolute;
+    right: -15px;
 }
 .menu_icon
 {
@@ -125,9 +129,10 @@ padding: 15px;
 }
 .wordwrap{
     width: 100%;
-    font-size: 10px;
+    font-size: 8px;
+    font-weight: bold;
     letter-spacing: 0;
-    line-height:1;
+    line-height: 1;
     word-wrap: break-word;
 }
 .btn-round{
@@ -156,4 +161,72 @@ padding: 15px;
 }
 .height100vh{
     height: 91vh;
+}
+.restaurentImg{
+    width: 90px;
+
+}
+#cBack{
+    position: absolute;
+    top: 3px;
+}
+
+.restaurantOffset{
+    margin-left: 11.666667% !important;
+}
+.pro_box
+{
+    position: relative;
+    left: 0;
+    top: 2px;
+}
+.pro_box_mini_icon
+{
+    position: relative;
+    display: inline-block;
+}
+.gender_box{
+    float: left;
+}
+
+.gender_link {
+    display: block;
+    padding: 8px;
+    background-color: #dddddd;
+}
+.color_btn
+{
+    background-image: url('../img/coloring_btn_03.png');
+    background-size: cover;
+    width: 80%;
+}
+
+.edit_profile .col ,.edit_profile .row
+{
+    padding: 2px;
+    margin-bottom: 0px;
+}
+.edit_profile_txt
+{
+    font-size: larger;
+    padding: 5px;
+    font-weight: 500;
+    color: #b2b2b1;
+}
+.edit_profile_bottom
+{
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    text-align: justify;
+}
+.edit_profile_about_txt
+{
+    color: white;
+}
+.padding_margin_null
+{
+    padding-bottom: 0px !important;
+    padding-top: 0 !important;
 }

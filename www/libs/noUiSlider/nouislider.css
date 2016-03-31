@@ -10,12 +10,12 @@
  */
 .noUi-target,
 .noUi-target * {
--webkit-touch-callout: none;
--webkit-user-select: none;
--ms-touch-action: none;
--ms-user-select: none;
--moz-user-select: none;
--moz-box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-ms-touch-action: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 .noUi-target {
@@ -40,12 +40,12 @@
 	z-index: 1;
 }
 .noUi-stacking .noUi-handle {
-/* This class is applied to the lower origin when
-   its values is > 50%. */
+	/* This class is applied to the lower origin when
+       its values is > 50%. */
 	z-index: 10;
 }
 .noUi-state-tap .noUi-origin {
--webkit-transition: left 0.25s, top 0.25s;
+	-webkit-transition: left 0.25s, top 0.25s;
 	transition: left 0.25s, top 0.25s;
 }
 .noUi-state-drag * {
@@ -88,9 +88,9 @@
 	box-shadow: inset 0 1px 1px #f0f0f0;
 }
 .noUi-connect {
-	background: #3FB8AF;
+	background: #ff7800;
 	box-shadow: inset 0 0 3px rgba(51,51,51,0.45);
--webkit-transition: background 450ms;
+	-webkit-transition: background 450ms;
 	transition: background 450ms;
 }
 .noUi-origin {
@@ -119,13 +119,13 @@
 	background: #FFF;
 	cursor: default;
 	box-shadow: inset 0 0 1px #FFF,
-				inset 0 1px 7px #EBEBEB,
-				0 3px 6px -3px #BBB;
+	inset 0 1px 7px #EBEBEB,
+	0 3px 6px -3px #BBB;
 }
 .noUi-active {
 	box-shadow: inset 0 0 1px #FFF,
-				inset 0 1px 7px #DDD,
-				0 3px 6px -3px #BBB;
+	inset 0 1px 7px #DDD,
+	0 3px 6px -3px #BBB;
 }
 
 /* Handle stripes;
@@ -170,89 +170,89 @@
 
 .noUi-target {
 
-  box-shadow: none;
-  border: none;
+	box-shadow: none;
+	border: none;
 }
 .noUi-base {
-  height: 15px;
-  top: -6px;
+	height: 15px;
+	top: -6px;
 }
 .noUi-background {
-  height: 3px;
-  top: 6px;
-  background-color: #bfbfbf;
+	height: 3px;
+	top: 6px;
+	background-color: #bfbfbf;
 }
 .noUi-horizontal {
-  height: 3px;
+	height: 3px;
 }
 .noUi-connect {
-  height: 3px;
-  top: 6px;
-  background-color: #26A69A;
-  box-shadow: none;
+	height: 3px;
+	top: 6px;
+	background-color: #ff7800;
+	box-shadow: none;
 }
 
 /*Handle*/
 .noUi-horizontal .noUi-handle {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  box-shadow: none;
-  background-color: #26A69A;
-  border: none;
-  left: -5px;
-  top: -6px;
-  transition: width .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
-              height .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
-              left .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
-              top .2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	box-shadow: none;
+	background-color: #ff7800	;
+	border: none;
+	left: -5px;
+	top: -6px;
+	transition: width .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+	height .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+	left .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+	top .2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 .noUi-handle:before {
-  content: none;
+	content: none;
 }
 .noUi-handle:after {
-  content: none;
+	content: none;
 }
 /*Handle on Drag*/
 .noUi-target .noUi-active.noUi-handle {
-  width: 3px;
-  height: 3px;
-  left: 0;
-  top: 0;
+	width: 3px;
+	height: 3px;
+	left: 0;
+	top: 0;
 }
 
 .noUi-target .noUi-active .range-label span {
 }
 .noUi-target .range-label {
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  top: -17px;
-  left: -2px;
-  background-color: #26A69A;
-  border-radius: 50%;
-  transition: border-radius .25s cubic-bezier(0.215, 0.610, 0.355, 1.000),
-              transform .25s cubic-bezier(0.215, 0.610, 0.355, 1.000);
-  transform: scale(.5) rotate(-45deg);
-  transform-origin: 50% 100%;
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	top: -17px;
+	left: -2px;
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	transition: border-radius .25s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+	transform .25s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	transform: scale(.5) rotate(-45deg);
+	transform-origin: 50% 100%;
 }
 .noUi-target .noUi-active .range-label {
-  border-radius: 15px 15px 15px 0;
-  transform: rotate(-45deg) translate(23px, -25px);
+	border-radius: 15px 15px 15px 0;
+	transform: rotate(-45deg) translate(23px, -25px);
 
 }
 .range-label span {
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-size: 12px;
-  transform: rotate(45deg);
-  opacity: 0;
-  position: absolute;
-  top: 7px;
-  left: -1px;
-  transition: opacity .25s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	width: 100%;
+	text-align: center;
+	color: #000;
+	font-size: 12px;
+	transform: rotate(45deg);
+	opacity: 0;
+	position: absolute;
+	top: 7px;
+	left: -1px;
+	transition: opacity .25s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 .noUi-active .range-label span {
-  opacity: 1;
+	opacity: 1;
 }

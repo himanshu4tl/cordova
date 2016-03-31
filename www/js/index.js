@@ -99,11 +99,22 @@ var app={
     },
     loadPage:function(templateId,data){
         if(!data){data={}}
-        console.log(templateId);
+        console.log('--->'+templateId);
         this.renderHtml(this.creteHtml(templateId,data));
         app.stopLoader();
         this.pageInit();
         this.afterLoadPage(templateId);
+    },
+    setTitle:function(title){
+        if(title){
+            $('.dHeader').hide();
+            $('.nHeader').show();
+            $('.brand-logo').html(title);
+        }else{
+            $('.dHeader').show();
+            $('.nHeader').hide();
+            $('.brand-logo').html('<img src="img/logo.jpg" class="logo">');
+        }
     },
     setSidebar:function(obj){
         $(obj).parent().addClass('active').siblings().removeClass('active');
@@ -156,11 +167,19 @@ var app={
         }
 
     },
+    userInit:function(){
+        $(".owl-carousel").owlCarousel({
+            items:1,
+            loop:false,
+            nav:false,
+        });
+
+    },
     homeInit:function(){
         $(".owl-carousel").owlCarousel({
             items:1,
             loop:false,
-            dots:true,
+            nav:false,
         });
 
     },
@@ -170,6 +189,21 @@ var app={
             loop:true,
             nav:false,
         });
+
+    },
+    restaurentListInit:function(){
+        $('.restaurentImg').on('click',function(){app.loadPage('restaurentTemplate');app.setSidebar($('#restaurentLink'));app.restaurentInit();});
+
+        $('.dropdown-button').dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+                hover: true, // Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: false, // Displays dropdown below the button
+                alignment: 'left' // Displays dropdown with edge aligned to the left of button
+            }
+        );
 
     },
     /*loadProfile:function(obj){
