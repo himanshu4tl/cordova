@@ -27,7 +27,7 @@
     <div class="navbar-fixed">
         <nav class="light-green accent-4" role="navigation">
             <div class="nav-wrapper container">
-                <a  onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();" style="display: none;" data-activates="slide-out" class="hide-on-large nHeader"><i class="fa fa-angle-left fa-2x" style="color:#666666"></i></a>
+                <a  onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();" style="display: none;" data-activates="slide-out" class="hide-on-large nHeader"><i class="fa fa-angle-left fa-2x" style="color:#ff7800"></i></a>
                 <a id="logo-container"  class="brand-logo black-text" style="font-size: 1.6rem;"><img src="img/logo.jpg" class="logo "></a>
                 <ul id="slide-out" class="side-nav">
                     <li  class="auth sidebg height80 padding0"  style="display: none;">
@@ -42,14 +42,14 @@
                     
                     <li class="auth" style="display: none;"><a href="#" id="restaurentLink" onclick="app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');" ><i class="fa fa-glass fa-2x"></i> &nbsp; Restaurants </a></li>
                     <li class="auth" style="display: none;"><a href="#" id="couponLink" onclick="app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));app.setTitle('COUPONS');"><i class="fa fa-money fa-2x"></i> &nbsp; Coupons </a></li>
-                    <li class="auth" style="display: none;"><a href="#" ><i class="fa fa-envelope-o fa-2x"></i> &nbsp; Messages </a></li>
-                    <li class="auth" style="display: none;"><a href="#" id="settingLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('SETTINGS');"><i class="fa fa-cog fa-2x"></i> &nbsp; Settings </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="chatLink" onclick="app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');"><i class="fa fa-envelope-o fa-2x"></i> &nbsp; Messages </a></li>
+                    <li class="auth" style="display: none;"><a href="#" id="settingLink" onclick="app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('<i class=\'fa fa-cog\'></i>');"><i class="fa fa-cog fa-2x"></i> &nbsp; Settings </a></li>
                     
                     
-                    <li class="auth" style="display: none;"><a href="#"  onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));app.setTitle();"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
+                    <li class="auth" style="display: none;"><a href="#"  onclick="app.setTitle();app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
                 </ul>
                 <a  data-activates="slide-out" class="button-collapse hide-on-large" ><i class="mdi-navigation-menu dHeader" style="color:#666666"></i></a>
-                <a id="msg_ico" class="msg_a dHeader"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
+                <a id="msg_ico" class="msg_a dHeader auth" style="display: none;" onclick="app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
             </div>
         </nav>
     </div>
@@ -103,7 +103,7 @@
     </div>
     <!-- page loader end-->
     <!-- Page Content Start -->
-    <div id="contentView" class="height100vh">
+    <div id="contentView" >
 
     </div>
     <!-- Page Content End -->
@@ -124,73 +124,73 @@
 
         <div class="row "  >
             <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
             </div>
 
 
 <div class="col  s3 padding0 restaurantOffset" >
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
 
             <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
             </div>
 <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
-            </div>
-
-            <div class="col s3 padding0 restaurantOffset">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0 ">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
-            </div>
-
-            <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
 
             <div class="col s3 padding0 restaurantOffset">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
             </div>
             <div class="col s3 padding0 ">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
             <div class="col s3 padding0">
-                <img src="img/profile_pic_03.png" class=" responsive-img restaurentImg">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
+            </div>
+
+            <div class="col s3 padding0">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
+            </div>
+
+            <div class="col s3 padding0 restaurantOffset">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0 ">
+                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
+            </div>
+            <div class="col s3 padding0">
+                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
             </div>
 
 
@@ -475,7 +475,7 @@
             <div class="col s12 m12  center" >
                 <br>
                 <br>
-                <button class="waves-effect waves-light btn white black-text" onclick="app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));">Log out</button>
+                <button class="waves-effect waves-light btn white black-text" onclick="app.setTitle();app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));">Log out</button>
             </div>
             <div class="col s12 m12  center" >
                 <p>feel version 1.0</p>
@@ -575,14 +575,213 @@
 
     </script>
     <!--Coupon end-->
+    <!--Coupon start-->
+    <script type="text/html" id="chatMsgTemplate">
+        <div class="couponss messageBox">
+
+            <ul class="collection  scrolls">
+                <li class="collection-item row ">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9 left-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you </p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s9 right-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you</p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9 left-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you </p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s9 right-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you</p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9 left-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you </p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s9 right-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you</p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9 left-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you </p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s9 right-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you</p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9 left-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you </p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s9 right-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you</p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9 left-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you </p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                </li>
+                <li class="collection-item row ">
+                    <div class="col s9 right-align">
+                        <p>Troika</p>
+                        <p class="margin5 msgText">How are you</p>
+                        <p class="margin5">3 min ago</p>
+                    </div>
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+
+                </li>
+
+            </ul>
+        </div>
+         <div class="row sendForm">
+             <div class="col s12">
+                 <input type="text" style="width: Calc(100% - 42px);">
+                 <button type="button" class="btn btn-floating "><i class="fa fa-send"></i></button>
+             </div>
+         </div>
+    </script>
+    <!--Coupon end-->
+
+    <!--Coupon start-->
+    <script type="text/html" id="chatListTemplate">
+        <div class="couponss">
+
+            <ul class="collection">
+                <li class="collection-item row" onclick="app.loadPage('chatMsgTemplate');">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9">
+                        <h5>Troika</h5>
+                        <p class="margin5">+98298989899</p>
+                        <p class="margin5">hhh@gmail.com</p>
+                    </div>
+                </li>
+                <li class="collection-item row" onclick="app.loadPage('chatMsgTemplate');">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9">
+                        <h5>Troika</h5>
+                        <p class="margin5">+98298989899</p>
+                        <p class="margin5">hhh@gmail.com</p>
+                    </div>
+                </li>
+                <li class="collection-item row" onclick="app.loadPage('chatMsgTemplate');">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9">
+                        <h5>Troika</h5>
+                        <p class="margin5">+98298989899</p>
+                        <p class="margin5">hhh@gmail.com</p>
+                    </div>
+                </li>
+                <li class="collection-item row" onclick="app.loadPage('chatMsgTemplate');">
+                    <div class="col s3 padding0">
+                        <img src="img/profile_pic_03.png" class=" responsive-img couponImg">
+                    </div>
+                    <div class="col s9">
+                        <h5>Troika</h5>
+                        <p class="margin5">+98298989899</p>
+                        <p class="margin5">hhh@gmail.com</p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </script>
+    <!--Coupon end-->
+
 
     <!--Settings start-->
     <script type="text/html" id="settingTemplate">
-        <div class="row grey darken-4 white-text center "  >
+        <div class="row grey darken-4 white-text center margin0"  >
             <br>
             <p>interested in</p>
-            <button class="btn btn-round white black-text">men</button>
-            <button class="btn btn-round white black-text">women</button>
+
+            <div class="switchBox">
+                <button class="btn  white black-text offSwitch" ><i class="fa fa-mars"></i> men</button>
+                <button class="btn  white black-text onSwitch"><i class="fa fa-venus"></i> women</button>
+
+            </div>
             <br>
             <p>show users aged: <span class="orange-text">25 - 30</span></p>
 
@@ -663,12 +862,12 @@
 
             <div class="owl-carousel">
                 <div class="item center" >
-                    <img src="img/slider1.jpg" style="height: 360px;"/>
+                    <img src="img/edit_profile_big.jpg" style="height: 360px;"/>
                 </div>
 
                 <div class="item center" >
 
-                    <img src="img/slider2.jpg" style="height: 360px;"/>
+                    <img src="img/edit_profile_big.jpg" style="height: 360px;"/>
                 </div>
             </div>
             <div class="center" style="width: 100% !important;position: relative;top: -89px;z-index: 1;height: 100px;">

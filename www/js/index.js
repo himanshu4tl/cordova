@@ -77,10 +77,8 @@ var app={
         this.mainContainer.find('form').on('submit',function(e){e.preventDefault();});
     },
     setUserLogout:function(){
-        $('.auth').hide();
         $('.site-login').show();
-
-
+        $('.auth').hide();
     },
     setUserLogin:function(){
         $(".auth").show();
@@ -156,6 +154,13 @@ var app={
                 decimals: 0
             })
         });
+        $('.switchBox').on('click','button',function(){
+                var $this=$(this);
+                if($this.hasClass('offSwitch')){
+                    $this.removeClass('offSwitch').addClass('onSwitch')
+                        .siblings().removeClass('onSwitch').addClass('offSwitch');
+                }
+        });
     },
     loadlogin:function(){
         var response={"status":1,"data":{"s_id":"13","s_email":"hhh@gmail.com","s_name":"hhh","s_zip":"9999","s_contact":" 789879855","s_password":"$2y$13$BcLqRwSAsIy0gvjOafvKBO3j82yYepHiubk4R7GOeDOgZirKfdZqq","s_auth_key":"","s_password_reset_token":"","s_logo":"profile_pic_03.png","s_address":"fgdfhgfh","s_lat":"","s_long":"","s_created":"1458267296","s_modified":"1458678726","img":"img/profile_pic_03.png"}};
@@ -173,7 +178,7 @@ var app={
             loop:false,
             nav:false,
         });
-
+       this.setTitle('PROFILE<div class="closeBtnTitle"><img class="inlineblock likeBtnTitle" src="img/close.png"><img class="inlineblock likeBtnTitle" src="img/like.png"><div>')
     },
     homeInit:function(){
         $(".owl-carousel").owlCarousel({
@@ -189,6 +194,7 @@ var app={
             loop:true,
             nav:false,
         });
+        this.setTitle('RESTAURANT<div class="closeBtnTitle" style="right: -100px;"><img class="inlineblock likeBtnTitle" src="img/close.png"><img class="inlineblock likeBtnTitle" src="img/done.jpg"><div>')
 
     },
     restaurentListInit:function(){
@@ -264,7 +270,13 @@ document.addEventListener("backbutton", onBackKeyDown, false);
 var i=1;
 function onBackKeyDown(e) {
     // Handle the back button
-    app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));
+    if($('#homeLink').parent().hasClass('active')){
+        navigator.app.exitApp();
+    }else{
+        app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.setTitle();
+    }
+
+
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);

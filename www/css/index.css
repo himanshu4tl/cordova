@@ -164,7 +164,7 @@ padding: 15px;
 }
 .restaurentImg{
     width: 90px;
-
+        padding: 2px;
 }
 #cBack{
     position: absolute;
@@ -229,4 +229,59 @@ padding: 15px;
 {
     padding-bottom: 0px !important;
     padding-top: 0 !important;
+}
+.onSwitch{
+    border-radius: 20px;
+    color: #ff7800 !important;
+}
+.switchBox{
+    width: 244px;
+    border-radius: 20px ;
+    border: 2px solid grey;
+    margin: auto;
+
+}
+.offSwitch{
+    background-color: transparent !important;
+    color: white !important;
+}
+.sendBtn{
+    border-radius: 50% !important;
+    height: 56px !important;
+    width: 40px;
+    text-align: center;
+}
+.sendForm{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.messageBox{
+    position: absolute;
+    bottom: 75px;
+    width: 100%;
+
+}
+.scrolls{
+    overflow-y: scroll;
+    height: 550px;
+}
+.msgText{
+    font-size: large;
+    font-weight: 500;
+}
+.messageBox  .collection-item {
+    line-height: 0.7rem !important;
+}
+.closeBtnTitle{
+    position: absolute;
+    right: -125px;
+    top: 9px;
+}
+.likeBtnTitle{
+    width: 40px;
+    margin-left: 4px;
+}
+#profileLink{
+    padding-top: 5px;
 }
