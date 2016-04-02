@@ -19,10 +19,11 @@
         <!--crosole slider css-->
         <link rel="stylesheet" href="libs/owl.carousel/assets/owl.carousel.css">
         <link rel="stylesheet" href="libs/owl.carousel/assets/owl.theme.default.min.css">
+        <link rel="stylesheet" type="text/css" href="libs/jTinder-master/css/jTinder.css">
 
         <title>Feel</title>
     </head>
-    <body class="height100vh">
+    <body >
     <!-- Header Start -->
     <div class="navbar-fixed">
         <nav class="light-green accent-4" role="navigation">
@@ -269,66 +270,124 @@
     </script>
 
     <script type="text/html" id="homeTemplate">
-        <div class="row detail " >
-            <div class="">
-                <!--item -->
-                <div class="item center" style="width: 100%;">
+        <div class="wrap row">
+            <div id="tinderslide" class="col s6 center">
+                <ul>
+                    <li class="pane1">
+                        <div class="col s12 m12  center " >
+                            <div class="pro_box" onclick="app.loadPage('userTemplate');app.userInit();">
+                                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
+                                <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
 
-                    <div class="col s12 m12  center " >
-                        <div class="pro_box" onclick="app.loadPage('userTemplate');app.userInit();">
-                            <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
-                            <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                            </div>
+                            <div style="position: relative; left: 0; top:2px;color:#81827f">
+                                <h4>KEITLIN (26)</h4>
+                                <hr width="50px">
+                            </div>
 
+                            <div class="center" >
+                                <div style="position: relative;display: inline-block;">
+                                    <img src="img/user_mini.jpg" class="pro_mini_ico"/>
+
+                                </div>
+
+                                <div style="position: relative;display: inline-block;" >
+                                    <img src="img/book.jpg" class="pro_mini_ico"/>
+
+                                </div>
+                            </div>
+                            <div class="center" >
+                                <div style="position: relative;display: inline-block;">
+                                    <span class="span_txt">4</span>
+                                </div>
+
+                                <div style="position: relative;display: inline-block;" >
+                                    <span class="span_txt">32</span>
+                                </div>
+                            </div>
+                            </div>
+                    </li>
+                    <li class="pane2">
+                        <div class="col s12 m12  center " >
+                            <div class="pro_box" onclick="app.loadPage('userTemplate');app.userInit();">
+                                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
+                                <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+
+                            </div>
+                            <div style="position: relative; left: 0; top:2px;color:#81827f">
+                                <h4>KEITLIN (26)</h4>
+                                <hr width="50px">
+                            </div>
+
+                            <div class="center" >
+                                <div style="position: relative;display: inline-block;">
+                                    <img src="img/user_mini.jpg" class="pro_mini_ico"/>
+
+                                </div>
+
+                                <div style="position: relative;display: inline-block;" >
+                                    <img src="img/book.jpg" class="pro_mini_ico"/>
+
+                                </div>
+                            </div>
+                            <div class="center" >
+                                <div style="position: relative;display: inline-block;">
+                                    <span class="span_txt">4</span>
+                                </div>
+
+                                <div style="position: relative;display: inline-block;" >
+                                    <span class="span_txt">32</span>
+                                </div>
+                            </div>
                         </div>
-                        <div style="position: relative; left: 0; top:2px;color:#81827f">
-                            <h4>KEITLIN (26)</h4>
-                            <hr width="50px">
+                    </li>
+                    <li class="pane2">
+                        <div class="col s12 m12  center " >
+                            <div class="pro_box" onclick="app.loadPage('userTemplate');app.userInit();">
+                                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
+                                <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+
+                            </div>
+                            <div style="position: relative; left: 0; top:2px;color:#81827f">
+                                <h4>KEITLIN (26)</h4>
+                                <hr width="50px">
+                            </div>
+
+                            <div class="center" >
+                                <div style="position: relative;display: inline-block;">
+                                    <img src="img/user_mini.jpg" class="pro_mini_ico"/>
+
+                                </div>
+
+                                <div style="position: relative;display: inline-block;" >
+                                    <img src="img/book.jpg" class="pro_mini_ico"/>
+
+                                </div>
+                            </div>
+                            <div class="center" >
+                                <div style="position: relative;display: inline-block;">
+                                    <span class="span_txt">4</span>
+                                </div>
+
+                                <div style="position: relative;display: inline-block;" >
+                                    <span class="span_txt">32</span>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="center" >
-                            <div style="position: relative;display: inline-block;">
-                                <img src="img/user_mini.jpg" class="pro_mini_ico"/>
-
-                            </div>
-
-                            <div style="position: relative;display: inline-block;" >
-                                <img src="img/book.jpg" class="pro_mini_ico"/>
-
-                            </div>
-                        </div>
-                        <div class="center" >
-                            <div style="position: relative;display: inline-block;">
-                                <span class="span_txt">4</span>
-                            </div>
-
-                            <div style="position: relative;display: inline-block;" >
-                                <span class="span_txt">32</span>
-                            </div>
-                        </div>
-                        <div class="bottom_btn" style="position:relative;top:14px;">
-
-                            <img class="inlineblock home_close_like_icon" src="img/close.png" />
-                            <img class="inlineblock home_search_icon" src="img/search.png"/>
-                            <img class="inlineblock home_close_like_icon" src="img/like.png"/>
-                        </div>
-                        <!--
-                        <div class="row detail " style="position:relative;top:14px;">
-                            <div class="col s3 m3 center">
-                                <img class="responsive-img" src="img/close.png" />
-                            </div>
-                            <div class="col s3 m3 center" >
-                                <img class="responsive-img" src="img/search.png"/>
-                            </div>
-                            <div class="col s3 m3 center">
-                                <img class="responsive-img" src="img/like.png"/>
-                            </div>
-                        </div>-->
-                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12 center">
+            <div class="actions" >
+                <div class="bottom_btn">
+                    <a href="#" class="dislike"><img class="inlineblock home_close_like_icon " src="img/close.png" /></a>
+                    <img class="inlineblock home_search_icon" src="img/search.png"/>
+                    <a href="#" class="like"><img class="inlineblock home_close_like_icon " src="img/like.png"/></a>
                 </div>
-                <!--/item-->
+            </div>
+        </div>
 
-			</div>
-		</div>
     </script>
     <script type="text/html" id="aboutTemplate">
         <div class="row detail"  style="margin: 30px;   ">
@@ -852,7 +911,15 @@
                         <a href="#" onclick="app.loadPage('signupTemplate');app.setSidebar($('#loginLink'));" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">Signup<i class="material-icons right"></i></a>
                     </div>
                 </div>
-
+                <br>
+                <div class="row">
+                    <div class="col s6 m6 ">
+                        <h5 class="center">Sign in with</h5>
+                    </div>
+                    <div class="col s6 m6">
+                        <a href="#"><i class="fa fa-facebook-square fa-3x " style="color:#3b5998;vertical-align: middle;"></i>&nbsp;Facebook</a>
+                    </div>
+                </div>
             </form>
         </div>
         </div>
@@ -914,6 +981,14 @@
     <!--owl crosole js end-->
     <script src="libs/noUiSlider/nouislider.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <!-- Jacascript end-->
+
+
+    <!-- transform2d lib -->
+    <script type="text/javascript" src="libs/jTinder-master/js/jquery.transform2d.js"></script>
+    <!-- jTinder lib -->
+    <script type="text/javascript" src="libs/jTinder-master/js/jquery.jTinder.js"></script>
+    <!-- jTinder initialization script -->
+
+
     </body>
 </html>
