@@ -285,3 +285,12 @@ padding: 15px;
 #profileLink{
     padding-top: 5px;
 }
+.btn_up
+{
+    bottom: 50px;
+    position: relative;
+}
+#slide-out li i
+{
+    vertical-align: sub;
+}

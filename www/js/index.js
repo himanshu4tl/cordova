@@ -194,11 +194,17 @@ var app={
             onDislike: function (item) {
                 // set the status text
                 $('#status').html('Dislike image ' + (item.index()+1));
+                $('.actions .dislike').removeClass('btn_up');
+                $('.actions .like').removeClass('btn_up');
+
             },
             // like callback
             onLike: function (item) {
                 // set the status text
                 $('#status').html('Like image ' + (item.index()+1));
+                $('.actions .dislike').removeClass('btn_up');
+                $('.actions .like').removeClass('btn_up');
+
             },
             animationRevertSpeed: 200,
             animationSpeed: 400,

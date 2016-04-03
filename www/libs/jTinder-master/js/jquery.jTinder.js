@@ -111,14 +111,22 @@
 						var opa = (Math.abs(deltaX) / $that.settings.threshold) / 100 + 0.2;
 						if(opa > 1.0) {
 							opa = 1.0;
+							$('.actions .dislike').removeClass('btn_up');
+							$('.actions .like').removeClass('btn_up');
 						}
 						if (posX >= 0) {
 							panes.eq(current_pane).find($that.settings.likeSelector).css('opacity', opa);
 							panes.eq(current_pane).find($that.settings.dislikeSelector).css('opacity', 0);
+							$('.actions .like').addClass('btn_up');
+							$('.actions .dislike').removeClass('btn_up');
+
 						} else if (posX < 0) {
 
 							panes.eq(current_pane).find($that.settings.dislikeSelector).css('opacity', opa);
 							panes.eq(current_pane).find($that.settings.likeSelector).css('opacity', 0);
+							$('.actions .dislike').addClass('btn_up');
+							$('.actions .like').removeClass('btn_up');
+
 						}
 					}
 					break;
@@ -156,6 +164,9 @@
 						panes.eq(current_pane).animate({"transform": "translate(0px,0px) rotate(0deg)"}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.likeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.dislikeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
+						$('.actions .like').removeClass('btn_up');
+						$('.actions .dislike').removeClass('btn_up');
+
 					}
 					break;
 			}
