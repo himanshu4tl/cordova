@@ -83,6 +83,7 @@ var app={
     setUserLogin:function(){
         $(".auth").show();
         $(".site-login").hide();
+
     },
     afterRout:function(){
         if(app.currentUrl){
@@ -106,10 +107,12 @@ var app={
     setTitle:function(title){
         if(title){
             $('.dHeader').hide();
+            $('.dHeader2').hide();
             $('.nHeader').show();
             $('.brand-logo').html(title);
         }else{
             $('.dHeader').show();
+            $('.dHeader2').css('display','inline');
             $('.nHeader').hide();
             $('.brand-logo').html('<img src="img/logo.jpg" class="logo">');
         }
@@ -227,8 +230,11 @@ var app={
             loop:true,
             nav:false,
         });
-        this.setTitle('RESTAURANT<div class="closeBtnTitle" style="right: -100px;"><img class="inlineblock likeBtnTitle" src="img/close.png"><img class="inlineblock likeBtnTitle" src="img/done.jpg"><div>')
-
+        this.setTitle('RESTAURANT')
+        $('.goBack').attr('onclick',"app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');app.reserBack();");
+    },
+    reserBack:function(){
+        $('.goBack').attr('onclick',"app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();");
     },
     restaurentListInit:function(){
         $('.restaurentImg').on('click',function(){app.loadPage('restaurentTemplate');app.setSidebar($('#restaurentLink'));app.restaurentInit();});
@@ -303,10 +309,10 @@ document.addEventListener("backbutton", onBackKeyDown, false);
 var i=1;
 function onBackKeyDown(e) {
     // Handle the back button
-    if($('#homeLink').parent().hasClass('active')){
+    if(!$('.goBack').is(':visible')){
         navigator.app.exitApp();
     }else{
-        app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.setTitle();
+        $('.goBack').click();
     }
 
 

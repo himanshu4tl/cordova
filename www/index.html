@@ -25,10 +25,10 @@
     </head>
     <body >
     <!-- Header Start -->
-    <div class="navbar-fixed">
-        <nav class="light-green accent-4" role="navigation">
+    <!--<div class="navbar-fixed" >-->
+        <nav class="light-green accent-4" role="navigation" style="position: fixed;top: 0;z-index: 9999;left: 0;">
             <div class="nav-wrapper container">
-                <a  onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();" style="display: none;" data-activates="slide-out" class="hide-on-large nHeader"><i class="fa fa-angle-left fa-2x" style="color:#ff7800"></i></a>
+                <a  onclick="app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();" style="display: none;" data-activates="slide-out" class="hide-on-large nHeader goBack"><i class="fa fa-angle-left fa-2x" style="color:#ff7800"></i></a>
                 <a id="logo-container"  class="brand-logo black-text" style="font-size: 1.6rem;"><img src="img/logo.jpg" class="logo "></a>
                 <ul id="slide-out" class="side-nav">
                     <li  class="auth sidebg height80 padding0"  style="display: none;">
@@ -49,11 +49,11 @@
                     
                     <li class="auth" style="display: none;"><a href="#"  onclick="app.setTitle();app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
                 </ul>
-                <a  data-activates="slide-out" class="button-collapse hide-on-large" ><i class="mdi-navigation-menu dHeader" style="color:#666666"></i></a>
-                <a id="msg_ico" class="msg_a dHeader auth" style="display: none;" onclick="app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
+                <a  data-activates="slide-out" class="button-collapse hide-on-large  auth" style="display:none"><i class="mdi-navigation-menu dHeader" style="color:#666666"></i></a>
+                <a id="msg_ico" class="msg_a dHeader2 auth" style="display: none;" onclick="app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');"><img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon"></a>
             </div>
         </nav>
-    </div>
+    <!--</div>-->
     <!-- Header End -->
     <!-- page loader start-->
     <div id="mLoader" style="display: none;">
@@ -104,7 +104,7 @@
     </div>
     <!-- page loader end-->
     <!-- Page Content Start -->
-    <div id="contentView" >
+    <div id="contentView" style="padding-top: 50px;">
 
     </div>
     <!-- Page Content End -->
@@ -214,7 +214,10 @@
                 </div>
             </div>
             <div class="center" style="width: 100% !important;position: relative;top: -67px;z-index: 1;height: 100px;">
-                <img src="img/profile_bakground_bottom_03.png" width="100% !important" >
+                <img src="img/profile_bakground_bottom_03.png" width="100% !important" style="
+    opacity: 1 !important;
+    z-index: 100;
+" >
                 <div class="center" style="width: 100% !important; position: absolute;margin-left:auto;margin-right: auto">
                     <div class="row detail" style="margin-left: 20px;margin-right: 20px;background-color: white;" >
                         <div class="col s4 m3" style="font-size: x-large;">Alexander</div>
@@ -540,11 +543,20 @@
                 <button class="waves-effect waves-light btn white black-text" onclick="app.setTitle();app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));">Log out</button>
             </div>
             <div class="col s12 m12  center" >
-                <p>feel version 1.0</p>
-            </div>
-            <div class="col s12 m12  center" >
                 <p class="red-text">Delete account</p>
             </div>
+
+            <div class="col s12 m12  center"  >
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>feel version 1.0</p>
+            </div>
+
         </div>
     </script>
 
@@ -774,7 +786,7 @@
          <div class="row sendForm">
              <div class="col s12">
                  <button type="button" class="btn btn-floating "><i class="fa fa-send"></i></button>
-                 <input type="text" style="width: Calc(100% - 42px);">
+                 <input type="text" style="width: 80%;">
              </div>
          </div>
     </script>
