@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    overflow: hidden;
+    overflow-y: scroll;: ;
 }
 
 /* Wrapper with padding */
@@ -29,7 +29,7 @@ body {
     height: 100%;*/
 }
 
-#tinderslide li {
+#tinderslide li  {
     display: block;
     width: 100%;
 

@@ -8703,7 +8703,7 @@ textarea.materialize-textarea {
   outline: none;
   height: 3rem;
   width: 100%;
-  font-size: 1rem;
+  font-size: 18px;
   margin: 0 0 15px 0;
   padding: 0;
   box-shadow: none;
@@ -9370,7 +9370,7 @@ form p:last-child {
 }
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #84c7c1;
+  background-color: #fff;
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
