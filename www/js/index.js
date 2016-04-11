@@ -321,16 +321,18 @@ var app={
             $('#navBar').append($('#sidemenu').html());
             $(".button-collapse").sideNav();
 
-            $('#slide-out a').on('click',function(e){
-                e.preventDefault();
-                $('.button-collapse').sideNav('hide');
-            });
 
         }
+        $('#slide-out a').on('click',function(e){
+            e.preventDefault();
+            $('.button-collapse').sideNav('hide');
+        });
+
     },
     /*new Route core functions start ########################################################################################*/
     loginLink:function(){
         app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));
+        $('.button-collapse').sideNav('hide');
     },
     logoutBtn:function(){
         app.setTitle();app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));
@@ -343,24 +345,30 @@ var app={
     },
     homeLink:function(){
         app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();
+        $('.button-collapse').sideNav('hide');
     },
     restaurentLink:function(){
         app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');
+        $('.button-collapse').sideNav('hide');
     },
     couponLink:function(){
         app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));app.setTitle('COUPONS');
+        $('.button-collapse').sideNav('hide');
     },
     chatLink:function(){
         app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');
+        $('.button-collapse').sideNav('hide');
     },
     settingLink:function(){
         app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('<i class=\'fa fa-cog\'></i>');
+        $('.button-collapse').sideNav('hide');
     },
     userLink:function(){
         app.loadPage('userTemplate');app.userInit();
     },
     profileLink:function(){
         app.loadProfile2();
+        $('.button-collapse').sideNav('hide');
     },
     messageLink:function(){
         app.loadPage('chatMsgTemplate');
