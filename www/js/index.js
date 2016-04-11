@@ -1,5 +1,3 @@
-// Initialize collapse button
-$(".button-collapse").sideNav();
 
 String.prototype.replaceAll = function(search, replacement) {return this.replace(new RegExp(search, 'g'), replacement);};
 
@@ -11,6 +9,9 @@ var app={
     mainContainer:$('#contentView'),
     id:'',
     loader:$('#mLoader'),
+
+    /*Core function start ###################################################################################################*/
+
     translateHtml:function(html,object){
         $.each(object,function(index,value){html=html.replaceAll('_'+index+'_',value);});return html;
     },
@@ -85,11 +86,6 @@ var app={
         $(".site-login").hide();
 
     },
-    afterRout:function(){
-        if(app.currentUrl){
-            $('#slide-out .'+app.currentUrl.replace('/','-')).addClass('active').siblings().removeClass('active');
-        }
-    },
     startLoader:function(){
       app.loader.show();
     },
@@ -120,14 +116,14 @@ var app={
     setSidebar:function(obj){
         $(obj).parent().addClass('active').siblings().removeClass('active');
     },
+
     afterLoadPage:function(templateId){
         if(templateId=="loginTemplate"){
 
         }
-        if(templateId=="distanceTemplate"){
-            $('#distance').val(localStorage['distance']);
-        }
     },
+    /*Core function end ###################################################################################################*/
+
     setProfileData:function(data){
         $('#userLogo').html(app.creteHtml('userProfileTemplate',data));
     },
@@ -146,7 +142,7 @@ var app={
     loadSetting:function(){
         var slider = document.getElementById('test5');
         noUiSlider.create(slider, {
-            start: [20, 80],
+            start: [20, 30],
             connect: true,
             step: 1,
             range: {
@@ -157,12 +153,24 @@ var app={
                 decimals: 0
             })
         });
+        slider.noUiSlider.on('change.one', function(values, handle, unencoded, tap, positions){
+            console.log(values);
+            $('#ageText').html(values[0]+' - '+values[1]);
+        });
         $('.switchBox').on('click','button',function(){
                 var $this=$(this);
                 if($this.hasClass('offSwitch')){
                     $this.removeClass('offSwitch').addClass('onSwitch')
                         .siblings().removeClass('onSwitch').addClass('offSwitch');
                 }
+        });
+        $('#distanceInput').on('change',function(){
+           $('#distanceText').html(this.value);
+            console.log(this.value);
+        });
+        $('#couponInput').on('change',function(){
+            $('#couponText').html(this.value);
+            console.log(this.value);
         });
     },
     loadlogin:function(){
@@ -230,11 +238,11 @@ var app={
             loop:true,
             nav:false,
         });
-        this.setTitle('RESTAURANT')
-        $('.goBack').attr('onclick',"app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');app.reserBack();");
+        this.setTitle('RESTAURANT');
+        $('.goBack').attr('onclick',"app.restaurentLink();app.reserBack();");
     },
     reserBack:function(){
-        $('.goBack').attr('onclick',"app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();");
+        $('.goBack').attr('onclick',"app.homeLink();");
     },
     restaurentListInit:function(){
         $('.restaurentImg').on('click',function(){app.loadPage('restaurentTemplate');app.setSidebar($('#restaurentLink'));app.restaurentInit();});
@@ -301,6 +309,73 @@ var app={
         app.loadProfile2();app.setSidebar($('profileLink'));app.setUserLogin();
         app.alert('Profile updated successsfully');
     },
+
+    sideMenuStop:function(){
+        $('.drag-target').remove();
+        $('#slide-out').remove();
+        $('#sidenav-overlay').remove();
+    },
+    sideMenuStart:function(){
+
+        if(!$('#slide-out').length){
+            $('#navBar').append($('#sidemenu').html());
+            $(".button-collapse").sideNav();
+
+            $('#slide-out a').on('click',function(e){
+                e.preventDefault();
+                $('.button-collapse').sideNav('hide');
+            });
+
+        }
+    },
+    /*new Route core functions start ########################################################################################*/
+    loginLink:function(){
+        app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));
+    },
+    logoutBtn:function(){
+        app.setTitle();app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));
+        app.sideMenuStop();
+    },
+    loginBtn:function(){
+        // Initialize collapse button
+        app.sideMenuStart();
+        app.homeLink();app.loadlogin();
+    },
+    homeLink:function(){
+        app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();
+    },
+    restaurentLink:function(){
+        app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');
+    },
+    couponLink:function(){
+        app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));app.setTitle('COUPONS');
+    },
+    chatLink:function(){
+        app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');
+    },
+    settingLink:function(){
+        app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('<i class=\'fa fa-cog\'></i>');
+    },
+    userLink:function(){
+        app.loadPage('userTemplate');app.userInit();
+    },
+    profileLink:function(){
+        app.loadProfile2();
+    },
+    messageLink:function(){
+        app.loadPage('chatMsgTemplate');
+        $('.goBack').attr('onclick',"app.chatLink();app.reserBack();");
+    },
+    notificationLink:function(){
+        app.loadPage('notificationTemplate');app.setSidebar($('#notificationLink'));
+        $('.goBack').attr('onclick',"app.settingLink();app.reserBack();");
+    },
+    signupLink:function(){
+        app.loadPage('signupTemplate');app.setSidebar($('#loginLink'));
+        app.setTitle('Signup');
+        $('.goBack').attr('onclick',"app.loginLink();app.reserBack();app.setTitle();");
+    },
+    /*new Route core functions end  ##########################################################################################*/
 
 };
 app.appInit();

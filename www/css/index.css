@@ -14,11 +14,7 @@ input{
 .side-nav li:hover, .side-nav li.active{
     background-color: #fcfcfc !important;
 }
-.sidebg{
-    background:url("../img/sidebg.jpg");
-}
 body{
-    background:url("../img/map_img.png");
 	background-color:#f7f8f3;
 }
 .margin0{
@@ -146,6 +142,11 @@ padding: 15px;
 }
 .couponImg{
     width: 80px;
+
+}
+
+.chatImg{
+    width: 50px;
 
 }
 
@@ -306,4 +307,15 @@ padding: 15px;
 }
 input[type=range] {
     border: none !important;
+}
+
+#sidenav-overlay_none {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120vh;
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    z-index: 997;
+    will-change: opacity;
 }
