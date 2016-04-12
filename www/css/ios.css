@@ -1,5 +1,12 @@
 nav {
     height: 71px !important;
-    padding-top: 22px !important;
+    padding-top: 20px !important;
     color: red;
 }
+.side-nav{
+    padding-top: 20px;
+}
+#contentView{
+    padding-top: 78px;
+}
+
