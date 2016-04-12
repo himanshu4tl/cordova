@@ -264,6 +264,17 @@ var app={
         app.callAjax('site/profile','',func);
     },*/
     loginForm:function(obj){
+
+        var password=$('[name="u_password"]').val();
+        var email=$('[name="u_email"]').val();
+        if(email==''){
+            app.alert('Email is required.');
+            return false;
+        }
+        if(password==''){
+            app.alert('Password is required.');
+            return false;
+        }
         app.startLoader();
 
         var func=function(response){
