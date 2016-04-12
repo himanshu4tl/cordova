@@ -43,6 +43,18 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 
+
+    <plugin name="cordova-plugin-statusbar" version="0.1.7" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+
+    <plugin name="cordova-plugin-device" source="pgb" spec="1.0.1" />
+    <plugin name="cordova-plugin-geolocation" source="pgb" spec="1.0.1" />
+    <plugin name="cordova-plugin-inappbrowser" source="pgb" spec="1.0.1" />
+    <plugin name="cordova-plugin-network-information" source="pgb" spec="1.0.1" />
+
+
     <icon src="icon.png" />
     <preference name="orientation" value="portrait" />
 </widget>

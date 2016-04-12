@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <!--custom css-->
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/platform.css">
 
         <link rel="stylesheet" type="text/css" href="libs/noUiSlider/nouislider.css">
 
@@ -60,8 +61,8 @@
     <!-- Header End -->
     <!-- page loader start-->
     <div id="mLoader" style="display: none;">
-    <div class="loader-wrapepr">
-        <div class=" preloader-wrapper big active">
+    <div class="loader-wrapepr " style="z-index: 1000">
+        <div class=" preloader-wrapper big active" >
             <div class="spinner-layer spinner-blue">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
@@ -103,7 +104,6 @@
             </div>
         </div>
     </div>
-
     </div>
     <!-- page loader end-->
     <!-- Page Content Start -->
@@ -261,6 +261,7 @@
     </script>
     <script type="text/html" id="profileTemplate">
         <div class="height100vh" style="background-color: #2b2b2a">
+        <br>
         <div class="center edit_profile_txt">Edit Profile</div>
         <div class="row edit_profile "  >
 
@@ -440,43 +441,44 @@
     </script>
 
     <script type="text/html" id="signupTemplate">
+        <br>
         <div class="row "  >
             <div class="col s12 m12  center" >
             <form class="col s12" role="form" enctype="multipart/form-data" action="/site/signup" onsubmit="event.preventDefault();app.signupForm(this);" method="post">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="s_name" type="text" name="s_name" class="validate">
+                        <input id="u_name" type="text" name="u_name" class="validate">
                         <label for="email">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="text" name="s_email" class="validate">
+                        <input id="email" type="text" name="u_email" class="validate">
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" name="s_password" type="password" class="validate">
+                        <input id="password" name="u_password" type="password" class="validate">
                         <label for="password" >Password</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="s_contact" type="text" name="s_contact" class="validate">
-                        <label for="s_contact">Contact</label>
+                        <input id="u_contact" type="text" name="u_contact" class="validate">
+                        <label for="u_contact">Contact</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="s_zip" type="text" name="s_zip" class="validate">
-                        <label for="s_zip">Postcode</label>
+                        <input id="u_zip" type="text" name="u_zip" class="validate">
+                        <label for="u_zip">Postcode</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col s12 center">
-                        <button type="submit" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">Submit<i class="material-icons right"></i></button>
+                        <button type="submit"  class="waves-effect waves-light btn light-green accent-4 black-text" >Submit<i class="material-icons right"></i></button>
                     </div>
                 </div>
 
@@ -874,7 +876,7 @@
 
     <!--Settings start-->
     <script type="text/html" id="settingTemplate">
-        <div class="row grey darken-4 white-text center margin0"  >
+        <div class="row grey darken-4 white-text height100vh center margin0"  >
             <br>
             <p>interested in</p>
 
@@ -920,6 +922,8 @@
             </div>
             <br>
             <p>What is premupm feel? Read more!</p>
+
+            <br>
         </div>
 
     </script>
@@ -930,22 +934,22 @@
         <div class="row ">
 
             <div class="col s12 m12 " >
-            <form class="col s12" role="form" enctype="multipart/form-data" action="/site/login" onsubmit="event.preventDefault();" method="post">
+            <form class="col s12" role="form" enctype="multipart/form-data" action="/site/login" onsubmit="event.preventDefault();app.loginForm(this);" method="post">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="text" name="s_email" class="validate">
+                        <input id="email" type="text" name="u_email" class="validate">
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" name="s_password" type="password" class="validate">
+                        <input id="password" name="u_password" type="password" class="validate">
                         <label for="password" >Password</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                    <a href="#" onclick="app.loginBtn();" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></a>
+                    <button type="submit"  class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></button>
                     </div>
                 </div>
                 <div class="row">
@@ -1004,10 +1008,10 @@
 
         <div class="left height80">
 
-            <img src="_img_" alt=""  class="circle user-img responsive-img marginL10 imageHW">
+            <img src="_u_logo_" alt=""  class="circle user-img responsive-img marginL10 imageHW">
         </div>
         <div class="sidebar-text right height80 marginT10">
-            _s_name_ <br>_s_email_
+            _u_name_ <br>_u_email_
         </div>
         </div>
 

@@ -2,12 +2,12 @@
 String.prototype.replaceAll = function(search, replacement) {return this.replace(new RegExp(search, 'g'), replacement);};
 
 var app={
-    defaultPage:'profileTemplate',
     currentUrl:'',
-    //baseUrl:'http://sateweb.com/gava/web/index.php/api/',
-    baseUrl:'http://localhost/gava/web/api/',
+    //baseUrl:'http://sateweb.com/dating/web/index.php/api/',
+    baseUrl:'http://localhost/dating/web/api/',
     mainContainer:$('#contentView'),
-    id:'',
+    token:'',
+    udata:{},
     loader:$('#mLoader'),
 
     /*Core function start ###################################################################################################*/
@@ -24,44 +24,47 @@ var app={
         $.each(data,function(index,value){html+=app.translateHtml(htnlData,value);});return html;
     },
     loadDefaultPage:function(){
-        if(this.id){app.loadProfile($('#profileLink'));}else{app.loadPage('loginTemplate',$('#loginLink'));}
+        app.sideMenuStart();
+        app.setProfileData(app.udata);
+        app.setUserLogin();
+        app.homeLink();
     },
     appInit:function(){
-        $('#slide-out a').on('click',function(e){
-            e.preventDefault();
-            $('.button-collapse').sideNav('hide');
-        });
-        if(localStorage['id']){this.id=localStorage['id']}
-        this.loadDefaultPage();
-        if(this.id){this.setUserLogin();}
+        if(localStorage['token']){
+            this.token=localStorage['token'];
+            this.udata= $.parseJSON(localStorage['udata']);
+            this.loadDefaultPage();
+
+            $('#slide-out a').on('click',function(e){
+                e.preventDefault();
+                $('.button-collapse').sideNav('hide');
+            });
+        }else{
+            app.loadPage('loginTemplate',$('#loginLink'));
+        }
     },
     renderHtml:function(html){
         this.mainContainer.html(html);
         this.pageInit();
     },
     alert:function(msg){Materialize.toast(msg,5000);},
-    callAjax:function(url,params,func){
+    callAjax:function(url,func){
         app.startLoader();
         $.ajax({
-            url:this.baseUrl+url+'?token='+app.id+params,
+            url:this.baseUrl+url,
             type:'get',
             success:func,
             error:function(e){console.log(e);app.stopLoader();}
         });
     },
-    postAjax:function(obj,func,params){
+    postAjax:function(url,obj,func){
         var $this=$(obj);
         $this.find('[type="submit"]').attr('disabled','true');
         setTimeout(function(){$this.find('[type="submit"]').removeAttr('disabled');},5000);
         app.startLoader();
         var formData = new FormData($this[0]);
-        formData.append('token',app.id);
-        var url=$this.prop('action');
-        url=url.split('/');
-        this.currentUrl=url[url.length-2]+'/'+url[url.length-1];
-        console.log(this.currentUrl);
         $.ajax({
-            url:this.baseUrl+this.currentUrl+'?token='+app.id+params,
+            url:this.baseUrl+url,
             data:formData,
             type:'post',
             datatype:'json',
@@ -108,7 +111,9 @@ var app={
             $('.brand-logo').html(title);
         }else{
             $('.dHeader').show();
-            $('.dHeader2').css('display','inline');
+            if(app.token){
+                $('.dHeader2').css('display','inline');
+            }
             $('.nHeader').hide();
             $('.brand-logo').html('<img src="img/logo.jpg" class="logo">');
         }
@@ -127,16 +132,11 @@ var app={
     setProfileData:function(data){
         $('#userLogo').html(app.creteHtml('userProfileTemplate',data));
     },
-    loadProfile2:function(){
-        var response={"status":1,"data":{"s_id":"13","s_email":"hhh@gmail.com","s_name":"hhh","s_zip":"9999","s_contact":" 789879855","s_password":"$2y$13$BcLqRwSAsIy0gvjOafvKBO3j82yYepHiubk4R7GOeDOgZirKfdZqq","s_auth_key":"","s_password_reset_token":"","s_logo":"profile_pic_03.png","s_address":"fgdfhgfh","s_lat":"","s_long":"","s_created":"1458267296","s_modified":"1458678726","img":"img/profile_pic_03.png"}};
-        app.stopLoader();
-        if(response.message){app.alert(response.message);}
-        if(response.status) {
-            app.loadPage('profileTemplate', response.data);
-            app.setSidebar($('#profileLink'));
-            app.setProfileData(response.data);
-            app.setUserLogin();
-        }
+    loadProfile:function(){
+        app.loadPage('profileTemplate', app.udata);
+        app.setSidebar($('#profileLink'));
+        app.setProfileData(app.udata);
+        app.setUserLogin();
 
     },
     loadSetting:function(){
@@ -172,16 +172,6 @@ var app={
             $('#couponText').html(this.value);
             console.log(this.value);
         });
-    },
-    loadlogin:function(){
-        var response={"status":1,"data":{"s_id":"13","s_email":"hhh@gmail.com","s_name":"hhh","s_zip":"9999","s_contact":" 789879855","s_password":"$2y$13$BcLqRwSAsIy0gvjOafvKBO3j82yYepHiubk4R7GOeDOgZirKfdZqq","s_auth_key":"","s_password_reset_token":"","s_logo":"profile_pic_03.png","s_address":"fgdfhgfh","s_lat":"","s_long":"","s_created":"1458267296","s_modified":"1458678726","img":"img/profile_pic_03.png"}};
-        app.stopLoader();
-        if(response.message){app.alert(response.message);}
-        if(response.status) {
-            app.setProfileData(response.data);
-            app.setUserLogin();
-        }
-
     },
     userInit:function(){
         $(".owl-carousel").owlCarousel({
@@ -274,30 +264,37 @@ var app={
         app.callAjax('site/profile','',func);
     },*/
     loginForm:function(obj){
-        var func=function(response){
+        app.startLoader();
 
+        var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
             if(response.status){
-                if(response.token){localStorage['id']=app.id=response.token;app.setUserLogin();}
-                app.loadProfile($('#profileLink'));
+                if(response.token){
+                    localStorage['token']=app.token=response.token;
+                    app.data=response.data;
+                    localStorage['udata']= JSON.stringify(response.data);
+                    app.sideMenuStart();
+                    app.setProfileData(response.data);
+                    app.setUserLogin();
+                    app.homeLink();
+                }
             }
 
         };
-        this.postAjax(obj,func,'');
+        this.postAjax('site/login',obj,func,'');
     },
     signupForm:function(obj){
-        /*var func=function(response){
+        app.startLoader();
 
+        var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
             if(response.status){
-                app.loadPage('loginTemplate',$('#loginLink'));
+                app.loginLink();
             }
         };
-        this.postAjax(obj,func,'');*/
-        app.loadPage('loginTemplate',$('#loginLink'));
-        app.alert('Signup successfully.');
+        this.postAjax('site/signup',obj,func,'');
     },
     profileForm:function(obj){
         /*var func=function(response){
@@ -306,7 +303,7 @@ var app={
             if(response.status){app.loadProfile($('#profileLink'));}
         };
         this.postAjax(obj,func,'');*/
-        app.loadProfile2();app.setSidebar($('profileLink'));app.setUserLogin();
+        app.loadProfile();app.setSidebar($('profileLink'));app.setUserLogin();
         app.alert('Profile updated successsfully');
     },
 
@@ -335,13 +332,20 @@ var app={
         $('.button-collapse').sideNav('hide');
     },
     logoutBtn:function(){
-        app.setTitle();app.setUserLogout();app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));
-        app.sideMenuStop();
-    },
-    loginBtn:function(){
-        // Initialize collapse button
-        app.sideMenuStart();
-        app.homeLink();app.loadlogin();
+
+        var func=function(response){
+            app.stopLoader();
+            if(response.message){app.alert(response.message);}
+            localStorage['token']='';
+            localStorage['udata']='';
+            app.setTitle();
+            app.setUserLogout();
+            app.loadPage('loginTemplate');
+            app.setSidebar($('#loginLink'));
+            app.sideMenuStop();
+        };
+        app.callAjax('site/logout',func);
+
     },
     homeLink:function(){
         app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();
@@ -367,7 +371,7 @@ var app={
         app.loadPage('userTemplate');app.userInit();
     },
     profileLink:function(){
-        app.loadProfile2();
+        app.loadProfile();
         $('.button-collapse').sideNav('hide');
     },
     messageLink:function(){
@@ -386,6 +390,7 @@ var app={
     /*new Route core functions end  ##########################################################################################*/
 
 };
+
 app.appInit();
 
 document.addEventListener("backbutton", onBackKeyDown, false);
@@ -405,4 +410,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     app.device=device;
+    if(device.platform=='iOS'){
+        $('head').append('<link rel="stylesheet" type="text/css" href="css/ios.css">');
+    };
 }
