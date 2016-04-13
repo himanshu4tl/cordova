@@ -3,7 +3,7 @@ String.prototype.replaceAll = function(search, replacement) {return this.replace
 
 var app={
     currentUrl:'',
-    baseUrl:'http://sateweb.com/dating/web/index.php/api/',
+    baseUrl:'http://sateweb.com/dating/users/index.php/api/',
     //baseUrl:'http://localhost/dating/web/api/',
     mainContainer:$('#contentView'),
     token:'',
