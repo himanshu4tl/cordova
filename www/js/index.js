@@ -4,7 +4,7 @@ String.prototype.replaceAll = function(search, replacement) {return this.replace
 var app={
     currentUrl:'',
     baseUrl:'http://sateweb.com/dating/users/index.php/api/',
-    //baseUrl:'http://localhost/dating/web/api/',
+    //baseUrl:'http://localhost/dating/users/api/',
     mainContainer:$('#contentView'),
     token:'',
     udata:{},
@@ -101,6 +101,7 @@ var app={
         this.renderHtml(this.creteHtml(templateId,data));
         app.stopLoader();
         this.pageInit();
+        this.mainContainer.css('margin-left','100%').animate({'margin-left':'0'},300);
         this.afterLoadPage(templateId);
     },
     setTitle:function(title){
@@ -222,20 +223,44 @@ var app={
             $("#tinderslide").jTinder($(this).attr('class'));
         });
     },
-    restaurentInit:function(){
-        $(".owl-carousel").owlCarousel({
-            items:1,
-            loop:true,
-            nav:false,
-        });
-        this.setTitle('RESTAURANT');
-        $('.goBack').attr('onclick',"app.restaurentLink();app.reserBack();");
+    restaurentInit:function(obj){
+        var func=function(response){
+            app.stopLoader();
+            if(response.message){app.alert(response.message);}
+            app.loadPage('restaurentTemplate',response);app.setSidebar($('#restaurentLink'));
+            $(".owl-carousel").owlCarousel({
+                items:1,
+                loop:true,
+                nav:false,
+            });
+
+            this.setTitle('RESTAURANT');
+            $('.goBack').attr('onclick',"app.restaurentLink();app.reserBack();");
+        };
+        app.callAjax('site/restaurantdetail?id='+$(obj).data('id'),func);
+
+
     },
     reserBack:function(){
         $('.goBack').attr('onclick',"app.homeLink();");
     },
     restaurentListInit:function(){
-        $('.restaurentImg').on('click',function(){app.loadPage('restaurentTemplate');app.setSidebar($('#restaurentLink'));app.restaurentInit();});
+
+        var func=function(response){
+            app.stopLoader();
+            if(response.message){app.alert(response.message);}
+            var html='';
+            if(response.length){
+                html=app.creteHtmlData('restaurentImgTemplate',response);
+            }else{
+                html='no data found.';
+            }
+            $('#restaurentImgContainer').html(html);
+
+            $('.restaurentImg').on('click',function(){app.restaurentInit(this);});
+
+        };
+        app.callAjax('site/restaurantlist',func);
 
         $('.dropdown-button').dropdown({
                 inDuration: 300,

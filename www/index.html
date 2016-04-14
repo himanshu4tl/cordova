@@ -148,83 +148,17 @@
             <li><a href="#!" class="black-text">three</a></li>
         </ul>
 
-        <div class="row "  >
-            <div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-
-
-<div class="col  s3 padding0 restaurantOffset" >
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-
-            <div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-<div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-
-            <div class="col s3 padding0 restaurantOffset">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0 ">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-
-            <div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-
-            <div class="col s3 padding0 restaurantOffset">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0 ">
-                <img src="img/hotel2.png" class=" responsive-img restaurentImg">
-            </div>
-            <div class="col s3 padding0">
-                <img src="img/hotel1.png" class=" responsive-img restaurentImg">
-            </div>
-
-
+        <div class="row "  id="restaurentImgContainer">
 
         </div>
         </div>
     </script>
 
+    <script type="text/html" id="restaurentImgTemplate">
+        <div class="col s3 padding0">
+            <img src="_r_logo_" data-id="_r_id_" class=" responsive-img restaurentImg ">
+        </div>
+    </script>
     <script type="text/html" id="restaurentTemplate">
         <div class="row detail" >
 
@@ -245,10 +179,10 @@
 " >
                 <div class="center" style="width: 100% !important; position: absolute;margin-left:auto;margin-right: auto">
                     <div class="row detail" style="margin-left: 20px;margin-right: 20px;background-color: white;" >
-                        <div class="col s4 m3" style="font-size: x-large;">Alexander</div>
-                        <div class="col s6 m3" style="font-size: small;vertical-align: middle;text-align: end;padding: 10px;">sadasdsadada</div>
+                        <div class="col s4 m3" style="font-size: x-large;">_r_contact_</div>
+                        <div class="col s6 m3" style="font-size: small;vertical-align: middle;text-align: end;padding: 10px;">_r_contact_</div>
                         <div class="col s12 m12  center" >
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p>_r_desc_</p>
                         </div>
                     </div>
 
@@ -306,7 +240,7 @@
                         <div class="col s12 m12  center " >
                             <div class="pro_box" >
                                 <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
-                                <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                                <img onclick="app.userLink();" src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
                                 <div class="like"></div>
                                 <div class="dislike"></div>
                             </div>
@@ -339,9 +273,9 @@
                     </li>
                     <li class="pane2">
                         <div class="col s12 m12  center " >
-                            <div class="pro_box" onclick="app.userLink();">
+                            <div class="pro_box" >
                                 <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
-                                <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                                <img onclick="app.userLink();" src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
                                 <div class="like"></div>
                                 <div class="dislike"></div>
                             </div>
@@ -374,9 +308,9 @@
                     </li>
                     <li class="pane2">
                         <div class="col s12 m12  center " >
-                            <div class="pro_box" onclick="app.userLink();">
+                            <div class="pro_box" >
                                 <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
-                                <img  src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                                <img onclick="app.userLink();" src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
                                 <div class="like"></div>
                                 <div class="dislike"></div>
                             </div>
