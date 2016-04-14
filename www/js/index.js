@@ -234,7 +234,7 @@ var app={
                 nav:false,
             });
 
-            this.setTitle('RESTAURANT');
+            app.setTitle('RESTAURANT');
             $('.goBack').attr('onclick',"app.restaurentLink();app.reserBack();");
         };
         app.callAjax('site/restaurantdetail?id='+$(obj).data('id'),func);
