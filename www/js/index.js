@@ -54,7 +54,7 @@ var app={
             url:this.baseUrl+url,
             type:'get',
             success:func,
-            error:function(e){console.log(e);app.stopLoader();}
+            error:function(e){console.log(e);app.stopLoader();app.alert('Nerwork error.');}
         });
     },
     postAjax:function(url,obj,func){
@@ -72,6 +72,16 @@ var app={
             cache: false,
             contentType: false,
             processData: false,
+            success:func,
+            error:function(e){console.log(e);app.stopLoader();}
+        })
+    },
+    postAjaxData:function(url,data,func){
+        $.ajax({
+            url:this.baseUrl+url,
+            data:data,
+            type:'post',
+            datatype:'json',
             success:func,
             error:function(e){console.log(e);app.stopLoader();}
         })
@@ -101,7 +111,7 @@ var app={
         this.renderHtml(this.creteHtml(templateId,data));
         app.stopLoader();
         this.pageInit();
-        this.mainContainer.css('margin-left','100%').animate({'margin-left':'0'},300);
+        //this.mainContainer.css('margin-left','100%').animate({'margin-left':'0'},300);
         this.afterLoadPage(templateId);
     },
     setTitle:function(title){
@@ -141,9 +151,14 @@ var app={
 
     },
     loadSetting:function(){
+        var u_interest_age=[20,30];
+        if(app.udata.u_interest_age){
+            u_interest_age=app.udata.u_interest_age.split(',');
+            $('#ageText').html(u_interest_age[0]+' - '+u_interest_age[1]);
+        }
         var slider = document.getElementById('test5');
         noUiSlider.create(slider, {
-            start: [20, 30],
+            start: u_interest_age,
             connect: true,
             step: 1,
             range: {
@@ -157,6 +172,7 @@ var app={
         slider.noUiSlider.on('change.one', function(values, handle, unencoded, tap, positions){
             console.log(values);
             $('#ageText').html(values[0]+' - '+values[1]);
+            app.updateUser({u_interest_age:values.join(',')});
         });
         $('.switchBox').on('click','button',function(){
                 var $this=$(this);
@@ -165,13 +181,28 @@ var app={
                         .siblings().removeClass('onSwitch').addClass('offSwitch');
                 }
         });
+        if(app.udata.u_interest_in=='1'){
+            var $this=$($('.switchBox button')[0]);
+            if($this.hasClass('offSwitch')){
+                $this.removeClass('offSwitch').addClass('onSwitch')
+                    .siblings().removeClass('onSwitch').addClass('offSwitch');
+            }
+        }else{console.log(121);
+            var $this=$($('.switchBox button')[1]);
+            if($this.hasClass('offSwitch')){
+                $this.removeClass('offSwitch').addClass('onSwitch')
+                    .siblings().removeClass('onSwitch').addClass('offSwitch');
+            }
+        }
         $('#distanceInput').on('change',function(){
            $('#distanceText').html(this.value);
             console.log(this.value);
+            app.updateUser({u_interest_distance:this.value});
         });
         $('#couponInput').on('change',function(){
             $('#couponText').html(this.value);
             console.log(this.value);
+            app.updateUser({u_coupon_like:this.value});
         });
     },
     userInit:function(){
@@ -228,7 +259,9 @@ var app={
             app.stopLoader();
             if(response.message){app.alert(response.message);}
             app.loadPage('restaurentTemplate',response);app.setSidebar($('#restaurentLink'));
-            $(".owl-carousel").owlCarousel({
+            $(".owl-carousel")
+                .html(app.creteHtmlData('restaurentDetailImgTemplate',response.images))
+                .owlCarousel({
                 items:1,
                 loop:true,
                 nav:false,
@@ -238,8 +271,6 @@ var app={
             $('.goBack').attr('onclick',"app.restaurentLink();app.reserBack();");
         };
         app.callAjax('site/restaurantdetail?id='+$(obj).data('id'),func);
-
-
     },
     reserBack:function(){
         $('.goBack').attr('onclick',"app.homeLink();");
@@ -387,6 +418,20 @@ var app={
         app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();
         $('.button-collapse').sideNav('hide');
     },
+    updateUser:function(data){
+        console.log(data);
+        app.startLoader();
+        var func=function(response){
+            app.stopLoader();
+            if(response.message){app.alert(response.message);}
+            if(response.status){
+                app.udata[Object.keys(data)[0]]=data[Object.keys(data)[0]];
+                localStorage['udata']= JSON.stringify(app.udata);
+            }
+        };
+        this.postAjaxData('site/updateuser?token='+app.token,data,func);
+
+    },
     restaurentLink:function(){
         app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');
         $('.button-collapse').sideNav('hide');
@@ -400,7 +445,7 @@ var app={
         $('.button-collapse').sideNav('hide');
     },
     settingLink:function(){
-        app.loadPage('settingTemplate');app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('<i class=\'fa fa-cog\'></i>');
+        app.loadPage('settingTemplate',app.udata);app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('<i class=\'fa fa-cog\'></i>');
         $('.button-collapse').sideNav('hide');
     },
     userLink:function(){

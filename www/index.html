@@ -159,18 +159,15 @@
             <img src="_r_logo_" data-id="_r_id_" class=" responsive-img restaurentImg ">
         </div>
     </script>
+    <script type="text/html" id="restaurentDetailImgTemplate">
+        <div class="item center" >
+            <img src="_ri_image_" style="height: 360px;width:100%;"/>
+        </div>
+    </script>
     <script type="text/html" id="restaurentTemplate">
         <div class="row detail" >
 
             <div class="owl-carousel">
-                <div class="item center" >
-                    <img src="img/slider1.jpg" style="height: 360px;"/>
-                </div>
-
-                <div class="item center" >
-
-                    <img src="img/slider2.jpg" style="height: 360px;"/>
-                </div>
             </div>
             <div class="center" style="width: 100% !important;position: relative;top: -67px;z-index: 1;height: 100px;">
                 <img src="img/profile_bakground_bottom_03.png" width="100% !important" style="
@@ -434,7 +431,7 @@
                     <!-- Switch -->
                     <div class="switch inlineblock" >
                         <label>
-                            <input type="checkbox">
+                            <input type="checkbox" id="test" checked onchange="console.log(this.value);">
                             <span class="lever"></span>
                         </label>
                     </div>
@@ -744,8 +741,8 @@
             <p>interested in</p>
 
             <div class="switchBox">
-                <button class="btn  white black-text offSwitch" ><i class="fa fa-mars"></i> men</button>
-                <button class="btn  white black-text onSwitch"><i class="fa fa-venus"></i> women</button>
+                <button class="btn  white black-text offSwitch" onclick="app.updateUser({u_interest_in:'1'});"><i class="fa fa-mars"></i> men</button>
+                <button class="btn  white black-text onSwitch" onclick="app.updateUser({u_interest_in:'0'});"><i class="fa fa-venus"></i> women</button>
 
             </div>
             <br>
@@ -754,13 +751,13 @@
             <div id="test5" class="margin10"></div>
 
             <br>
-                <p>distance: <span class="orange-text"><span id="distanceText">10</span> km</span> </p>
+                <p>distance: <span class="orange-text"><span id="distanceText">_u_interest_distance_</span> km</span> </p>
                 <p class="range-field margin10">
-                    <input type="range" id="distanceInput" min="0" max="100" value="10"/>
+                    <input type="range" id="distanceInput" min="0" max="100" value="_u_interest_distance_"/>
                 </p>
-                <p>Free coupon: <span class="orange-text"><span id="couponText">100</span> likes</span> </p>
+                <p>Free coupon: <span class="orange-text"><span id="couponText">_u_coupon_like_</span> likes</span> </p>
                 <p class="range-field margin10" >
-                    <input type="range" min="0" id="couponInput" max="100" value="100"/>
+                    <input type="range" min="0" id="couponInput" max="100" value="_u_coupon_like_"/>
                 </p>
             <div class="row ">
 
