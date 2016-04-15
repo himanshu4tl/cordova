@@ -339,7 +339,7 @@ var app={
             if(response.status){
                 if(response.token){
                     localStorage['token']=app.token=response.token;
-                    app.data=response.data;
+                    app.udata=response.data;
                     localStorage['udata']= JSON.stringify(response.data);
                     app.sideMenuStart();
                     app.setProfileData(response.data);
