@@ -8,6 +8,8 @@ var app={
     mainContainer:$('#contentView'),
     token:'',
     udata:{},
+    notificationSound:'1',
+    notificationVibrate:'0',
     loader:$('#mLoader'),
 
     /*Core function start ###################################################################################################*/
@@ -42,6 +44,8 @@ var app={
         }else{
             app.loadPage('loginTemplate',$('#loginLink'));
         }
+        app.notificationSound=localStorage['notificationSound']=(localStorage['notificationSound'])?localStorage['notificationSound']:'1';
+        app.notificationVibrate=localStorage['notificationVibrate']=(localStorage['notificationVibrate'])?localStorage['notificationVibrate']:'0';
     },
     renderHtml:function(html){
         this.mainContainer.html(html);
@@ -111,7 +115,7 @@ var app={
         this.renderHtml(this.creteHtml(templateId,data));
         app.stopLoader();
         this.pageInit();
-        //this.mainContainer.css('margin-left','100%').animate({'margin-left':'0'},300);
+        this.mainContainer.css('opacity','0').animate({'opacity':'1'},1000);
         this.afterLoadPage(templateId);
     },
     setTitle:function(title){
@@ -142,13 +146,6 @@ var app={
 
     setProfileData:function(data){
         $('#userLogo').html(app.creteHtml('userProfileTemplate',data));
-    },
-    loadProfile:function(){
-        app.loadPage('profileTemplate', app.udata);
-        app.setSidebar($('#profileLink'));
-        app.setProfileData(app.udata);
-        app.setUserLogin();
-
     },
     loadSetting:function(){
         var u_interest_age=[20,30];
@@ -305,20 +302,28 @@ var app={
         );
 
     },
-    /*loadProfile:function(obj){
+
+    loadProfile:function(){
+        app.loadPage('profileTemplate', app.udata);
+        app.setSidebar($('#profileLink'));
+        app.setProfileData(app.udata);
+        app.setUserLogin();
+
+    },
+    editProfileForm:function(obj){
+
+        app.startLoader();
         var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
-            if(response.status) {
-                app.loadPage('profileTemplate', $('profileLink'), response.data);
-                $(obj).parent().addClass('active').siblings().removeClass('active');
-                app.setProfileData(response.data);
-                $('#rateit6').rateit({ max: 5, step: 0.5, backingfld: '#backing6' });
+            if(response.status){
+                
             }
 
         };
-        app.callAjax('site/profile','',func);
-    },*/
+        this.postAjax('site/profile?token='+app.token,obj,func,'');
+    },
+    
     loginForm:function(obj){
 
         var password=$('[name="u_password"]').val();
@@ -460,7 +465,15 @@ var app={
         $('.goBack').attr('onclick',"app.chatLink();app.reserBack();");
     },
     notificationLink:function(){
-        app.loadPage('notificationTemplate');app.setSidebar($('#notificationLink'));
+        var data={
+            u_notification_match:(app.udata.u_notification_match=='1')?'checked':'',
+            u_notification_message:(app.udata.u_notification_message=='1')?'checked':'',
+            u_notification_coupon:(app.udata.u_notification_coupon=='1')?'checked':'',
+            notificationVibrate:(app.notificationVibrate=='1')?'checked':'',
+            notificationSound:(app.notificationSound=='1')?'checked':'',
+        }
+        console.log(data);
+        app.loadPage('notificationTemplate',data);app.setSidebar($('#notificationLink'));
         $('.goBack').attr('onclick',"app.settingLink();app.reserBack();");
     },
     signupLink:function(){
@@ -469,6 +482,21 @@ var app={
         $('.goBack').attr('onclick',"app.loginLink();app.reserBack();app.setTitle();");
     },
     /*new Route core functions end  ##########################################################################################*/
+
+   readURL:function(input,fun) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = fun;
+            reader.readAsDataURL(input.files[0]);
+        }
+   },
+    previewImage:function(obj){
+        var fun=function(e){
+            $(obj).next().attr('src', e.target.result);
+        }
+        app.readURL(obj,fun);
+    }
+
 
 };
 

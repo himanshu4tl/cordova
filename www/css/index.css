@@ -347,3 +347,20 @@ input[type=range] {
 nav .brand-logo{
     left: 50%;
 }
+.ulogoFile{
+    position: absolute;
+    opacity: 0;
+    z-index: 10;
+    height: 35px;
+    width: 35px;
+    left: 0;
+    
+}
+.btnFlotEdit{
+    position: absolute;
+    z-index: 5;
+    height: 35px;
+    width: 35px;
+    left: 0;
+    
+}
