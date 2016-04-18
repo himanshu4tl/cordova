@@ -195,7 +195,7 @@
         <br>
         <form enctype="multipart/form-data" acttion="" onsubmit="event.preventDefault();app.editProfileForm(this);" method="post">
             <div class="center edit_profile_txt" >
-                <span onclick="$(this).toggle().next().toggle();$('.editBtnfile').show();">Edit Profile</span>
+                <span onclick="$(this).toggle().next().show();$('.editBtnfile').show();">Edit Profile</span>
                 <div style="display:none;">
                     <button class="btn btn-primaty" type="submit">Save</button>
                     <button class="btn btn-primaty" type="button" onclick="app.profileLink();">Cancle</button>
@@ -204,27 +204,37 @@
         <div class="row edit_profile "  >
 
                 <div class="row padding_margin_null" >
-                <div class="col s8 m8 padding_margin_null">
-                    <button type="button" class="btn btn-floating btnFlotEdit editBtnfile" style="display:none;"><i class="fa fa-pencil"></i></button>
-                    <input type="file" name="u_logo" class="ulogoFile editBtnfile" style="display:none;" onchange="app.previewImage(this);">
+                <div class="col s8 m8 padding_margin_null posRelative">
+                    <button type="button" class="btn btn-floating btnFlotEdit editBtnfile" style="display:none;" onclick="app.setCropImage('u_logo');"><i class="fa fa-pencil"></i></button>
+                    <input type="hidden" name="u_logo">
                     <img src="_u_logo_" class="responsive-img" >
                 </div>
-                <div class="col s4 m4 padding_margin_null" >
-                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                <div class="col s4 m4 padding_margin_null posRelative" >
+                    <button type="button" class="btn btn-floating btnFlotEdit editBtnfile" style="display:none;" onclick="app.setCropImage('ui_image0');"><i class="fa fa-pencil"></i></button>
+                    <input type="hidden" name="ui_image0" >
+                    <img src="_ui_image0_" class="responsive-img">
                 </div>
-                <div class="col s4 m4 padding_margin_null" >
-                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+              <div class="col s4 m4 padding_margin_null posRelative" >
+                    <button type="button" class="btn btn-floating btnFlotEdit editBtnfile" style="display:none;" onclick="app.setCropImage('ui_image1');"><i class="fa fa-pencil"></i></button>
+                    <input type="hidden" name="ui_image1" >
+                    <img src="_ui_image1_" class="responsive-img">
                 </div>
                 </div>
                 <div class="row padding_margin_null" >
-                <div class="col s4 m4 padding_margin_null">
-                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                <div class="col s4 m4 padding_margin_null posRelative">
+                    <button type="button" class="btn btn-floating btnFlotEdit editBtnfile" style="display:none;" onclick="app.setCropImage('ui_image2');"><i class="fa fa-pencil"></i></button>
+                    <input type="hidden" name="ui_image2">
+                    <img src="_ui_image2_" class="responsive-img">
                 </div>
-                <div class="col s4 m4 padding_margin_null">
-                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                <div class="col s4 m4 padding_margin_null posRelative">
+                    <button type="button" class="btn btn-floating btnFlotEdit editBtnfile" style="display:none;" onclick="app.setCropImage('ui_image3');"><i class="fa fa-pencil"></i></button>
+                    <input type="hidden" name="ui_image3">
+                    <img src="_ui_image3_" class="responsive-img">
                 </div>
-                <div class="col s4 m4 padding_margin_null">
-                    <img src="img/edit_profile_plus.jpg" class="responsive-img">
+                <div class="col s4 m4 padding_margin_null posRelative">
+                    <button type="button" class="btn btn-floating btnFlotEdit editBtnfile" style="display:none;" onclick="app.setCropImage('ui_image4');"><i class="fa fa-pencil"></i></button>
+                    <input type="hidden" name="ui_image4" >
+                    <img src="_ui_image4_" class="responsive-img">
                 </div>
                 </div>
         </div>
@@ -887,7 +897,26 @@
         </div>
 
     </script>
+    
+<!-- Modal Structure -->
+  <div id="modal" class="modal" style="width:95%;">
+    <div class="modal-content">
+        <a href="#!" class=" modal-action modal-close btn btn-floating btnFlotEdit" style="top:0;"><i class="fa fa-close"></i></a>
+   
+        <div class="image-editor imageBlock">
+            <div class="cropit-preview"></div>
+            <input type="range" class="cropit-image-zoom-input">
 
+            <div class="posRelative">
+                <input type="file"  class="cropit-image-input btn btn-primary filebtnInput">
+                <button class="btn btn-primary filebtn">File</button>
+                <button class="btn btn-primary" onclick="app.cropImage();" style="margin-left:100px;">Done</button>
+            </div>
+        </div>
+   </div>
+  </div>
+  
+  
     <!-- Jacascript Start-->
     <script type="text/javascript" src="cordova.js"></script>
 
@@ -904,6 +933,7 @@
     <!-- jTinder lib -->
     <script type="text/javascript" src="libs/jTinder-master/js/jquery.jTinder.js"></script>
     <!-- jTinder initialization script -->
+    <script type="text/javascript" src="libs/cropit/jquery.cropit.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
 

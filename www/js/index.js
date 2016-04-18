@@ -304,11 +304,39 @@ var app={
     },
 
     loadProfile:function(){
-        app.loadPage('profileTemplate', app.udata);
+        var data={};
+        for (i = 0; i < 5; i++) { 
+            data['ui_image'+i]='img/edit_profile_plus.jpg';
+        };
+        $.each(app.udata.images,function(index,val){
+            data['ui_image'+val['ui_position']]=val['ui_image'];
+        });
+        data.u_logo=app.udata.u_logo;
+        data.u_about=app.udata.u_about;
+        app.userImages=data;
+        console.log(data)
+        app.loadPage('profileTemplate', data);
+        $('.modal-trigger').leanModal();
+        app.croper=$('.image-editor').cropit({smallImage:'allow',allowDragNDrop:false,onImageError:function(obj){console.log(obj);}});
         app.setSidebar($('#profileLink'));
         app.setProfileData(app.udata);
         app.setUserLogin();
 
+    },
+    setCropImage:function(name){
+        $('#modal').openModal();
+        console.log(name);
+        app.croperName=name;
+        var image=app.userImages[name];
+        image=image.replace('thumb_','');
+        app.croper.cropit('imageSrc', image);
+        
+    },
+    cropImage:function(){
+        app.croper.cropit('exportZoom', 2);
+        var imageData = app.croper.cropit('export');
+        $('[name="'+app.croperName+'"]').val(imageData).next().attr('src',imageData);
+        $('#modal').closeModal();
     },
     editProfileForm:function(obj){
 
@@ -317,7 +345,9 @@ var app={
             app.stopLoader();
             if(response.message){app.alert(response.message);}
             if(response.status){
-                
+                app.udata=response.data;
+                localStorage['udata']= JSON.stringify(response.data);
+                app.profileLink();
             }
 
         };
