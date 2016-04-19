@@ -226,16 +226,14 @@ var app={
                $("#tinderslide").jTinder({
                    // dislike callback
                    onDislike: function (item) {
-                       // set the status text
-                       $('#status').html('Dislike image ' + (item.index()+1));
+                       console.log(item[0].lang);
                        $('.actions .dislike').removeClass('btn_up');
                        $('.actions .like').removeClass('btn_up');
-
+                       
                    },
                    // like callback
                    onLike: function (item) {
-                       // set the status text
-                       $('#status').html('Like image ' + (item.index()+1));
+                       console.log(item[0].lang);
                        $('.actions .dislike').removeClass('btn_up');
                        $('.actions .like').removeClass('btn_up');
 
@@ -496,14 +494,17 @@ var app={
     },
     userLink:function(){
         app.loadPage('userTemplate');app.userInit();
+        $('.button-collapse').sideNav('hide');
     },
     profileLink:function(){
         app.loadProfile();
         $('.button-collapse').sideNav('hide');
+        
     },
     messageLink:function(){
         app.loadPage('chatMsgTemplate');
         $('.goBack').attr('onclick',"app.chatLink();app.reserBack();");
+        $('.button-collapse').sideNav('hide');
     },
     notificationLink:function(){
         var data={
@@ -516,11 +517,13 @@ var app={
         console.log(data);
         app.loadPage('notificationTemplate',data);app.setSidebar($('#notificationLink'));
         $('.goBack').attr('onclick',"app.settingLink();app.reserBack();");
+        $('.button-collapse').sideNav('hide');
     },
     signupLink:function(){
         app.loadPage('signupTemplate');app.setSidebar($('#loginLink'));
         app.setTitle('Signup');
         $('.goBack').attr('onclick',"app.loginLink();app.reserBack();app.setTitle();");
+        $('.button-collapse').sideNav('hide');
     },
     /*new Route core functions end  ##########################################################################################*/
 

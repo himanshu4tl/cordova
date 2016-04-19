@@ -51,6 +51,11 @@
     <plugin name="cordova-plugin-vibration" source="npm"  />
 
 
+    <plugin name="cordova-plugin-statusbar" version="0.1.7" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+
     <icon src="icon.png" />
     <preference name="orientation" value="portrait" />
 </widget>
