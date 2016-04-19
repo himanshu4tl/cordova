@@ -399,4 +399,9 @@ nav .brand-logo{
         height: 250px;
       }
       
-      
+      .modal{
+          top:15% !important;
+      }
+ nav ul a:hover {
+    background-color: inherit;
+}

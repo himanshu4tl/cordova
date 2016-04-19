@@ -77,17 +77,18 @@ var app={
             contentType: false,
             processData: false,
             success:func,
-            error:function(e){console.log(e);app.stopLoader();}
+            error:function(e){console.log(e);app.alert('Network error.');app.stopLoader();}
         })
     },
     postAjaxData:function(url,data,func){
+        app.startLoader();
         $.ajax({
             url:this.baseUrl+url,
             data:data,
             type:'post',
             datatype:'json',
             success:func,
-            error:function(e){console.log(e);app.stopLoader();}
+            error:function(e){console.log(e);app.stopLoader();app.alert('Network error.');}
         })
     },
     pageInit:function(){
@@ -104,10 +105,14 @@ var app={
 
     },
     startLoader:function(){
-      app.loader.show();
+        console.log('start Loader......');
+        app.loader.show();
     },
     stopLoader:function(){
-        app.loader.hide();
+        setTimeout(function(){
+            console.log('stop l......');
+            app.loader.hide();
+        },500);
     },
     loadPage:function(templateId,data){
         if(!data){data={}}
@@ -211,45 +216,47 @@ var app={
        this.setTitle('PROFILE<div class="closeBtnTitle"><img class="inlineblock likeBtnTitle" src="img/close.png"><img class="inlineblock likeBtnTitle" src="img/like.png"><div>')
     },
     homeInit:function(){
-        /*$(".owl-carousel").owlCarousel({
-            items:1,
-            loop:false,
-            nav:false,
-        });*/
-        /**
-         * jTinder initialization
-         */
-        $("#tinderslide").jTinder({
-            // dislike callback
-            onDislike: function (item) {
-                // set the status text
-                $('#status').html('Dislike image ' + (item.index()+1));
-                $('.actions .dislike').removeClass('btn_up');
-                $('.actions .like').removeClass('btn_up');
+     var func=function(response){
+            app.stopLoader();
+            if(response.message){app.alert(response.message);}
+                $('#userList').html(app.creteHtmlData('homeUserListTemplate',response.data));
+                /**
+                * jTinder initialization
+                */
+               $("#tinderslide").jTinder({
+                   // dislike callback
+                   onDislike: function (item) {
+                       // set the status text
+                       $('#status').html('Dislike image ' + (item.index()+1));
+                       $('.actions .dislike').removeClass('btn_up');
+                       $('.actions .like').removeClass('btn_up');
 
-            },
-            // like callback
-            onLike: function (item) {
-                // set the status text
-                $('#status').html('Like image ' + (item.index()+1));
-                $('.actions .dislike').removeClass('btn_up');
-                $('.actions .like').removeClass('btn_up');
+                   },
+                   // like callback
+                   onLike: function (item) {
+                       // set the status text
+                       $('#status').html('Like image ' + (item.index()+1));
+                       $('.actions .dislike').removeClass('btn_up');
+                       $('.actions .like').removeClass('btn_up');
 
-            },
-            animationRevertSpeed: 200,
-            animationSpeed: 400,
-            threshold: 1,
-            likeSelector: '.like',
-            dislikeSelector: '.dislike'
-        });
+                   },
+                   animationRevertSpeed: 200,
+                   animationSpeed: 400,
+                   threshold: 1,
+                   likeSelector: '.like',
+                   dislikeSelector: '.dislike'
+               });
 
-        /**
-         * Set button action to trigger jTinder like & dislike.
-         */
-        $('.actions .like, .actions .dislike').click(function(e){
-            e.preventDefault();
-            $("#tinderslide").jTinder($(this).attr('class'));
-        });
+               /**
+                * Set button action to trigger jTinder like & dislike.
+                */
+               $('.actions .like, .actions .dislike').click(function(e){
+                   e.preventDefault();
+                   $("#tinderslide").jTinder($(this).attr('class'));
+               });
+            };
+        app.callAjax('site/getusers?token='+app.token,func);
+        
     },
     restaurentInit:function(obj){
         var func=function(response){
@@ -313,6 +320,7 @@ var app={
         });
         data.u_logo=app.udata.u_logo;
         data.u_about=app.udata.u_about;
+        data.u_aboutcount=app.udata.u_about.length;
         app.userImages=data;
         console.log(data)
         app.loadPage('profileTemplate', data);
@@ -340,18 +348,21 @@ var app={
     },
     editProfileForm:function(obj){
 
-        app.startLoader();
         var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
-            if(response.status){
+            if(response.status==1){
                 app.udata=response.data;
                 localStorage['udata']= JSON.stringify(response.data);
                 app.profileLink();
             }
 
         };
-        this.postAjax('site/profile?token='+app.token,obj,func,'');
+        setTimeout(function(){
+            
+        app.postAjax('site/profile?token='+app.token,obj,func,'');
+            
+        },100);
     },
     
     loginForm:function(obj){
@@ -450,7 +461,7 @@ var app={
 
     },
     homeLink:function(){
-        app.loadPage('homeTemplate');app.setSidebar($('#homeLink'));app.homeInit();app.setTitle();
+        app.loadPage('homeTemplate');app.setTitle();app.setSidebar($('#homeLink'));app.homeInit();
         $('.button-collapse').sideNav('hide');
     },
     updateUser:function(data){
@@ -549,6 +560,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     app.device=device;
+    //console.log('udid->');
+    //console.log(device.uuid);
+    //alert(device.uuid);
+    //console.log('<-udid');
     if(device.platform=='iOS'){
         $('head').append('<link rel="stylesheet" type="text/css" href="css/ios.css">');
     };

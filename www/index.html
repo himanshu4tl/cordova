@@ -61,48 +61,15 @@
     <!-- Header End -->
     <!-- page loader start-->
     <div id="mLoader" style="display: none;">
-    <div class="loader-wrapepr " style="z-index: 1000">
-        <div class=" preloader-wrapper big active" >
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-            </div>
-
-            <div class="spinner-layer spinner-red">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-            </div>
-
-            <div class="spinner-layer spinner-yellow">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-            </div>
-
-            <div class="spinner-layer spinner-green">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-            </div>
-        </div>
+    <div class="loader-wrapepr " style="z-index: 1000;height: 60px;
+    width: 100px;
+    color: white;
+    background-color: black;
+    opacity: 0.6;
+    padding: 20px;
+    border-radius: 15px;
+        left: 36%;">
+        Loading...
     </div>
     </div>
     <!-- page loader end-->
@@ -193,12 +160,12 @@
     <script type="text/html" id="profileTemplate">
         <div class="height100vh" style="background-color: #2b2b2a">
         <br>
-        <form enctype="multipart/form-data" acttion="" onsubmit="event.preventDefault();app.editProfileForm(this);" method="post">
+        <form enctype="multipart/form-data" acttion="" onsubmit="event.preventDefault();app.startLoader();app.editProfileForm(this);" method="post">
             <div class="center edit_profile_txt" >
-                <span onclick="$(this).toggle().next().show();$('.editBtnfile').show();">Edit Profile</span>
+                <div onclick="$(this).toggle().next().show();$('.editBtnfile').show();">Edit Profile</div>
                 <div style="display:none;">
-                    <button class="btn btn-primaty" type="submit">Save</button>
-                    <button class="btn btn-primaty" type="button" onclick="app.profileLink();">Cancle</button>
+                    <button class="btn btn-primaty waves-effect waves-light" type="submit">Save</button>
+                    <button class="btn btn-primaty waves-effect waves-light" type="button" onclick="app.profileLink();">Cancel</button>
                 </div>
             </div>
         <div class="row edit_profile "  >
@@ -240,125 +207,58 @@
         </div>
             <div class="row edit_profile_about_txt">
                 <div class="col s6 m6"><span >About</span></div>
-                <div class="col s6 m6" style="text-align: end"><span >240/500</span></div>
+                <div class="col s6 m6" style="text-align: end"><span ><span id="aboutCounter">_u_aboutcount_</span>/500</span></div>
             </div>
         <div class="col s12 m12 edit_profile_bottom" >
-            <textarea name="u_about"  placeholder="Enter text here..." style="max-width:100%;height:150px;border: none;">_u_about_</textarea>
+            <textarea name="u_about" onkeyup="$('#aboutCounter').text(this.value.length);"  placeholder="Enter text here..." style="max-width:100%;height:150px;border: none;">_u_about_</textarea>
         </div>
         
         </form>
         </div>
     </script>
 
+    <script type="text/html" id="homeUserListTemplate">
+        <li class="pane1">
+        <div class="col s12 m12  center " >
+            <div class="pro_box" >
+                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
+                <img onclick="app.userLink();" src="_u_logo_" class="responsive-img circle" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </div>
+            <div style="position: relative; left: 0; top:2px;color:#81827f">
+                <h4>_u_name_ (_u_age_)</h4>
+                <hr width="50px">
+            </div>
+
+            <div class="center" >
+                <div style="position: relative;display: inline-block;">
+                    <img src="img/user_mini.jpg" class="pro_mini_ico"/>
+
+                </div>
+
+                <div style="position: relative;display: inline-block;" >
+                    <img src="img/book.jpg" class="pro_mini_ico"/>
+
+                </div>
+            </div>
+            <div class="center" >
+                <div style="position: relative;display: inline-block;">
+                    <span class="span_txt">4</span>
+                </div>
+
+                <div style="position: relative;display: inline-block;" >
+                    <span class="span_txt">32</span>
+                </div>
+            </div>
+            </div>
+    </li>
+    </script>
     <script type="text/html" id="homeTemplate">
         <div class="wrap row" >
             <div id="tinderslide"  class="col s6 center">
-                <ul>
-                    <li class="pane1">
-                        <div class="col s12 m12  center " >
-                            <div class="pro_box" >
-                                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
-                                <img onclick="app.userLink();" src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
-                                <div class="like"></div>
-                                <div class="dislike"></div>
-                            </div>
-                            <div style="position: relative; left: 0; top:2px;color:#81827f">
-                                <h4>KEITLIN (26)</h4>
-                                <hr width="50px">
-                            </div>
-
-                            <div class="center" >
-                                <div style="position: relative;display: inline-block;">
-                                    <img src="img/user_mini.jpg" class="pro_mini_ico"/>
-
-                                </div>
-
-                                <div style="position: relative;display: inline-block;" >
-                                    <img src="img/book.jpg" class="pro_mini_ico"/>
-
-                                </div>
-                            </div>
-                            <div class="center" >
-                                <div style="position: relative;display: inline-block;">
-                                    <span class="span_txt">4</span>
-                                </div>
-
-                                <div style="position: relative;display: inline-block;" >
-                                    <span class="span_txt">32</span>
-                                </div>
-                            </div>
-                            </div>
-                    </li>
-                    <li class="pane2">
-                        <div class="col s12 m12  center " >
-                            <div class="pro_box" >
-                                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
-                                <img onclick="app.userLink();" src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
-                                <div class="like"></div>
-                                <div class="dislike"></div>
-                            </div>
-                            <div style="position: relative; left: 0; top:2px;color:#81827f">
-                                <h4>KEITLIN (26)</h4>
-                                <hr width="50px">
-                            </div>
-
-                            <div class="center" >
-                                <div style="position: relative;display: inline-block;">
-                                    <img src="img/user_mini.jpg" class="pro_mini_ico"/>
-
-                                </div>
-
-                                <div style="position: relative;display: inline-block;" >
-                                    <img src="img/book.jpg" class="pro_mini_ico"/>
-
-                                </div>
-                            </div>
-                            <div class="center" >
-                                <div style="position: relative;display: inline-block;">
-                                    <span class="span_txt">4</span>
-                                </div>
-
-                                <div style="position: relative;display: inline-block;" >
-                                    <span class="span_txt">32</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="pane2">
-                        <div class="col s12 m12  center " >
-                            <div class="pro_box" >
-                                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
-                                <img onclick="app.userLink();" src="img/profile_pic_03.png" class="responsive-img" style="position: relative;top: 10px;left: 0;width: 88%;"/>
-                                <div class="like"></div>
-                                <div class="dislike"></div>
-                            </div>
-                            <div style="position: relative; left: 0; top:2px;color:#81827f">
-                                <h4>KEITLIN (26)</h4>
-                                <hr width="50px">
-                            </div>
-
-                            <div class="center" >
-                                <div style="position: relative;display: inline-block;">
-                                    <img src="img/user_mini.jpg" class="pro_mini_ico"/>
-
-                                </div>
-
-                                <div style="position: relative;display: inline-block;" >
-                                    <img src="img/book.jpg" class="pro_mini_ico"/>
-
-                                </div>
-                            </div>
-                            <div class="center" >
-                                <div style="position: relative;display: inline-block;">
-                                    <span class="span_txt">4</span>
-                                </div>
-
-                                <div style="position: relative;display: inline-block;" >
-                                    <span class="span_txt">32</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                <ul id="userList">
+                    
                 </ul>
             </div>
         </div>
@@ -905,8 +805,10 @@
    
         <div class="image-editor imageBlock">
             <div class="cropit-preview"></div>
+            <br>
             <input type="range" class="cropit-image-zoom-input">
-
+            </br>
+            </br>
             <div class="posRelative">
                 <input type="file"  class="cropit-image-input btn btn-primary filebtnInput">
                 <button class="btn btn-primary filebtn">File</button>
