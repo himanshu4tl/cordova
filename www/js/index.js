@@ -2,6 +2,7 @@
 String.prototype.replaceAll = function(search, replacement) {return this.replace(new RegExp(search, 'g'), replacement);};
 
 var app={
+    // Config start -------------------------------->    
     currentUrl:'',
     baseUrl:'http://sateweb.com/dating/users/index.php/api/',
     //baseUrl:'http://localhost/dating/users/api/',
@@ -12,6 +13,8 @@ var app={
     notificationVibrate:'0',
     loader:$('#mLoader'),
 
+    // Config End-------------------------------->
+    
     /*Core function start ###################################################################################################*/
 
     translateHtml:function(html,object){
@@ -53,10 +56,10 @@ var app={
     },
     alert:function(msg){Materialize.toast(msg,5000);},
     callAjax:function(url,func){
-        app.startLoader();
         $.ajax({
             url:this.baseUrl+url,
             type:'get',
+            datatype:'json',
             success:func,
             error:function(e){console.log(e);app.stopLoader();app.alert('Nerwork error.');}
         });
@@ -147,11 +150,20 @@ var app={
 
         }
     },
+    readURL:function(input,fun) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = fun;
+            reader.readAsDataURL(input.files[0]);
+        }
+    },
     /*Core function end ###################################################################################################*/
 
+    //side menu user profile data function
     setProfileData:function(data){
         $('#userLogo').html(app.creteHtml('userProfileTemplate',data));
     },
+    //setting page function
     loadSetting:function(){
         var u_interest_age=[20,30];
         if(app.udata.u_interest_age){
@@ -207,55 +219,91 @@ var app={
             app.updateUser({u_coupon_like:this.value});
         });
     },
+    //user profile page function
     userInit:function(){
-        $(".owl-carousel").owlCarousel({
-            items:1,
-            loop:false,
-            nav:false,
-        });
-       this.setTitle('PROFILE<div class="closeBtnTitle"><img class="inlineblock likeBtnTitle" src="img/close.png"><img class="inlineblock likeBtnTitle" src="img/like.png"><div>')
+        var func=function(response){
+            if(response.message){app.alert(response.message);}
+            app.loadPage('userTemplate',response.data);
+            $(".owl-carousel")
+                    .html(app.creteHtmlData('userDetailImageTemplate',response.data.images))
+                    .owlCarousel({
+                        items:1,
+                        loop:false,
+                        nav:false,
+                    });
+            app.setTitle('PROFILE<div class="closeBtnTitle"><img onclick="app.startLoader();app.likeUser(\''+response.data.u_id+'\',\'0\',function(){app.homeLink();});" class="inlineblock likeBtnTitle" src="img/close.png"><img onclick="app.startLoader();app.likeUser(\''+response.data.u_id+'\',\'1\',function(){app.homeLink();});" class="inlineblock likeBtnTitle" src="img/like.png"><div>')
+        };
+        app.startLoader();
+        //app.callAjax('site/getusersdetail?u_id=2&token='+app.token,func);
+        app.callAjax('site/getusersdetail?u_id='+tinder.id+'&token='+app.token,func);
     },
+    //Home page function
     homeInit:function(){
      var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
-                $('#userList').html(app.creteHtmlData('homeUserListTemplate',response.data));
-                /**
-                * jTinder initialization
-                */
-               $("#tinderslide").jTinder({
-                   // dislike callback
-                   onDislike: function (item) {
-                       console.log(item[0].lang);
-                       $('.actions .dislike').removeClass('btn_up');
-                       $('.actions .like').removeClass('btn_up');
-                       
-                   },
-                   // like callback
-                   onLike: function (item) {
-                       console.log(item[0].lang);
-                       $('.actions .dislike').removeClass('btn_up');
-                       $('.actions .like').removeClass('btn_up');
+                if(response.status && response.data.length){
+                    $('.actions').show();
+                    $('#userList').html(app.creteHtmlData('homeUserListTemplate',response.data));
+                    var userIds=[];
+                    $.each(response.data,function(index,val){
+                        userIds.push(val.u_id);
+                    });
+                    /**
+                    * jTinder initialization
+                    */
+                   $("#tinderslide").jTinder({
+                       // dislike callback
+                       onDislike: function (item) {
+                           $('.actions .dislike').removeClass('btn_up');
+                           $('.actions .like').removeClass('btn_up');
+                           var currentId=item[0].lang;
+                           if(userIds.indexOf(currentId)==0){
+                               $('.actions').hide();
+                               app.likeUser(currentId,'0',function(){app.homeLink();});
+                           }else{
+                               app.likeUser(currentId,'0');
+                           }
 
-                   },
-                   animationRevertSpeed: 200,
-                   animationSpeed: 400,
-                   threshold: 1,
-                   likeSelector: '.like',
-                   dislikeSelector: '.dislike'
-               });
+                       },
+                       // like callback
+                       onLike: function (item) {
+                           $('.actions .dislike').removeClass('btn_up');
+                           $('.actions .like').removeClass('btn_up');
+                           var currentId=item[0].lang;
+                           if(userIds.indexOf(currentId)==0){
+                               $('.actions').hide();
+                               app.likeUser(currentId,'1',function(){app.homeLink();});
+                           }else{
+                               app.likeUser(currentId,'1');
+                           }
+                       },
+                       animationRevertSpeed: 200,
+                       animationSpeed: 400,
+                       threshold: 1,
+                       likeSelector: '.like',
+                       dislikeSelector: '.dislike'
+                   });
 
-               /**
-                * Set button action to trigger jTinder like & dislike.
-                */
-               $('.actions .like, .actions .dislike').click(function(e){
-                   e.preventDefault();
-                   $("#tinderslide").jTinder($(this).attr('class'));
-               });
+                   /**
+                    * Set button action to trigger jTinder like & dislike.
+                    */
+                   $('.actions .like, .actions .dislike').click(function(e){
+                       e.preventDefault();
+                       $("#tinderslide").jTinder($(this).attr('class'));
+                   });
+                }else{
+                    $('.actions').hide();
+                }
             };
+        app.startLoader();
         app.callAjax('site/getusers?token='+app.token,func);
         
     },
+    likeUser:function(u_id,status,func){
+        app.callAjax('site/likeuser?u_id='+u_id+'&status='+status+'&token='+app.token,func);
+    },
+    //restaurant detail page function
     restaurentInit:function(obj){
         var func=function(response){
             app.stopLoader();
@@ -272,11 +320,13 @@ var app={
             app.setTitle('RESTAURANT');
             $('.goBack').attr('onclick',"app.restaurentLink();app.reserBack();");
         };
+        app.startLoader();
         app.callAjax('site/restaurantdetail?id='+$(obj).data('id'),func);
     },
     reserBack:function(){
         $('.goBack').attr('onclick',"app.homeLink();");
     },
+    //Restaurant List page function
     restaurentListInit:function(){
 
         var func=function(response){
@@ -293,6 +343,7 @@ var app={
             $('.restaurentImg').on('click',function(){app.restaurentInit(this);});
 
         };
+        app.startLoader();
         app.callAjax('site/restaurantlist',func);
 
         $('.dropdown-button').dropdown({
@@ -307,7 +358,7 @@ var app={
         );
 
     },
-
+    //editprofile page function start ##################################################
     loadProfile:function(){
         var data={};
         for (i = 0; i < 5; i++) { 
@@ -329,8 +380,18 @@ var app={
         app.setUserLogin();
 
     },
+    readImage:function(obj){
+        var fun=function(e){
+            app.croper.cropit('imageSrc', e.target.result);
+            app.stopLoader();
+            $('.editImg').show();
+        }
+        app.startLoader();
+        app.readURL(obj,fun);
+    },
     setCropImage:function(name){
         $('#modal').openModal();
+        $('.editImg').hide();
         console.log(name);
         app.croperName=name;
         var image=app.userImages[name];
@@ -362,7 +423,8 @@ var app={
             
         },100);
     },
-    
+    //editprofile page function end ##################################################
+    //login form submit function
     loginForm:function(obj){
 
         var password=$('[name="u_password"]').val();
@@ -395,6 +457,7 @@ var app={
         };
         this.postAjax('site/login',obj,func,'');
     },
+    //signup form submit function 
     signupForm:function(obj){
         app.startLoader();
 
@@ -407,17 +470,8 @@ var app={
         };
         this.postAjax('site/signup',obj,func,'');
     },
-    profileForm:function(obj){
-        /*var func=function(response){
-            app.stopLoader();
-            if(response.message){app.alert(response.message);}
-            if(response.status){app.loadProfile($('#profileLink'));}
-        };
-        this.postAjax(obj,func,'');*/
-        app.loadProfile();app.setSidebar($('profileLink'));app.setUserLogin();
-        app.alert('Profile updated successsfully');
-    },
 
+    //sidemenu start stop start functions ----------------------->
     sideMenuStop:function(){
         $('.drag-target').remove();
         $('#slide-out').remove();
@@ -437,13 +491,14 @@ var app={
         });
 
     },
+    //sidemenu start stop end functions ----------------------->
+   
     /*new Route core functions start ########################################################################################*/
     loginLink:function(){
         app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));
         $('.button-collapse').sideNav('hide');
     },
     logoutBtn:function(){
-
         var func=function(response){
             app.stopLoader();
             if(response.message){app.alert(response.message);}
@@ -455,12 +510,14 @@ var app={
             app.setSidebar($('#loginLink'));
             app.sideMenuStop();
         };
+        app.startLoader();
         app.callAjax('site/logout',func);
 
     },
     homeLink:function(){
         app.loadPage('homeTemplate');app.setTitle();app.setSidebar($('#homeLink'));app.homeInit();
         $('.button-collapse').sideNav('hide');
+        console.log('sidebar close');
     },
     updateUser:function(data){
         console.log(data);
@@ -493,7 +550,7 @@ var app={
         $('.button-collapse').sideNav('hide');
     },
     userLink:function(){
-        app.loadPage('userTemplate');app.userInit();
+        app.userInit();
         $('.button-collapse').sideNav('hide');
     },
     profileLink:function(){
@@ -526,21 +583,6 @@ var app={
         $('.button-collapse').sideNav('hide');
     },
     /*new Route core functions end  ##########################################################################################*/
-
-   readURL:function(input,fun) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = fun;
-            reader.readAsDataURL(input.files[0]);
-        }
-   },
-    previewImage:function(obj){
-        var fun=function(e){
-            $(obj).next().attr('src', e.target.result);
-        }
-        app.readURL(obj,fun);
-    }
-
 
 };
 

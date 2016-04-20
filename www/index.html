@@ -61,7 +61,7 @@
     <!-- Header End -->
     <!-- page loader start-->
     <div id="mLoader" style="display: none;">
-    <div class="loader-wrapepr " style="z-index: 1000;height: 60px;
+    <div class="loader-wrapepr " style="z-index: 10000;height: 60px;
     width: 100px;
     color: white;
     background-color: black;
@@ -263,7 +263,7 @@
             </div>
         </div>
         <div class="col s12 center">
-            <div class="actions" >
+            <div class="actions" style="display:none;">
                 <div class="bottom_btn">
                     <a href="#" class="dislike"><img class="inlineblock home_close_like_icon " src="img/close.png" /></a>
                     <img class="inlineblock home_search_icon" src="img/search.png" onclick="app.userLink();"/>
@@ -751,27 +751,26 @@
         </div>
         </div>
     </script>
+    
+    <script type="text/html" id="userDetailImageTemplate">
+        <div class="item center" >
+            <img src="_ui_image_" style="height: 360px;"/>
+        </div>
+    </script>
     <script type="text/html" id="userTemplate">
         <div class="row detail"  >
 
             <div class="owl-carousel">
-                <div class="item center" >
-                    <img src="img/edit_profile_big.jpg" style="height: 360px;"/>
-                </div>
-
-                <div class="item center" >
-
-                    <img src="img/edit_profile_big.jpg" style="height: 360px;"/>
-                </div>
+                
             </div>
             <div class="center" style="width: 100% !important;position: relative;top: -67px;z-index: 1;height: 100px;">
                 <img src="img/profile_bakground_bottom_03.png" width="100% !important" >
                 <div class="center" style="width: 100% !important; position: absolute;margin-left:auto;margin-right: auto">
                     <div class="row detail" style="margin-left: 20px;margin-right: 20px;background-color: white;" >
-                        <div class="col s4 m3" style="font-size: x-large;">Alexander</div>
-                        <div class="col s6 m3" style="font-size: small;vertical-align: middle;text-align: end;padding: 10px;">sadasdsadada</div>
+                        <div class="col s4 m3" style="font-size: x-large;">_u_name_</div>
+                        <div class="col s6 m3" style="font-size: small;vertical-align: middle;text-align: end;padding: 10px;">_u_age_</div>
                         <div class="col s12 m12  center" >
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p>_u_about_</p>
                         </div>
                     </div>
 
@@ -799,20 +798,20 @@
     </script>
     
 <!-- Modal Structure -->
-  <div id="modal" class="modal" style="width:95%;">
+  <div id="modal" class="modal" style="width:95%;min-height: 400px;">
     <div class="modal-content">
         <a href="#!" class=" modal-action modal-close btn btn-floating btnFlotEdit" style="top:0;"><i class="fa fa-close"></i></a>
    
         <div class="image-editor imageBlock">
             <div class="cropit-preview"></div>
             <br>
-            <input type="range" class="cropit-image-zoom-input">
+            <input type="range" class="cropit-image-zoom-input editImg">
             </br>
             </br>
             <div class="posRelative">
-                <input type="file"  class="cropit-image-input btn btn-primary filebtnInput">
+                <input type="file"  class=" btn btn-primary filebtnInput" onchange="app.readImage(this);">
                 <button class="btn btn-primary filebtn">File</button>
-                <button class="btn btn-primary" onclick="app.cropImage();" style="margin-left:100px;">Done</button>
+                <button class="btn btn-primary editImg" onclick="app.cropImage();" style="margin-left:100px;">Done</button>
             </div>
         </div>
    </div>

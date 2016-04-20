@@ -1,3 +1,4 @@
+var tinder={current_pane:''};
 /*
  * jTinder v.1.0.0
  * https://github.com/do-web/jTinder
@@ -46,7 +47,10 @@
 			pane_count = panes.length;
 			current_pane = panes.length - 1;
 			$that = this;
-
+                        
+                        tinder.current_pane=current_pane;
+                        tinder.pane=panes.eq(current_pane);
+                        tinder.id=tinder.pane[0].lang;
 			$(element).bind('touchstart mousedown', this.handler);
 			$(element).bind('touchmove mousemove', this.handler);
 			$(element).bind('touchend mouseup', this.handler);
@@ -55,7 +59,11 @@
 		showPane: function (index) {
 			panes.eq(current_pane).hide();
 			current_pane = index;
-		},
+                        tinder.current_pane=index;
+                        tinder.pane=panes.eq(index);
+                        tinder.id=tinder.pane[0].lang;
+                    
+                },
 
 		next: function () {
 			return this.showPane(current_pane - 1);

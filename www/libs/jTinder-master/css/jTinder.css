@@ -62,8 +62,8 @@ body {
     text-shadow: -1px -1px 0 rgba(0, 0, 0, .2);
 }
 
-/*/!* Image rotation *!/
-#tinderslide li.pane1 {
+/* Image rotation */
+/*#tinderslide li:nth-child(1) {
     -webkit-transform: rotate(-1deg);
     -moz-transform: rotate(-1deg);
     -o-transform: rotate(-1deg);
@@ -71,14 +71,14 @@ body {
     transform: rotate(-1deg);
 }
 
-#tinderslide li.pane2 {
+#tinderslide li:nth-child(2) {
     -webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
     -o-transform: rotate(2deg);
     -ms-transform: rotate(2deg);
-    transform: rotate(2deg);
-}*/
-
+    transform: rotate(2deg) ;
+}
+*/
 /* Like & dislike badge images */
 #tinderslide .like,
 #tinderslide .dislike {
@@ -150,28 +150,6 @@ body {
   text-decoration: none;
   color: #555;
   background: #f5f5f5;
-}
-
-/* jTinder images */
-#tinderslide .pane5 .img {
-    background: url("../img/pane/pane5.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane4 .img {
-    background: url("../img/pane/pane4.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane3 .img {
-    background: url("../img/pane/pane3.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane2 .img {
-    background: url("../img/pane/pane2.jpg") no-repeat scroll center center;
-    background-size: cover;
-}
-#tinderslide .pane1 .img {
-    background: url("../img/pane/pane1.jpg") no-repeat scroll center center;
-    background-size: cover;
 }
 
 /* jTinder status text */
