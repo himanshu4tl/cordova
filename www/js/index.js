@@ -409,6 +409,7 @@ var app={
 
         var func=function(response){
             app.stopLoader();
+            console.log(response);
             if(response.message){app.alert(response.message);}
             if(response.status==1){
                 app.udata=response.data;
