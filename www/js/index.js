@@ -395,7 +395,7 @@ var app={
         console.log(name);
         app.croperName=name;
         var image=app.userImages[name];
-        image=image.replace('thumb_','');
+        //image=image.replace('thumb_','');
         app.croper.cropit('imageSrc', image);
         
     },
