@@ -1,11 +1,16 @@
 
 String.prototype.replaceAll = function(search, replacement) {return this.replace(new RegExp(search, 'g'), replacement);};
+$(".button-collapse").sideNav();
+$('#slide-out a').on('click',function(e){
+    e.preventDefault();
+    $('.button-collapse').sideNav('hide');
+});
 
 var app={
     // Config start -------------------------------->    
     currentUrl:'',
-    baseUrl:'http://sateweb.com/dating/users/index.php/api/',
-    //baseUrl:'http://localhost/dating/users/api/',
+    //baseUrl:'http://sateweb.com/dating/users/index.php/api/',
+    baseUrl:'http://localhost/dating/users/api/',
     mainContainer:$('#contentView'),
     token:'',
     udata:{},
@@ -29,7 +34,6 @@ var app={
         $.each(data,function(index,value){html+=app.translateHtml(htnlData,value);});return html;
     },
     loadDefaultPage:function(){
-        app.sideMenuStart();
         app.setProfileData(app.udata);
         app.setUserLogin();
         app.homeLink();
@@ -39,13 +43,8 @@ var app={
             this.token=localStorage['token'];
             this.udata= $.parseJSON(localStorage['udata']);
             this.loadDefaultPage();
-
-            $('#slide-out a').on('click',function(e){
-                e.preventDefault();
-                $('.button-collapse').sideNav('hide');
-            });
         }else{
-            app.loadPage('loginTemplate',$('#loginLink'));
+            app.loginLink();
         }
         app.notificationSound=localStorage['notificationSound']=(localStorage['notificationSound'])?localStorage['notificationSound']:'1';
         app.notificationVibrate=localStorage['notificationVibrate']=(localStorage['notificationVibrate'])?localStorage['notificationVibrate']:'0';
@@ -146,8 +145,10 @@ var app={
     },
 
     afterLoadPage:function(templateId){
-        if(templateId=="loginTemplate"){
-
+        if(templateId=="loginTemplate" || templateId=="signupTemplate"){
+            app.sideMenuStop();
+        }else{
+            app.sideMenuStart();
         }
     },
     readURL:function(input,fun) {
@@ -230,6 +231,7 @@ var app={
                         items:1,
                         loop:false,
                         nav:false,
+                        lazyLoad:true
                     });
             app.setTitle('PROFILE<div class="closeBtnTitle"><img onclick="app.startLoader();app.likeUser(\''+response.data.u_id+'\',\'0\',function(){app.homeLink();});" class="inlineblock likeBtnTitle" src="img/close.png"><img onclick="app.startLoader();app.likeUser(\''+response.data.u_id+'\',\'1\',function(){app.homeLink();});" class="inlineblock likeBtnTitle" src="img/like.png"><div>')
         };
@@ -315,6 +317,7 @@ var app={
                 items:1,
                 loop:true,
                 nav:false,
+                lazyLoad:true
             });
 
             app.setTitle('RESTAURANT');
@@ -427,39 +430,33 @@ var app={
     //editprofile page function end ##################################################
     //login form submit function
     loginForm:function(obj){
-
-        var password=$('[name="u_password"]').val();
-        var email=$('[name="u_email"]').val();
-        if(email==''){
-            app.alert('Email is required.');
-            return false;
-        }
-        if(password==''){
-            app.alert('Password is required.');
-            return false;
-        }
-        app.startLoader();
-
-        var func=function(response){
-            app.stopLoader();
-            if(response.message){app.alert(response.message);}
-            if(response.status){
-                if(response.token){
-                    localStorage['token']=app.token=response.token;
-                    app.udata=response.data;
-                    localStorage['udata']= JSON.stringify(response.data);
-                    app.sideMenuStart();
-                    app.setProfileData(response.data);
-                    app.setUserLogin();
-                    app.homeLink();
+        if($('#loginForm').valid()) {
+            app.startLoader();
+            var func = function (response) {
+                app.stopLoader();
+                if (response.message) {app.alert(response.message);}
+                if (response.status) {
+                    if (response.token) {
+                        localStorage['token'] = app.token = response.token;
+                        app.udata = response.data;
+                        localStorage['udata'] = JSON.stringify(response.data);
+                        app.setProfileData(response.data);
+                        app.setUserLogin();
+                        app.homeLink();
+                    }
                 }
-            }
 
-        };
-        this.postAjax('site/login',obj,func,'');
+            };
+            if(app.device && app.device.uuid){
+                $(obj).find('[name=d_device_id]').val(app.device.uuid);
+            }
+            this.postAjax('site/login', obj, func, '');
+        }
     },
     //signup form submit function 
+    
     signupForm:function(obj){
+        if($(obj).valid()){
         app.startLoader();
 
         var func=function(response){
@@ -470,34 +467,22 @@ var app={
             }
         };
         this.postAjax('site/signup',obj,func,'');
+    }
     },
 
     //sidemenu start stop start functions ----------------------->
     sideMenuStop:function(){
-        $('.drag-target').remove();
-        $('#slide-out').remove();
-        $('#sidenav-overlay').remove();
+        $('.drag-target').hide();
     },
     sideMenuStart:function(){
-
-        if(!$('#slide-out').length){
-            $('#navBar').append($('#sidemenu').html());
-            $(".button-collapse").sideNav();
-
-
-        }
-        $('#slide-out a').on('click',function(e){
-            e.preventDefault();
-            $('.button-collapse').sideNav('hide');
-        });
-
+        $('.drag-target').show();
     },
     //sidemenu start stop end functions ----------------------->
    
     /*new Route core functions start ########################################################################################*/
     loginLink:function(){
         app.loadPage('loginTemplate');app.setSidebar($('#loginLink'));
-        $('.button-collapse').sideNav('hide');
+        app.loginFormValidate();
     },
     logoutBtn:function(){
         var func=function(response){
@@ -507,17 +492,14 @@ var app={
             localStorage['udata']='';
             app.setTitle();
             app.setUserLogout();
-            app.loadPage('loginTemplate');
-            app.setSidebar($('#loginLink'));
-            app.sideMenuStop();
+            app.loginLink();
         };
         app.startLoader();
-        app.callAjax('site/logout',func);
+        app.callAjax('site/logout?token=',func);
 
     },
     homeLink:function(){
         app.loadPage('homeTemplate');app.setTitle();app.setSidebar($('#homeLink'));app.homeInit();
-        $('.button-collapse').sideNav('hide');
         console.log('sidebar close');
     },
     updateUser:function(data){
@@ -536,33 +518,25 @@ var app={
     },
     restaurentLink:function(){
         app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');
-        $('.button-collapse').sideNav('hide');
     },
     couponLink:function(){
         app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));app.setTitle('COUPONS');
-        $('.button-collapse').sideNav('hide');
     },
     chatLink:function(){
         app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');
-        $('.button-collapse').sideNav('hide');
     },
     settingLink:function(){
         app.loadPage('settingTemplate',app.udata);app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('<i class=\'fa fa-cog\'></i>');
-        $('.button-collapse').sideNav('hide');
     },
     userLink:function(){
         app.userInit();
-        $('.button-collapse').sideNav('hide');
     },
     profileLink:function(){
         app.loadProfile();
-        $('.button-collapse').sideNav('hide');
-        
     },
     messageLink:function(){
         app.loadPage('chatMsgTemplate');
         $('.goBack').attr('onclick',"app.chatLink();app.reserBack();");
-        $('.button-collapse').sideNav('hide');
     },
     notificationLink:function(){
         var data={
@@ -575,19 +549,20 @@ var app={
         console.log(data);
         app.loadPage('notificationTemplate',data);app.setSidebar($('#notificationLink'));
         $('.goBack').attr('onclick',"app.settingLink();app.reserBack();");
-        $('.button-collapse').sideNav('hide');
     },
     signupLink:function(){
         app.loadPage('signupTemplate');app.setSidebar($('#loginLink'));
+        app.signupFormValidate();
         app.setTitle('Signup');
         $('.goBack').attr('onclick',"app.loginLink();app.reserBack();app.setTitle();");
-        $('.button-collapse').sideNav('hide');
     },
     /*new Route core functions end  ##########################################################################################*/
 
 };
 
-app.appInit();
+$(document).ready(function(){
+    app.appInit();
+});
 
 document.addEventListener("backbutton", onBackKeyDown, false);
 var i=1;
@@ -613,4 +588,5 @@ function onDeviceReady() {
     if(device.platform=='iOS'){
         $('head').append('<link rel="stylesheet" type="text/css" href="css/ios.css">');
     };
+
 }

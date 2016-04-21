@@ -47,6 +47,28 @@
                         <img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon">
                     </a>
 
+                    <!--sidemenu start-->
+
+                    <ul id="slide-out" class="side-nav">
+                        <li  class="auth height80 padding0"  style="display: none;">
+                            <a  href="#" id="profileLink" onclick="app.profileLink();" >
+                                <div id="userLogo">
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="active site-login"><a href="#" id="loginLink" onclick="app.loginLink();" >Login</a></li>
+                        <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.homeLink();" ><i class="fa fa-globe fa-2x"></i> &nbsp; Home</a></li>
+
+                        <li class="auth" style="display: none;"><a href="#" id="restaurentLink" onclick="app.restaurentLink();" ><i class="fa fa-glass fa-2x"></i> &nbsp; Restaurants </a></li>
+                        <li class="auth" style="display: none;"><a href="#" id="couponLink" onclick="app.couponLink();"><i class="fa fa-money fa-2x"></i> &nbsp; Coupons </a></li>
+                        <li class="auth" style="display: none;"><a href="#" id="chatLink" onclick="app.chatLink();"><i class="fa fa-envelope-o fa-2x"></i> &nbsp; Messages </a></li>
+                        <li class="auth" style="display: none;"><a href="#" id="settingLink" onclick="app.settingLink();"><i class="fa fa-cog fa-2x"></i> &nbsp; Settings </a></li>
+
+
+                        <li class="auth" style="display: none;"><a href="#"  onclick="app.logoutBtn();"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
+                    </ul>
+                    <!--sidemenu end-->
                 </div>
 
                 <a  data-activates="slide-out" class="button-collapse auth" style="display:none">
@@ -73,37 +95,16 @@
     </div>
     </div>
     <!-- page loader end-->
-    <!-- Page Content Start -->
-    <div id="contentView" style="padding-top: 58px;">
+    <!-- Page Content Start #####################################################################################################-->
+    <div id="contentView" style="margin-top: 58px;">
 
     </div>
-    <!-- Page Content End -->
-    <script type="text/html" id="sidemenu">
-        <ul id="slide-out" class="side-nav">
-            <li  class="auth height80 padding0"  style="display: none;">
-                <a  href="#" id="profileLink" onclick="app.profileLink();" >
-                    <div id="userLogo">
-
-                    </div>
-                </a>
-            </li>
-            <li class="active site-login"><a href="#" id="loginLink" onclick="app.loginLink();" >Login</a></li>
-            <li class="auth site-profile"  style="display: none;"><a href="#" id="homeLink" onclick="app.homeLink();" ><i class="fa fa-globe fa-2x"></i> &nbsp; Home</a></li>
-
-            <li class="auth" style="display: none;"><a href="#" id="restaurentLink" onclick="app.restaurentLink();" ><i class="fa fa-glass fa-2x"></i> &nbsp; Restaurants </a></li>
-            <li class="auth" style="display: none;"><a href="#" id="couponLink" onclick="app.couponLink();"><i class="fa fa-money fa-2x"></i> &nbsp; Coupons </a></li>
-            <li class="auth" style="display: none;"><a href="#" id="chatLink" onclick="app.chatLink();"><i class="fa fa-envelope-o fa-2x"></i> &nbsp; Messages </a></li>
-            <li class="auth" style="display: none;"><a href="#" id="settingLink" onclick="app.settingLink();"><i class="fa fa-cog fa-2x"></i> &nbsp; Settings </a></li>
-
-
-            <li class="auth" style="display: none;"><a href="#"  onclick="app.logoutBtn();"><i class="fa fa-sign-out fa-2x"></i> &nbsp; Logout</a></li>
-        </ul>
-    </script>
+    <!-- Page Content End #######################################################################################################-->
 
     <script type="text/html" id="restaurentListTemplate">
         <div class="margin10">
 
-        <h5 class="black-text">&nbsp; Restaurants in tallin <a class='dropdown-button right black-text' data-beloworigin="true" href='#' data-activates='dropdown1' >Sort <i id="iconnn" class="fa fa-angle-down"></i></a></h5>
+        <h5 class="black-text">&nbsp; Restaurants in tallin <a class='dropdown-button right black-text' style="font-size: smaller;" data-beloworigin="true" href='#' data-activates='dropdown1' >Sort <i id="iconnn" class="fa fa-angle-down"></i></a></h5>
         <!-- Dropdown Trigger -->
 
 
@@ -128,7 +129,7 @@
     </script>
     <script type="text/html" id="restaurentDetailImgTemplate">
         <div class="item center" >
-            <img src="_ri_image_" style="height: 360px;width:100%;"/>
+            <img data-src="_ri_image_" class="owl-lazy" style="height: 360px;width:100%;"/>
         </div>
     </script>
     <script type="text/html" id="restaurentTemplate">
@@ -162,7 +163,9 @@
         <br>
         <form enctype="multipart/form-data" acttion="" onsubmit="event.preventDefault();app.startLoader();app.editProfileForm(this);" method="post">
             <div class="center edit_profile_txt" >
-                <div onclick="$(this).toggle().next().show();$('.editBtnfile').show();">Edit Profile</div>
+                <div onclick="$(this).toggle().next().show();$('.editBtnfile').show();$('textarea').removeAttr('readonly')">
+                    <button type="button" class="waves-effect waves-light btn btn-primary">Edit Profile</button>
+                </div>
                 <div style="display:none;">
                     <button class="btn btn-primaty waves-effect waves-light" type="submit">Save</button>
                     <button class="btn btn-primaty waves-effect waves-light" type="button" onclick="app.profileLink();">Cancel</button>
@@ -210,7 +213,7 @@
                 <div class="col s6 m6" style="text-align: end"><span ><span id="aboutCounter">_u_aboutcount_</span>/500</span></div>
             </div>
         <div class="col s12 m12 edit_profile_bottom" >
-            <textarea name="u_about" onkeyup="$('#aboutCounter').text(this.value.length);"  placeholder="Enter text here..." style="max-width:100%;height:150px;border: none;">_u_about_</textarea>
+            <textarea name="u_about" onkeyup="$('#aboutCounter').text(this.value.length);" readonly  placeholder="Enter text here..." style="max-width:100%;height:150px;border: none;">_u_about_</textarea>
         </div>
         
         </form>
@@ -296,10 +299,10 @@
         <br>
         <div class="row "  >
             <div class="col s12 m12  center" >
-            <form class="col s12" role="form" enctype="multipart/form-data" action="/site/signup" onsubmit="event.preventDefault();app.signupForm(this);" method="post">
+            <form class="col s12" role="form" id="signupForm" enctype="multipart/form-data" action="/site/signup" onsubmit="event.preventDefault();app.signupForm(this);" method="post">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="u_name" type="text" name="u_name" class="validate">
+                        <input id="u_name" type="text" name="u_name"  class="validate">
                         <label for="email">Name</label>
                     </div>
                 </div>
@@ -330,7 +333,7 @@
 
                 <div class="row">
                     <div class="col s12 center">
-                        <button type="submit"  class="waves-effect waves-light btn light-green accent-4 black-text" >Submit<i class="material-icons right"></i></button>
+                        <button type="submit"  class="waves-effect waves-light btn btn-primary" >Submit<i class="material-icons right"></i></button>
                     </div>
                 </div>
 
@@ -715,7 +718,8 @@
         <div class="row ">
 
             <div class="col s12 m12 " >
-            <form class="col s12" role="form" enctype="multipart/form-data" action="/site/login" onsubmit="event.preventDefault();app.loginForm(this);" method="post">
+            <form class="col s12" id="loginForm"  enctype="multipart/form-data" action="/site/login" onsubmit="event.preventDefault();app.loginForm(this);" method="post">
+                <input type="hidden" name="d_device_id">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="email" type="text" name="u_email" class="validate">
@@ -730,12 +734,12 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                    <button type="submit"  class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></button>
+                    <button type="submit"  class="waves-effect waves-light btn btn-primary" name="loginBtn">&nbsp;Login&nbsp;<i class="material-icons right"></i></button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <a href="#" onclick="app.signupLink();" class="waves-effect waves-light btn light-green accent-4 black-text" name="loginBtn">Signup<i class="material-icons right"></i></a>
+                        <a href="#" onclick="app.signupLink();" class="waves-effect waves-light btn btn-primary" name="loginBtn">Signup<i class="material-icons right"></i></a>
                     </div>
                 </div>
                 <br>
@@ -754,7 +758,7 @@
     
     <script type="text/html" id="userDetailImageTemplate">
         <div class="item center" >
-            <img src="_ui_image_" style="height: 360px;"/>
+            <img data-src="_ui_image_" class="owl-lazy" style="height: 360px;"/>
         </div>
     </script>
     <script type="text/html" id="userTemplate">
@@ -834,8 +838,10 @@
     <!-- jTinder lib -->
     <script type="text/javascript" src="libs/jTinder-master/js/jquery.jTinder.js"></script>
     <!-- jTinder initialization script -->
+    <script type="text/javascript" src="libs/jquery-validate/jquery.validate.js"></script>
     <script type="text/javascript" src="libs/cropit/jquery.cropit.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/validations.js"></script>
 
 
     </body>

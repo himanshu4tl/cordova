@@ -405,3 +405,10 @@ nav .brand-logo{
  nav ul a:hover {
     background-color: inherit;
 }
+label.error{
+    position: static;
+    color:red;
+}
+.editModeImg{
+    padding: 10px;
+}
