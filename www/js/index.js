@@ -14,8 +14,8 @@ $('#slide-out a').on('click',function(e){
 var app={
     // Config start -------------------------------->    
     currentUrl:'',
-    //baseUrl:'http://sateweb.com/dating/users/index.php/api/',
-    baseUrl:'http://localhost/dating/users/api/',
+    baseUrl:'http://sateweb.com/dating/users/index.php/api/',
+    //baseUrl:'http://localhost/dating/users/api/',
     mainContainer:$('#contentView'),
     token:'',
     udata:{},
