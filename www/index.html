@@ -96,7 +96,7 @@
     </div>
     <!-- page loader end-->
     <!-- Page Content Start #####################################################################################################-->
-    <div id="contentView" style="margin-top: 58px;">
+    <div id="contentView" style="padding-top: 58px;">
 
     </div>
     <!-- Page Content End #######################################################################################################-->
@@ -224,7 +224,7 @@
         <li class="pane1" lang="_u_id_">
         <div class="col s12 m12  center " >
             <div class="pro_box" >
-                <img  src="img/profile_bg.png" class="responsive-img" style="position: absolute;left: 0px;"/>
+                <img  src="img/profile_bg.png" class="responsive-img profilebg" style="position: absolute;left: 0px;"/>
                 <img onclick="app.userLink();" src="_u_logo_" class="responsive-img circle" style="position: relative;top: 10px;left: 0;width: 88%;"/>
                 <div class="like"></div>
                 <div class="dislike"></div>
@@ -268,8 +268,8 @@
         <div class="col s12 center">
             <div class="actions" style="display:none;">
                 <div class="bottom_btn">
-                    <a href="#" class="dislike"><img class="inlineblock home_close_like_icon " src="img/close.png" /></a>
-                    <img class="inlineblock home_search_icon" src="img/search.png" onclick="app.userLink();"/>
+                    <a href="#" class="dislike"><img class="inlineblock home_close_like_icon " src="img/closeoff.png" onclick="$(this).attr('src','img/close.png');" /></a>
+                    <img class="inlineblock home_search_icon" src="img/searchoff.png"  onclick="$(this).attr('src','img/search.png');app.userLink();"/>
                     <a href="#" class="like"><img class="inlineblock home_close_like_icon " src="img/like.png"/></a>
                 </div>
             </div>
@@ -660,7 +660,7 @@
 
     <!--Settings start-->
     <script type="text/html" id="settingTemplate">
-        <div class="row grey darken-4 white-text height100vh center margin0"  >
+        <div class="row grey darken-4 white-text height105vh center margin0"  >
             <br>
             <p>interested in</p>
 
@@ -814,9 +814,11 @@
             </br>
             <div class="posRelative">
                 <input type="file"  class=" btn btn-primary filebtnInput" onchange="app.readImage(this);">
-                <button class="btn btn-primary filebtn">File</button>
-                <button class="btn btn-primary editImg" onclick="app.cropImage();" style="margin-left:100px;">Done</button>
+                <button class="btn btn-primary filebtn" style="padding:0 1rem;"><i class="fa fa-file"></i></button>
             </div>
+            <button class="btn btn-flat editImg" onclick="app.croper.cropit('rotateCCW');" style="margin-left:63px;display: none;padding:0 1.5rem;"><i class="fa fa-rotate-left"></i></button>
+            <button class="btn btn-flat editImg" onclick="app.croper.cropit('rotateCW');" style="display: none;padding:0 1.5rem;"><i class="fa fa-rotate-right"></i></button>
+            <button class="btn btn-primary editImg" onclick="app.cropImage();" style="padding:0 1.5rem;"><i class="fa fa-floppy-o"></i></button>
         </div>
    </div>
   </div>

@@ -54,6 +54,9 @@ var tinder={current_pane:''};
 			$(element).bind('touchstart mousedown', this.handler);
 			$(element).bind('touchmove mousemove', this.handler);
 			$(element).bind('touchend mouseup', this.handler);
+			if(tinder.current_pane<=1){
+				$(tinder.pane).find('.profilebg').removeClass('profilebg');
+			}
 		},
 
 		showPane: function (index) {
@@ -62,8 +65,10 @@ var tinder={current_pane:''};
                         tinder.current_pane=index;
                         tinder.pane=panes.eq(index);
                         tinder.id=tinder.pane[0].lang;
-                    
-                },
+        	if(tinder.current_pane<=1){
+				$(tinder.pane).find('.profilebg').removeClass('profilebg');
+			}
+		},
 
 		next: function () {
 			return this.showPane(current_pane - 1);
@@ -119,8 +124,8 @@ var tinder={current_pane:''};
 						var opa = (Math.abs(deltaX) / $that.settings.threshold) / 100 + 0.2;
 						if(opa > 1.0) {
 							opa = 1.0;
-							$('.actions .dislike').removeClass('btn_up');
-							$('.actions .like').removeClass('btn_up');
+							$('.actions .dislike img').attr('src','img/closeoff.png');
+							$('.actions .like img').attr('src','img/like.png');
                                                 }
 						if (posX >= 0) {
 							if(posX==0){
@@ -128,15 +133,15 @@ var tinder={current_pane:''};
                                                         }
                                                         panes.eq(current_pane).find($that.settings.likeSelector).css('opacity', opa);
 							panes.eq(current_pane).find($that.settings.dislikeSelector).css('opacity', 0);
-							$('.actions .like').addClass('btn_up');
-							$('.actions .dislike').removeClass('btn_up');
+							$('.actions .like img').attr('src','img/likeon.png');
+							$('.actions .dislike img').attr('src','img/closeoff.png');
 
 						} else if (posX < 0) {
 
 							panes.eq(current_pane).find($that.settings.dislikeSelector).css('opacity', opa);
 							panes.eq(current_pane).find($that.settings.likeSelector).css('opacity', 0);
-							$('.actions .dislike').addClass('btn_up');
-							$('.actions .like').removeClass('btn_up');
+							$('.actions .dislike img').attr('src','img/close.png');
+							$('.actions .like img').attr('src','img/like.png');
 
 						}
 					}
@@ -175,8 +180,8 @@ var tinder={current_pane:''};
 						panes.eq(current_pane).animate({"transform": "translate(0px,0px) rotate(0deg)"}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.likeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.dislikeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
-						$('.actions .like').removeClass('btn_up');
-						$('.actions .dislike').removeClass('btn_up');
+						$('.actions .like img').attr('src','img/like.png');
+						$('.actions .dislike img').attr('src','img/closeoff.png');
 
 					}
 					break;

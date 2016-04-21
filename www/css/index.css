@@ -33,7 +33,7 @@ body{
     height: 73px !important;width: 73px;
 }
 .sidebar-text{
-    width: 120px;
+    width: 160px;
 }
 .lineheight26{
     line-height: 26px !important;
@@ -162,6 +162,10 @@ padding: 15px;
 .height100vh{
     height: 95vh;
 }
+.height105vh{
+    height: 105vh;
+}
+
 .restaurentImg{
     width: 90px;
         padding: 2px;
@@ -294,9 +298,13 @@ padding: 15px;
 }
 .btn_up
 {
-    bottom: 20px;
-    position: relative;
+    display: none;
 }
+.btn_up ~ a.btn_down
+{
+    display: block;
+}
+
 #slide-out li i
 {
     vertical-align: sub;
@@ -372,15 +380,15 @@ nav .brand-logo{
     opacity: 0;
     z-index: 10;
     height: 35px;
-    width: 90px;
-    left: 0;
+    width: 60px;
+    left: -60px;
     
 }
 .filebtn{
     position: absolute;
     z-index: 5;
     height: 35px;
-    width: 90px;
+    width: 60px;
     left: 0;
     
 }
@@ -411,4 +419,11 @@ label.error{
 }
 .editModeImg{
     padding: 10px;
+}
+div{
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

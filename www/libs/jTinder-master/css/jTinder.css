@@ -63,22 +63,31 @@ body {
 }
 
 /* Image rotation */
-/*#tinderslide li:nth-child(1) {
-    -webkit-transform: rotate(-1deg);
+#tinderslide li:nth-child(1) .profilebg{
+    /*-webkit-transform: rotate(-1deg);
     -moz-transform: rotate(-1deg);
     -o-transform: rotate(-1deg);
     -ms-transform: rotate(-1deg);
-    transform: rotate(-1deg);
+    transform: rotate(-1deg);*/
+    -webkit-transform: translate(0px,6px);
+    -moz-transform: translate(0px,6px);
+    -o-transform: translate(0px,6px);
+    -ms-transform: translate(0px,6px);
+    transform: translate(0px,6px);
 }
 
-#tinderslide li:nth-child(2) {
-    -webkit-transform: rotate(2deg);
+#tinderslide li:nth-child(2) .profilebg{
+    /*-webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
     -o-transform: rotate(2deg);
     -ms-transform: rotate(2deg);
-    transform: rotate(2deg) ;
+    transform: rotate(2deg) ;*/
+    -webkit-transform: translate(0px,3px);
+    -moz-transform: translate(0px,3px);
+    -o-transform: translate(0px,3px);
+    -ms-transform: translate(0px,3px);
+    transform: translate(0px,3px);
 }
-*/
 /* Like & dislike badge images */
 #tinderslide .like,
 #tinderslide .dislike {

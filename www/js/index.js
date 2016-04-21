@@ -1,6 +1,11 @@
 
 String.prototype.replaceAll = function(search, replacement) {return this.replace(new RegExp(search, 'g'), replacement);};
-$(".button-collapse").sideNav();
+$(".button-collapse").sideNav(
+    {
+        menuWidth: 290, // Default is 240
+        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    }
+);
 $('#slide-out a').on('click',function(e){
     e.preventDefault();
     $('.button-collapse').sideNav('hide');
@@ -90,7 +95,7 @@ var app={
             type:'post',
             datatype:'json',
             success:func,
-            error:function(e){console.log(e);app.stopLoader();app.alert('Network error.');}
+            error:function(e){console.log(e);app.stopLoader();}
         })
     },
     pageInit:function(){
@@ -257,8 +262,8 @@ var app={
                    $("#tinderslide").jTinder({
                        // dislike callback
                        onDislike: function (item) {
-                           $('.actions .dislike').removeClass('btn_up');
-                           $('.actions .like').removeClass('btn_up');
+                           $('.actions .dislike img').attr('src','img/closeoff.png');
+                           $('.actions .like img').attr('src','img/like.png');
                            var currentId=item[0].lang;
                            if(userIds.indexOf(currentId)==0){
                                $('.actions').hide();
@@ -270,8 +275,8 @@ var app={
                        },
                        // like callback
                        onLike: function (item) {
-                           $('.actions .dislike').removeClass('btn_up');
-                           $('.actions .like').removeClass('btn_up');
+                           $('.actions .dislike img').attr('src','img/closeoff.png');
+                           $('.actions .like img').attr('src','img/like.png');
                            var currentId=item[0].lang;
                            if(userIds.indexOf(currentId)==0){
                                $('.actions').hide();
@@ -503,18 +508,19 @@ var app={
         console.log('sidebar close');
     },
     updateUser:function(data){
-        console.log(data);
-        app.startLoader();
-        var func=function(response){
-            app.stopLoader();
-            if(response.message){app.alert(response.message);}
-            if(response.status){
-                app.udata[Object.keys(data)[0]]=data[Object.keys(data)[0]];
-                localStorage['udata']= JSON.stringify(app.udata);
-            }
-        };
-        this.postAjaxData('site/updateuser?token='+app.token,data,func);
-
+        if(app.lastUserUpdateTime<new Date().getTime()-1000 || !app.lastUserUpdateTime){
+            console.log(data);
+            var func=function(response){
+                app.stopLoader();
+                //if(response.message){app.alert(response.message);}
+                if(response.status){
+                    app.udata[Object.keys(data)[0]]=data[Object.keys(data)[0]];
+                    localStorage['udata']= JSON.stringify(app.udata);
+                }
+            };
+            app.lastUserUpdateTime=new Date().getTime();
+            this.postAjaxData('site/updateuser?token='+app.token,data,func);
+        }
     },
     restaurentLink:function(){
         app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');
@@ -532,7 +538,7 @@ var app={
         app.userInit();
     },
     profileLink:function(){
-        app.loadProfile();
+        app.loadProfile();app.setTitle('PROFILE');
     },
     messageLink:function(){
         app.loadPage('chatMsgTemplate');
@@ -581,6 +587,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     app.device=device;
+    app.baseUrl='http://sateweb.com/dating/users/index.php/api/';
     //console.log('udid->');
     //console.log(device.uuid);
     //alert(device.uuid);
