@@ -13,7 +13,7 @@ $('#slide-out a').on('click',function(e){
 
 var app={
     // Config start -------------------------------->    
-    currentUrl:'',
+
     baseUrl:'http://sateweb.com/dating/users/index.php/api/',
     //baseUrl:'http://localhost/dating/users/api/',
     mainContainer:$('#contentView'),
@@ -24,7 +24,6 @@ var app={
     loader:$('#mLoader'),
 
     // Config End-------------------------------->
-    
     /*Core function start ###################################################################################################*/
 
     translateHtml:function(html,object){
@@ -216,12 +215,10 @@ var app={
         }
         $('#distanceInput').on('change',function(){
            $('#distanceText').html(this.value);
-            console.log(this.value);
             app.updateUser({u_interest_distance:this.value});
         });
         $('#couponInput').on('change',function(){
             $('#couponText').html(this.value);
-            console.log(this.value);
             app.updateUser({u_coupon_like:this.value});
         });
     },
@@ -455,7 +452,9 @@ var app={
             if(app.device && app.device.uuid){
                 $(obj).find('[name=d_device_id]').val(app.device.uuid);
             }
-            this.postAjax('site/login', obj, func, '');
+            setTimeout(function(){
+                app.postAjax('site/login', obj, func, '');
+            },100);
         }
     },
     //signup form submit function 
@@ -508,18 +507,22 @@ var app={
         console.log('sidebar close');
     },
     updateUser:function(data){
+        app.lastUserUpdateData=data;
         if(app.lastUserUpdateTime<new Date().getTime()-1000 || !app.lastUserUpdateTime){
-            console.log(data);
-            var func=function(response){
-                app.stopLoader();
-                //if(response.message){app.alert(response.message);}
-                if(response.status){
-                    app.udata[Object.keys(data)[0]]=data[Object.keys(data)[0]];
-                    localStorage['udata']= JSON.stringify(app.udata);
-                }
-            };
             app.lastUserUpdateTime=new Date().getTime();
-            this.postAjaxData('site/updateuser?token='+app.token,data,func);
+            clearTimeout(app.t);
+            app.t=setTimeout(function(){
+                var func=function(response){
+                    app.stopLoader();
+                    //if(response.message){app.alert(response.message);}
+                    if(response.status){
+                        app.udata[Object.keys(app.lastUserUpdateData)[0]]=app.lastUserUpdateData[Object.keys(app.lastUserUpdateData)[0]];
+                        localStorage['udata']= JSON.stringify(app.udata);
+                    }
+                };
+                console.log(app.lastUserUpdateData[Object.keys(app.lastUserUpdateData)[0]]);
+                app.postAjaxData('site/updateuser?token='+app.token,app.lastUserUpdateData,func);
+            },1000);
         }
     },
     restaurentLink:function(){

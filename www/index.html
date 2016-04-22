@@ -4,7 +4,7 @@
         <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
         <!--Import font-awesome Icon Font-->
         <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!--Import materialize.css-->
@@ -221,11 +221,11 @@
     </script>
 
     <script type="text/html" id="homeUserListTemplate">
-        <li class="pane1" lang="_u_id_">
+        <li class="pane1" lang="_u_id_" >
         <div class="col s12 m12  center " >
             <div class="pro_box" >
                 <img  src="img/profile_bg.png" class="responsive-img profilebg" style="position: absolute;left: 0px;"/>
-                <img onclick="app.userLink();" src="_u_logo_" class="responsive-img circle" style="position: relative;top: 10px;left: 0;width: 88%;"/>
+                <img  src="_u_logo_" class="responsive-img circle" style="position: relative;top: 10px;left: 0;width: 88%;"/>
                 <div class="like"></div>
                 <div class="dislike"></div>
             </div>

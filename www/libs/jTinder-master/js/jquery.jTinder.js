@@ -94,7 +94,6 @@ var tinder={current_pane:''};
 
 		handler: function (ev) {
 			ev.preventDefault();
-
 			switch (ev.type) {
 				case 'touchstart':
 					if(touchStart === false) {
@@ -119,7 +118,7 @@ var tinder={current_pane:''};
 						posX = deltaX + lastPosX;
 						posY = deltaY + lastPosY;
 
-						panes.eq(current_pane).css("transform", "translate(" + posX + "px," + posY + "px) ");
+						panes.eq(current_pane).css("transform", "translate(" + posX + "px," + posY + "px) rotate(" + (percent) + "deg)");
 
 						var opa = (Math.abs(deltaX) / $that.settings.threshold) / 100 + 0.2;
 						if(opa > 1.0) {
@@ -127,11 +126,12 @@ var tinder={current_pane:''};
 							$('.actions .dislike img').attr('src','img/closeoff.png');
 							$('.actions .like img').attr('src','img/like.png');
                                                 }
-						if (posX >= 0) {
-							if(posX==0){
-                                                            panes.eq(current_pane).css("transform", "translate(" + 5 + "px," + 5 + "px) ");
-                                                        }
-                                                        panes.eq(current_pane).find($that.settings.likeSelector).css('opacity', opa);
+						if(posX==0){
+							//panes.eq(current_pane).css("transform", "translate(" + 5 + "px," + 5 + "px) ");
+						}else
+
+						if (posX >0) {
+							panes.eq(current_pane).find($that.settings.likeSelector).css('opacity', opa);
 							panes.eq(current_pane).find($that.settings.dislikeSelector).css('opacity', 0);
 							$('.actions .like img').attr('src','img/likeon.png');
 							$('.actions .dislike img').attr('src','img/closeoff.png');
@@ -158,6 +158,10 @@ var tinder={current_pane:''};
 					posY = deltaY + lastPosY;
 					var opa = Math.abs((Math.abs(deltaX) / $that.settings.threshold) / 100 + 0.2);
 
+					if(opa==0.2){
+						console.log(opa);
+						app.userLink();
+					}
 					if (opa >= 1) {
 						if (posX > 0) {
 							panes.eq(current_pane).animate({"transform": "translate(" + (pane_width) + "px," + (posY ) + "px) "}, $that.settings.animationSpeed, function () {

@@ -69,11 +69,11 @@ body {
     -o-transform: rotate(-1deg);
     -ms-transform: rotate(-1deg);
     transform: rotate(-1deg);*/
-    -webkit-transform: translate(0px,6px);
-    -moz-transform: translate(0px,6px);
-    -o-transform: translate(0px,6px);
-    -ms-transform: translate(0px,6px);
-    transform: translate(0px,6px);
+    -webkit-transform: translate(0px,8px);
+    -moz-transform: translate(0px,8px);
+    -o-transform: translate(0px,8px);
+    -ms-transform: translate(0px,8px);
+    transform: translate(0px,8px);
 }
 
 #tinderslide li:nth-child(2) .profilebg{
@@ -82,11 +82,11 @@ body {
     -o-transform: rotate(2deg);
     -ms-transform: rotate(2deg);
     transform: rotate(2deg) ;*/
-    -webkit-transform: translate(0px,3px);
-    -moz-transform: translate(0px,3px);
-    -o-transform: translate(0px,3px);
-    -ms-transform: translate(0px,3px);
-    transform: translate(0px,3px);
+    -webkit-transform: translate(0px,4px);
+    -moz-transform: translate(0px,4px);
+    -o-transform: translate(0px,4px);
+    -ms-transform: translate(0px,4px);
+    transform: translate(0px,4px);
 }
 /* Like & dislike badge images */
 #tinderslide .like,
