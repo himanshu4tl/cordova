@@ -118,7 +118,7 @@ var tinder={current_pane:''};
 						posX = deltaX + lastPosX;
 						posY = deltaY + lastPosY;
 
-						panes.eq(current_pane).css("transform", "translate(" + posX + "px," + posY + "px) rotate(" + (percent) + "deg)");
+						panes.eq(current_pane).css("transform", "translate(" + posX + "px," + posY + "px) rotate(" + (percent/2) + "deg)");
 
 						var opa = (Math.abs(deltaX) / $that.settings.threshold) / 100 + 0.2;
 						if(opa > 1.0) {

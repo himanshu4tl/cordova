@@ -213,11 +213,11 @@ var app={
                     .siblings().removeClass('onSwitch').addClass('offSwitch');
             }
         }
-        $('#distanceInput').on('change',function(){
+        $('#distanceInput').on('touchend',function(){
            $('#distanceText').html(this.value);
             app.updateUser({u_interest_distance:this.value});
         });
-        $('#couponInput').on('change',function(){
+        $('#couponInput').on('touchend',function(){
             $('#couponText').html(this.value);
             app.updateUser({u_coupon_like:this.value});
         });
@@ -364,13 +364,21 @@ var app={
 
     },
     //editprofile page function start ##################################################
+    deleteProfileImage:function(name){
+        $('[name="'+name+'"]').val('delete');
+        $('#editProfileForm').submit();
+    },
     loadProfile:function(){
         var data={};
         for (i = 0; i < 5; i++) { 
             data['ui_image'+i]='img/edit_profile_plus.jpg';
+            //data['ui_image'+i+'fun']="app.setCropImage('ui_image"+i+"');";
+            //data['ui_image'+i+'icon']="fa fa-pencil";
         };
         $.each(app.udata.images,function(index,val){
             data['ui_image'+val['ui_position']]=val['ui_image'];
+            //data['ui_image'+val['ui_position']+'fun']="app.deleteProfileImage('ui_image"+i+"');";
+            //data['ui_image'+val['ui_position']+'icon']="fa fa-remove";
         });
         data.u_logo=app.udata.u_logo;
         data.u_about=app.udata.u_about;
@@ -409,6 +417,10 @@ var app={
         var imageData = app.croper.cropit('export');
         $('[name="'+app.croperName+'"]').val(imageData).next().attr('src',imageData);
         $('#modal').closeModal();
+        setTimeout(function(){
+            $('#editProfileForm').submit();
+        },400);
+
     },
     editProfileForm:function(obj){
 
@@ -499,7 +511,22 @@ var app={
             app.loginLink();
         };
         app.startLoader();
-        app.callAjax('site/logout?token=',func);
+        app.callAjax('site/logout?token='+app.token,func);
+
+    },
+    chatListInit:function(){
+        var func=function(response){
+            app.stopLoader();
+            if(response.message){app.alert(response.message);}
+            if(response.status){
+                app.loadPage('chatListTemplate');
+                $('#chatList').html(app.creteHtmlData('chatListUserTemplate',response.data));
+                app.setSidebar($('#chatLink'));
+                app.setTitle('CHAT');
+            }
+        };
+        app.startLoader();
+        app.callAjax('site/chatlist?token='+app.token,func);
 
     },
     homeLink:function(){
@@ -507,6 +534,18 @@ var app={
         console.log('sidebar close');
     },
     updateUser:function(data){
+        var func=function(response){
+            app.stopLoader();
+            //if(response.message){app.alert(response.message);}
+            if(response.status){
+                app.udata[Object.keys(data)[0]]=data[Object.keys(data)[0]];
+                localStorage['udata']= JSON.stringify(app.udata);
+            }
+        };
+        console.log(data[Object.keys(data)[0]]);
+        app.postAjaxData('site/updateuser?token='+app.token,data,func);
+    },
+    /*updateUser:function(data){
         app.lastUserUpdateData=data;
         if(app.lastUserUpdateTime<new Date().getTime()-1000 || !app.lastUserUpdateTime){
             app.lastUserUpdateTime=new Date().getTime();
@@ -524,7 +563,8 @@ var app={
                 app.postAjaxData('site/updateuser?token='+app.token,app.lastUserUpdateData,func);
             },1000);
         }
-    },
+    },*/
+
     restaurentLink:function(){
         app.loadPage('restaurentListTemplate');app.setSidebar($('#restaurentLink'));app.restaurentListInit();app.setTitle('RESTAURANTS');
     },
@@ -532,10 +572,12 @@ var app={
         app.loadPage('couponTemplate');app.setSidebar($('#couponLink'));app.setTitle('COUPONS');
     },
     chatLink:function(){
-        app.loadPage('chatListTemplate');app.setSidebar($('#chatLink'));app.setTitle('CHAT');
+        app.chatListInit();
+
     },
     settingLink:function(){
         app.loadPage('settingTemplate',app.udata);app.setSidebar($('#settingLink'));app.loadSetting();app.setTitle('<i class=\'fa fa-cog\'></i>');
+        $('#distanceInput').on('mouserup',function(){console.log(2121);});
     },
     userLink:function(){
         app.userInit();

@@ -32,13 +32,12 @@ body {
 #tinderslide li  {
     display: block;
     width: 100%;
-
-    overflow: hidden;
+    max-width: 350px;
     position: absolute;
+    right:0;
     top: 0;
     z-index: 2;
     left: 0;
-    overflow: hidden;
     text-align: center;
     padding: 10px 10px 10px 10px;
     -webkit-transform: translate3d(0%,0,0) scale3d(1,1,1);
