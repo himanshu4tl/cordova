@@ -51,9 +51,9 @@
     <plugin spec="https://github.com/katzer/cordova-plugin-local-notifications.git" source="git" />
     <plugin spec="https://github.com/katzer/cordova-plugin-background-mode.git" source="git" />
 
-    <!--<plugin name="cordova-plugin-splashscreen" source="pgb"  />
+    <!--<plugin name="cordova-plugin-splashscreen" source="pgb"  />-->
     
-<preference name="android-build-tool" value="gradle" />-->
+<preference name="android-build-tool" value="gradle" />
     <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
