@@ -2,7 +2,7 @@ chat.notify=function(Msg) {
     cordova.plugins.notification.local.schedule({
         id: 1,
         text: Msg,
-        icon: 'res://cordova'
+        /*icon: 'res://cordova'*/
     });
 };
 
@@ -18,7 +18,7 @@ document.addEventListener('deviceready', function () {
         cordova.plugins.backgroundMode.configure({
             text:'Feel Online'
         });
-        chat.connectToChat(QBUser1);
+        chat.connectToChat();
         //chat.notify('BG start');
     };
 
@@ -32,7 +32,7 @@ document.addEventListener('deviceready', function () {
 
     if(!cordova.plugins.backgroundMode.isActive())
     {
-        chat.connectToChat(QBUser1);
+        chat.connectToChat();
         //chat.notify('default start');
     }
 }, false);

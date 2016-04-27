@@ -1,15 +1,22 @@
-chat.connectToChat=function(user) {
+chat.connectToChat=function() {
+    if(app.token!=''){
+        chat.userData={
+            id: app.udata.u_chat_id,
+            login: 'login'+app.udata.u_id,
+            pass: '11111111'
+        }
+    }
 
     // Create session and connect to chat
     //
-    QB.createSession({login: user.login, password: user.pass}, function(err, res) {
+    QB.createSession({login: chat.userData.login, password: chat.userData.pass}, function(err, res) {
         if (res) {
             // save session token
             token = res.token;
 
-            user.id = res.user_id;
+            chat.userData.id = res.user_id;
 
-            QB.chat.connect({userId: user.id, password: user.pass}, function(err, roster) {
+            QB.chat.connect({userId: chat.userData.id, password: chat.userData.pass}, function(err, roster) {
                 if (err) {
                     console.log(err);
                 } else {
@@ -26,8 +33,8 @@ function setupAllListeners() {
     QB.chat.onDisconnectedListener    = onDisconnectedListener;
     QB.chat.onReconnectListener       = onReconnectListener;
     QB.chat.onMessageListener         = onMessage;
-    /*QB.chat.onSystemMessageListener   = onSystemMessageListener;
-    QB.chat.onDeliveredStatusListener = onDeliveredStatusListener;
+    QB.chat.onSystemMessageListener   = onSystemMessageListener;
+    /*QB.chat.onDeliveredStatusListener = onDeliveredStatusListener;
     QB.chat.onReadStatusListener      = onReadStatusListener;
     setupIsTypingHandler();*/
 }
@@ -45,25 +52,32 @@ function onReconnectListener(){
 // on message listener
 //
 function onMessage(userId, msg) {
-
+console.log('message receiced------------->'+userId+' '+msg.body);
     if(cordova.plugins.backgroundMode.isActive())
     {
         chat.notify(msg.body);
     }else{
         chat.onMessage(userId, msg);
     }
+    //chat.onMessage(userId, msg);
+
     console.log(msg);
 }
 
-var QBUser1 = {
-        id: 12049752,
-        name: 'Quick',
-        login: 'quick',
-        pass: '11111111'
-    },
-    QBUser2 = {
-        id: 12049785,
-        name: 'Blox',
-        login: 'blox',
-        pass: '11111111'
-    };
+function onSystemMessageListener(message) {
+    if (!message.delay) {
+        console.log('System Message--------------->'+message);
+        switch (message.extension.notification_type) {
+            case "1":
+                // This is a notification about dialog creation
+                //getAndShowNewDialog(message.extension.dialog_id);
+                break;
+            case "2":
+                // This is a notification about dialog update
+                //getAndUpdateDialog(message.extension.dialog_id);
+                break;
+            default:
+                break;
+        }
+    }
+}

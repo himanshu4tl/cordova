@@ -533,21 +533,19 @@
 
     </script>
     <!--Coupon end-->
-    <!--Coupon start-->
-    <script type="text/html" id="chatMsgTemplate">
-        <div class="couponss messageBox">
-
-            <ul class="collection  scrolls">
-
-                <li class="collection-item row ">
-                    <div class="col s2 ">
-                        <img src="img/profile_pic_03.png" class=" responsive-img chatImg">
-                    </div>
-                    <div class="col s10 left-align bubble_msg_left">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                </li>
-                <li class="collection-item row ">
+    <!--chat message single template start-->
+    <script type="text/html" id="chatMsgSingleTemplate">
+        <li class="collection-item row ">
+            <div class="col s2 ">
+                <img src="_u_logo_" class=" responsive-img chatImg">
+            </div>
+            <div class="col s10 left-align bubble_msg__type_">
+                _body_
+            </div>
+        </li>
+    </script>
+    <!--chat message single template end-->
+    <!--<li class="collection-item row ">
                     <div class="col s10 right-align bubble_msg_right">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
@@ -565,41 +563,16 @@
                     <div class="col s10 left-align bubble_msg_left">
                         It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                     </div>
-                </li>
-                <li class="collection-item row ">
-                    <div class="col s10 right-align bubble_msg_right">
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <div class="col s2 ">
-                        <img src="img/profile_pic_03.png" class=" responsive-img chatImg">
-                    </div>
-
-                </li>
-
-                <li class="collection-item row ">
-                    <div class="col s2 ">
-                        <img src="img/profile_pic_03.png" class=" responsive-img chatImg">
-                    </div>
-                    <div class="col s10 left-align bubble_msg_left">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                    </div>
-                </li>
-                <li class="collection-item row ">
-                    <div class="col s10 right-align bubble_msg_right">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    </div>
-                    <div class="col s2 ">
-                        <img src="img/profile_pic_03.png" class=" responsive-img chatImg">
-                    </div>
-
-                </li>
-
-            </ul>
+                </li>-->
+    <!--Coupon start-->
+    <script type="text/html" id="chatMsgTemplate">
+        <div class="couponss messageBox">
+            <ul class="collection  scrolls" id="messageList"></ul>
         </div>
         <div class="row sendForm">
             <div class="col s12">
-                <input type="text" style="width: 80%;">
-                <button type="button" class="btn btn-floating "><i class="fa fa-send"></i></button>
+                <input type="text" style="width: 80%;" id="messageInput">
+                <button type="button" class="btn btn-floating " onclick="chat.clickSendMessage();"><i class="fa fa-send"></i></button>
             </div>
         </div>
     </script>
@@ -607,7 +580,7 @@
 
     <!--Coupon start-->
     <script type="text/html" id="chatListUserTemplate">
-        <li class="collection-item row" onclick="app.messageLink();">
+        <li class="collection-item row" id="_u_chat_id_" data-u_id="_u_id_" lang="" onclick="app.messageLink('_u_chat_id_');">
             <div class="col s3 padding0">
                 <img src="_u_logo_" class=" responsive-img couponImg">
             </div>
@@ -823,6 +796,8 @@
     <script type="text/javascript" src="libs/quickblox/quickblox.min.js"></script>
     <script type="text/javascript" src="js/qb/config.js"></script>
     <script type="text/javascript" src="js/qb/message.js"></script>
+    <script type="text/javascript" src="js/qb/dialogs.js"></script>
+    <script type="text/javascript" src="js/qb/helper.js"></script>
     <script type="text/javascript" src="js/qb/connection.js"></script>
     <script type="text/javascript" src="js/background.js"></script>
 

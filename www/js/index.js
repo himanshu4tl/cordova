@@ -149,11 +149,8 @@ var app={
     },
 
     afterLoadPage:function(templateId){
-        if(templateId=="loginTemplate" || templateId=="signupTemplate"){
-            app.sideMenuStop();
-        }else{
-            app.sideMenuStart();
-        }
+        (templateId=="loginTemplate" || templateId=="signupTemplate")?app.sideMenuStop():app.sideMenuStart();
+        (templateId=="chatMsgTemplate")?chat.isActive=true:chat.isActive=false;
     },
     readURL:function(input,fun) {
         if (input.files && input.files[0]) {
@@ -519,8 +516,10 @@ var app={
             app.stopLoader();
             if(response.message){app.alert(response.message);}
             if(response.status){
+                chat.userList=response.data;
                 app.loadPage('chatListTemplate');
                 $('#chatList').html(app.creteHtmlData('chatListUserTemplate',response.data));
+                chat.retrieveChatDialogs();
                 app.setSidebar($('#chatLink'));
                 app.setTitle('CHAT');
             }
@@ -545,6 +544,17 @@ var app={
         console.log(data[Object.keys(data)[0]]);
         app.postAjaxData('site/updateuser?token='+app.token,data,func);
     },
+    loadMessages:function(u_chat_id){
+        app.loadPage('chatMsgTemplate');
+        chat.messageTarget=$('#messageList');
+        chat.messageInput=$('#messageInput');
+        chat.messageTemplate=$('#chatMsgSingleTemplate').html();
+        chat.opponentId=u_chat_id;
+        chat.currentDialogId=helper.getDialogByChatId(u_chat_id);
+        helper.getUserByChatId(u_chat_id);
+        //chat.messageTarget.html(app.creteHtmlData('chatMsgSingleTemplate',[{body:'sfsdsadsad'}]));
+    },
+
     /*updateUser:function(data){
         app.lastUserUpdateData=data;
         if(app.lastUserUpdateTime<new Date().getTime()-1000 || !app.lastUserUpdateTime){
@@ -585,8 +595,8 @@ var app={
     profileLink:function(){
         app.loadProfile();app.setTitle('PROFILE');
     },
-    messageLink:function(){
-        app.loadPage('chatMsgTemplate');
+    messageLink:function(u_chat_id){
+        app.loadMessages(u_chat_id);
         $('.goBack').attr('onclick',"app.chatLink();app.reserBack();");
     },
     notificationLink:function(){
