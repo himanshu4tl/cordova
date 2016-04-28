@@ -213,7 +213,7 @@
                 <div class="col s6 m6" style="text-align: end"><span ><span id="aboutCounter">_u_aboutcount_</span>/500</span></div>
             </div>
         <div class="col s12 m12 edit_profile_bottom" >
-            <textarea name="u_about" onblur="$('#editProfileForm').submit();" onkeyup="$('#aboutCounter').text(this.value.length);" placeholder="Enter text here..." style="max-width:100%;height:150px;border: none;">_u_about_</textarea>
+            <textarea class="aboutTextarea" name="u_about" onblur="$('#editProfileForm').submit();" onkeyup="$('#aboutCounter').text(this.value.length);" placeholder="Enter text here..." >_u_about_</textarea>
         </div>
         
         </form>
@@ -424,21 +424,20 @@
                 <br>
                 <button class="waves-effect waves-light  btn btn-round white black-text" onclick="app.logoutBtn();">Log out</button>
             </div>
-            <div class="col s12 m12  center" >
-                <p class="red-text">Delete account</p>
-            </div>
 
             <div class="col s12 m12  center"  >
 
                 <br>
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <img width="60px" src="img/Feelwhite.png">
                 <br>
                 <p>feel version 1.0</p>
+                <br>
+                <br>
+                <div class="col s12 m12  center" >
+                    <p class="red-text">Delete account</p>
+                </div>
             </div>
 
         </div>
@@ -535,11 +534,9 @@
     <!--Coupon end-->
     <!--chat message single template start-->
     <script type="text/html" id="chatMsgSingleTemplate">
-        <li class="collection-item row ">
-            <div class="col s2 ">
-                <img src="_u_logo_" class=" responsive-img chatImg">
-            </div>
-            <div class="col s10 left-align bubble_msg__type_">
+        <li class="collection-item row _class_">
+            <img src="_u_logo_" class=" responsive-img chatImg">
+            <div class="col s10 left-align bubble_msg">
                 _body_
             </div>
         </li>
@@ -616,16 +613,19 @@
 
             </div>
             <br>
-            <p>show users aged: <span id="ageText" class="orange-text">25 - 30</span></p>
+            <p>Show users aged: <span id="ageText" class="orange-text">25 - 30</span></p>
 
             <div id="test5" class="margin10"></div>
 
             <br>
-                <p>distance: <span class="orange-text"><span id="distanceText">_u_interest_distance_</span> km</span> </p>
+                <p>Distance: <span class="orange-text"><span id="distanceText">_u_interest_distance_</span> km</span> </p>
                 <p class="range-field margin10">
                     <input type="range" id="distanceInput" min="0" max="100" value="_u_interest_distance_"/>
                 </p>
-                <p>Free coupon: <span class="orange-text"><span id="couponText">_u_coupon_like_</span> likes</span> </p>
+                <p>Free coupon :
+                    <span ><span id="couponText" class="orange-text">_u_coupon_like_</span> likes</span>
+                    <a href="#aboutCoupon" class="modal-trigger right" style="color: #fff;"><i class="fa fa-question-circle" style="font-size: large;"></i>&nbsp;&nbsp;&nbsp;</a>
+                </p>
                 <p class="range-field margin10" >
                     <input type="range" min="0" id="couponInput" max="100" value="_u_coupon_like_"/>
                 </p>
@@ -762,14 +762,26 @@
                 <input type="file"  class=" btn btn-primary filebtnInput" onchange="app.readImage(this);">
                 <button class="btn btn-primary filebtn" style="padding:0 1rem;"><i class="fa fa-file"></i></button>
             </div>
-            <button class="btn btn-flat editImg" onclick="app.croper.cropit('rotateCCW');" style="margin-left:63px;display: none;padding:0 1.5rem;"><i class="fa fa-rotate-left"></i></button>
-            <button class="btn btn-flat editImg" onclick="app.croper.cropit('rotateCW');" style="display: none;padding:0 1.5rem;"><i class="fa fa-rotate-right"></i></button>
-            <button class="btn btn-primary editImg" onclick="app.cropImage();" style="padding:0 1.5rem;"><i class="fa fa-floppy-o"></i></button>
+            <!--<button class="btn btn-flat editImg" onclick="app.croper.cropit('rotateCCW');" style="margin-left:63px;display: none;padding:0 1.5rem;"><i class="fa fa-rotate-left"></i></button>
+            <button class="btn btn-flat editImg" onclick="app.croper.cropit('rotateCW');" style="display: none;padding:0 1.5rem;"><i class="fa fa-rotate-right"></i></button>-->
+            <button class="btn btn-primary editImg" onclick="app.cropImage();" style="padding:0 1.5rem;margin-left: 65px;"><i class="fa fa-floppy-o"></i></button>
         </div>
    </div>
   </div>
-  
-  
+<!--modal end-->
+
+    <!-- Modal Structure -->
+    <div id="aboutCoupon" class="modal" style="width:95%;min-height: 400px;">
+        <div class="modal-content">
+            <a href="#!" class=" modal-action modal-close btn btn-floating btnFlotEdit" style="top:0;"><i class="fa fa-close"></i></a>
+
+
+            <div>
+                <p>Some Text</p>
+            </div>
+        </div>
+    </div>
+    <!--modal end-->
     <!-- Jacascript Start-->
     <script type="text/javascript" src="cordova.js"></script>
 

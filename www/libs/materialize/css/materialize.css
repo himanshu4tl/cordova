@@ -9370,11 +9370,11 @@ form p:last-child {
 }
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #fff;
+  background-color: #ff7800;
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
-  background-color: #ff7800;
+  background-color: #fff;
 }
 
 .switch label .lever {
@@ -9636,7 +9636,7 @@ input[type=range] {
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-  height: 3px;
+  height: 5px;
   background: #c2c0c2;
   border: none;
 }
@@ -9644,13 +9644,13 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
-  height: 14px;
-  width: 14px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
   background-color: #ff7800;
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
-  margin: -5px 0 0 0;
+  margin: -9px 0 0 0;
   transition: .3s;
 }
 

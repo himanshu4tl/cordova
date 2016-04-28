@@ -14,7 +14,8 @@ var helper={
     getDialogByChatId:function(u_chat_id){
         var dialogId='';
         $.each(chat.dialogList,function(index,val){
-            if(val.name==u_chat_id){dialogId= val._id;}
+            if(val.occupants_ids[0]==u_chat_id){dialogId= val._id;}
+            if(val.occupants_ids[1]==u_chat_id){dialogId= val._id;}
         });
         return dialogId;
     },
@@ -24,5 +25,8 @@ var helper={
             if(val.name==u_chat_id){dialogId= val.xmpp_room_jid;}
         });
         return dialogId;
+    },
+    getUserJID:function(id){
+        return id+'-'+QBApp.appId+'@chat.quickblox.com';
     }
 };

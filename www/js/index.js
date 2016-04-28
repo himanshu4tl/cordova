@@ -13,7 +13,7 @@ $('#slide-out a').on('click',function(e){
 
 var app={
     // Config start -------------------------------->    
-
+    isApp:false,
     baseUrl:'http://sateweb.com/dating/users/index.php/api/',
     //baseUrl:'http://localhost/dating/users/api/',
     mainContainer:$('#contentView'),
@@ -167,6 +167,7 @@ var app={
     },
     //setting page function
     loadSetting:function(){
+        $('.modal-trigger').leanModal();
         var u_interest_age=[20,30];
         if(app.udata.u_interest_age){
             u_interest_age=app.udata.u_interest_age.split(',');
@@ -210,13 +211,23 @@ var app={
                     .siblings().removeClass('onSwitch').addClass('offSwitch');
             }
         }
+        var dt=$('#distanceText');
         $('#distanceInput').on('touchend',function(){
-           $('#distanceText').html(this.value);
+            dt.html(this.value);
             app.updateUser({u_interest_distance:this.value});
+        }).on('click',function(){
+            app.updateUser({u_interest_distance:this.value});
+        }).on('change',function(){
+            dt.html(this.value);
         });
+        var ct=$('#couponText');
         $('#couponInput').on('touchend',function(){
-            $('#couponText').html(this.value);
+            ct.html(this.value);
             app.updateUser({u_coupon_like:this.value});
+        }).on('click',function(){
+            app.updateUser({u_coupon_like:this.value});
+        }).on('change',function(){
+            ct.html(this.value);
         });
     },
     //user profile page function
@@ -453,6 +464,7 @@ var app={
                         localStorage['udata'] = JSON.stringify(response.data);
                         app.setProfileData(response.data);
                         app.setUserLogin();
+                        chat.getConnect();  /// connect to chat server
                         app.homeLink();
                     }
                 }
@@ -548,11 +560,16 @@ var app={
         app.loadPage('chatMsgTemplate');
         chat.messageTarget=$('#messageList');
         chat.messageInput=$('#messageInput');
-        chat.messageTemplate=$('#chatMsgSingleTemplate').html();
+
         chat.opponentId=u_chat_id;
         chat.currentDialogId=helper.getDialogByChatId(u_chat_id);
         helper.getUserByChatId(u_chat_id);
-        //chat.messageTarget.html(app.creteHtmlData('chatMsgSingleTemplate',[{body:'sfsdsadsad'}]));
+        if(chat.currentDialogId!=''){
+            chat.retrieveChatHistory(chat.currentDialogId,null);
+        }else{
+            chat.createDialog(chat.opponentId);
+        }
+        chat.messageTarget.height($('body').height()-130);
     },
 
     /*updateUser:function(data){
@@ -609,6 +626,7 @@ var app={
         }
         console.log(data);
         app.loadPage('notificationTemplate',data);app.setSidebar($('#notificationLink'));
+        app.setTitle('NOTIFICATIONS');
         $('.goBack').attr('onclick',"app.settingLink();app.reserBack();");
     },
     signupLink:function(){
@@ -622,27 +640,28 @@ var app={
 };
 
 $(document).ready(function(){
-    app.appInit();
+    if(navigator.onLine){
+        app.appInit();
+        chat.getConnect();
+    }else{
+        alert('Network connection fail.');
+    }
 });
 
-document.addEventListener("backbutton", onBackKeyDown, false);
-var i=1;
-function onBackKeyDown(e) {
-    // Handle the back button
-    if(!$('.goBack').is(':visible')){
-        navigator.app.exitApp();
-    }else{
-        $('.goBack').click();
+document.addEventListener("backbutton", function (e) {
+        // Handle the back button
+        if(!$('.goBack').is(':visible')){
+            navigator.app.exitApp();
+        }else{
+            $('.goBack').click();
+        }
     }
+    , false);
 
-
-}
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
+document.addEventListener("deviceready", function () {
     app.device=device;
     app.baseUrl='http://sateweb.com/dating/users/index.php/api/';
+    app.isApp=true;
     //console.log('udid->');
     //console.log(device.uuid);
     //alert(device.uuid);
@@ -650,5 +669,9 @@ function onDeviceReady() {
     if(device.platform=='iOS'){
         $('head').append('<link rel="stylesheet" type="text/css" href="css/ios.css">');
     };
+    if(!navigator.onLine){
+        navigator.app.exitApp();
+    }
+}, false);
 
-}
+

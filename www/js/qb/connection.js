@@ -1,12 +1,11 @@
 chat.connectToChat=function() {
-    if(app.token!=''){
-        chat.userData={
-            id: app.udata.u_chat_id,
-            login: 'login'+app.udata.u_id,
-            pass: '11111111'
-        }
-    }
-
+    chat.userData={
+        id: app.udata.u_chat_id,
+        login: 'login'+app.udata.u_id,
+        pass: '11111111'
+    };
+    console.log('connect to chat server ------------------------------------------->');
+    console.log(chat.userData.id);
     // Create session and connect to chat
     //
     QB.createSession({login: chat.userData.login, password: chat.userData.pass}, function(err, res) {
@@ -27,6 +26,7 @@ chat.connectToChat=function() {
             });
         }
     });
+
 };
 
 function setupAllListeners() {
@@ -53,7 +53,7 @@ function onReconnectListener(){
 //
 function onMessage(userId, msg) {
 console.log('message receiced------------->'+userId+' '+msg.body);
-    if(cordova.plugins.backgroundMode.isActive())
+    if(app.isApp && cordova.plugins.backgroundMode.isActive())
     {
         chat.notify(msg.body);
     }else{

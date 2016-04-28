@@ -178,15 +178,15 @@
 	top: -6px;
 }
 .noUi-background {
-	height: 3px;
+	height: 5px;
 	top: 6px;
 	background-color: #bfbfbf;
 }
 .noUi-horizontal {
-	height: 3px;
+	height: 5px;
 }
 .noUi-connect {
-	height: 3px;
+	height: 5px;
 	top: 6px;
 	background-color: #ff7800;
 	box-shadow: none;
@@ -194,14 +194,14 @@
 
 /*Handle*/
 .noUi-horizontal .noUi-handle {
-	width: 15px;
-	height: 15px;
+	width: 24px;
+	height: 24px;
 	border-radius: 50%;
 	box-shadow: none;
-	background-color: #ff7800	;
+	background-color: #fff;
 	border: none;
 	left: -5px;
-	top: -6px;
+	top: -9px;
 	transition: width .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
 	height .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
 	left .2s cubic-bezier(0.215, 0.610, 0.355, 1.000),
@@ -227,8 +227,8 @@
 	position: absolute;
 	height: 30px;
 	width: 30px;
-	top: -17px;
-	left: -2px;
+	top: -13px;
+	left: 2px;
 	background-color: #FFFFFF;
 	border-radius: 50%;
 	transition: border-radius .25s cubic-bezier(0.215, 0.610, 0.355, 1.000),

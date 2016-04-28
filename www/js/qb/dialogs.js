@@ -37,9 +37,9 @@ chat.createDialog=function(u_chat_id){
             console.log("Dialog " + createdDialog._id + " created with ");
             // save dialog to local storage
             chat.dialogList.push(createdDialog);
-            var dialogId = createdDialog._id;
-            currentDialogId = dialogId;
-            chat.notifyOccupants(chat.opponentId, dialogId, 1);
+            currentDialogId = createdDialog._id;
+            chat.retrieveChatHistory(chat.currentDialogId,null);
+            //chat.notifyOccupants(chat.opponentId, createdDialog._id, 1);
             //triggerDialog(createdDialog._id);
         }
     });
