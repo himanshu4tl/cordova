@@ -1,34 +1,47 @@
 chat.connectToChat=function() {
-    chat.userData={
-        id: app.udata.u_chat_id,
-        login: 'login'+app.udata.u_id,
-        pass: '11111111'
-    };
-    console.log('connect to chat server ------------------------------------------->');
-    console.log(chat.userData.id);
-    // Create session and connect to chat
-    //
-    QB.createSession({login: chat.userData.login, password: chat.userData.pass}, function(err, res) {
-        if (res) {
-            // save session token
-            token = res.token;
+    if(!chat.isOnline) {
+        chat.userData = {
+            id: app.udata.u_chat_id,
+            login: 'login' + app.udata.u_id,
+            pass: '11111111'
+        };
+        console.log('connect to chat server ------------------------------------------->');
+        console.log(chat.userData.id);
+        // Create session and connect to chat
+        //
+        QB.createSession({login: chat.userData.login, password: chat.userData.pass}, function (err, res) {
+            if (res) {
+                // save session token
+                token = res.token;
 
-            chat.userData.id = res.user_id;
+                chat.userData.id = res.user_id;
 
-            QB.chat.connect({userId: chat.userData.id, password: chat.userData.pass}, function(err, roster) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log(roster);
-
-                    setupAllListeners();
-                }
-            });
-        }
-    });
-
+                QB.chat.connect({userId: chat.userData.id, password: chat.userData.pass}, function (err, roster) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(roster);
+                        chat.isOnline = true;
+                        setupAllListeners();
+                    }
+                });
+            }
+        });
+    }
 };
-
+chat.disconnectToChat=function() {
+    if(chat.isOnline) {
+        QB.logout(function (err, result) {
+            if (result) {
+                // success
+                chat.isOnline = false;
+                cordova.plugins.backgroundMode.disable();
+            } else {
+                // error
+            }
+        });
+    }
+}
 function setupAllListeners() {
     QB.chat.onDisconnectedListener    = onDisconnectedListener;
     QB.chat.onReconnectListener       = onReconnectListener;

@@ -1,4 +1,5 @@
 var chat={
+    isOnline:false,
     isActive:false,
     currentDialogId:'',
     dialogList:[],
@@ -7,15 +8,14 @@ var chat={
     opponentData:{},
     messageTemplate:$('#chatMsgSingleTemplate').html(),
     onMessage:function(userId, msg){
-        console.log('Message received--------------------------------');
+        console.log('Message received-------------------------------->');
+        console.log(chat.opponentId);
+        console.log(userId);
+        console.log(chat.isActive);
         console.log(msg);
         if(chat.isActive) {
-            if(chat.opponentId==userId){
-                msg.sender_id=userId;
-                chat.showMessage(msg);
-            }else{
-                alert(msg.body);
-            }
+            msg.sender_id=userId;
+            chat.showMessage(msg);
         }else{
             alert(msg.body);
         }

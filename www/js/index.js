@@ -518,6 +518,7 @@ var app={
             app.setTitle();
             app.setUserLogout();
             app.loginLink();
+            chat.disconnectToChat();
         };
         app.startLoader();
         app.callAjax('site/logout?token='+app.token,func);

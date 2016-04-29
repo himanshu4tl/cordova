@@ -13,14 +13,16 @@ document.addEventListener('deviceready', function () {
 
 chat.getConnect=function(){
     console.log('getConnect ------------------------------------------>');
+    console.log(app.token);
+    console.log(app.isApp);
     if(app.token!=''){
         if(app.isApp){
+            console.log('app is about to connect-------------------------------->');
             if(!cordova.plugins.backgroundMode.isEnabled()){
                 // Android customization
                 cordova.plugins.backgroundMode.setDefaults({ text:'Feel Online'});
                 // Enable background mode
                 cordova.plugins.backgroundMode.enable();
-
                 // Called when background mode has been activated
                 cordova.plugins.backgroundMode.onactivate = function () {
                     if(app.token!=''){
@@ -28,10 +30,7 @@ chat.getConnect=function(){
                             text:'Feel Online'
                         });
                         console.log('connect in background------------------------------------------>');
-
-                        if(QB.chat._isDisconnected){
-                            chat.connectToChat();
-                        }
+                        chat.connectToChat();
                         //chat.notify('BG start');
                     }
                 };
@@ -43,16 +42,16 @@ chat.getConnect=function(){
                 cordova.plugins.backgroundMode.onfailure = function(errorCode) {
                     //chat.notify('On deactivate');
                 };
-            }else
+            }
             if(!cordova.plugins.backgroundMode.isActive())
             {
                 console.log('connect start ------------------------------------------>');
-                if(QB.chat._isDisconnected){
-                    chat.connectToChat();
+                console.log(QB.chat._isDisconnected);
+                chat.connectToChat();
                 //chat.notify('default start');
-                }
             }
         }else{
+            console.log('web connect -------------------------------->');
             chat.connectToChat();
         }
     }
