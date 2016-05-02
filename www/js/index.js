@@ -16,6 +16,7 @@ var app={
     isApp:false,
     baseUrl:'http://sateweb.com/dating/users/index.php/api/',
     //baseUrl:'http://localhost/dating/users/api/',
+    fbAppId:'1037460829623875',
     mainContainer:$('#contentView'),
     token:'',
     udata:{},
@@ -151,12 +152,28 @@ var app={
     afterLoadPage:function(templateId){
         (templateId=="loginTemplate" || templateId=="signupTemplate")?app.sideMenuStop():app.sideMenuStart();
         (templateId=="chatMsgTemplate")?chat.isActive=true:chat.isActive=false;
+        if(templateId=="loginTemplate"){app.fbInit();}
     },
     readURL:function(input,fun) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = fun;
             reader.readAsDataURL(input.files[0]);
+        }
+    },
+    
+    fbInit:function(){
+        if(app.isApp){
+            openFB.init({
+                appId: app.fbAppId
+            });
+        }else{
+            $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+                FB.init({
+                    appId: '191654534503876',
+                    version: 'v2.3' // or v2.0, v2.1, v2.2, v2.3
+                });
+            });
         }
     },
     /*Core function end ###################################################################################################*/

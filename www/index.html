@@ -4,7 +4,7 @@
         <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta http-equiv="Content-Security-Policy" content=" style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+        <!--<meta http-equiv="Content-Security-Policy" content=" style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>-->
         <!--Import font-awesome Icon Font-->
         <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!--Import materialize.css-->
@@ -694,7 +694,7 @@
                         <h5 class="center">Sign in with</h5>
                     </div>
                     <div class="col s6 m6">
-                        <a href="#"><i class="fa fa-facebook-square fa-3x " style="color:#3b5998;vertical-align: middle;"></i>&nbsp;Facebook</a>
+                        <a href="#" onclick="myFacebookLogin();"><i class="fa fa-facebook-square fa-3x " style="color:#3b5998;vertical-align: middle;"></i>&nbsp;Facebook</a>
                     </div>
                 </div>
             </form>
@@ -802,6 +802,8 @@
     <script type="text/javascript" src="libs/cropit/jquery.cropit.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/validations.js"></script>
+    <script src="libs/fb/old-openfb.js"></script>
+    <script src="js/fbLogin.js"></script>
 
     <!--Chat Js start #############################################################################################3-->
 
