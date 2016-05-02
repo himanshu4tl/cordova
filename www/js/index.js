@@ -170,7 +170,7 @@ var app={
         }else{
             $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
                 FB.init({
-                    appId: '191654534503876',
+                    appId: app.fbAppId,
                     version: 'v2.3' // or v2.0, v2.1, v2.2, v2.3
                 });
             });
