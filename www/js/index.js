@@ -53,6 +53,8 @@ var app={
         }
         app.notificationSound=localStorage['notificationSound']=(localStorage['notificationSound'])?localStorage['notificationSound']:'1';
         app.notificationVibrate=localStorage['notificationVibrate']=(localStorage['notificationVibrate'])?localStorage['notificationVibrate']:'0';
+        
+        
     },
     renderHtml:function(html){
         this.mainContainer.html(html);
@@ -686,6 +688,7 @@ document.addEventListener("deviceready", function () {
     //console.log('<-udid');
     if(device.platform=='iOS'){
         $('head').append('<link rel="stylesheet" type="text/css" href="css/ios.css">');
+        $('#logo-container img').attr('src','img/logoiOS.png');
     };
     if(!navigator.onLine){
         navigator.app.exitApp();
