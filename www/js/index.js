@@ -17,6 +17,7 @@ var app={
     baseUrl:'http://sateweb.com/dating/users/index.php/api/',
     //baseUrl:'http://localhost/dating/users/api/',
     fbAppId:'1037460829623875',
+    //fbAppId:'796560520473152',
     mainContainer:$('#contentView'),
     token:'',
     udata:{},
@@ -166,8 +167,10 @@ var app={
     
     fbInit:function(){
         if(app.isApp){
+            window.sessionStorage['fbtoken']='';
             openFB.init({
-                appId: app.fbAppId
+                tokenStore:false,
+                appId: app.fbAppId //app.fbAppId
             });
         }else{
             $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
@@ -180,6 +183,34 @@ var app={
     },
     /*Core function end ###################################################################################################*/
 
+    //Facebook login function
+    facebookLogin:function(data){
+        var user={
+            u_name:data.first_name+' '+data.last_name,
+            u_fbid:data.id,
+            u_email:data.email,
+            u_age:20,
+            //d_device_id:app.device.uuid
+        };
+        app.startLoader();
+        var func = function (response) {
+            app.stopLoader();
+            if (response.message) {app.alert(response.message);}
+            if (response.status) {
+                if (response.token) {
+                    localStorage['token'] = app.token = response.token;
+                    app.udata = response.data;
+                    localStorage['udata'] = JSON.stringify(response.data);
+                    app.homeLink();
+                    app.setProfileData(response.data);
+                    app.setUserLogin();
+                    chat.getConnect();  /// connect to chat server
+                }
+            }
+
+        };
+        app.postAjaxData('site/fblogin',user,func);
+    },
     //side menu user profile data function
     setProfileData:function(data){
         $('#userLogo').html(app.creteHtml('userProfileTemplate',data));
@@ -478,7 +509,10 @@ var app={
                 if (response.message) {app.alert(response.message);}
                 if (response.status) {
                     if (response.token) {
-                        localStorage['token'] = app.token = response.token;
+                        localStorage['token'] =
+
+
+                            app.token = response.token;
                         app.udata = response.data;
                         localStorage['udata'] = JSON.stringify(response.data);
                         app.setProfileData(response.data);
@@ -690,8 +724,10 @@ document.addEventListener("deviceready", function () {
         $('head').append('<link rel="stylesheet" type="text/css" href="css/ios.css">');
         $('#logo-container img').attr('src','img/logoiOS.png');
     };
+    app.fbInit();
     if(!navigator.onLine){
-        navigator.app.exitApp();
+        alert('No internet available');
+        //navigator.app.exitApp();
     }
 }, false);
 

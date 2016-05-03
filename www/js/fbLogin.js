@@ -8,7 +8,7 @@ function myFacebookLogin() {
                     alert('Facebook login failed: ' + response.error);
                 }
             }, {
-                scope: 'public_profile,email'
+                scope: 'public_profile,email,'
         });
     }else{
         FB.getLoginStatus(function(response) {
@@ -30,20 +30,27 @@ function myFacebookLogin() {
 }
 
 function getFbInfo() {
+    
     openFB.api({
         path: '/me',
         params: {
             fields: "email,first_name,last_name"
         },
         success: function(response) {
-            alert(JSON.stringify(response));
+            console.log(JSON.stringify(response));
+            ///alert(JSON.stringify(response));
+            app.facebookLogin(response);
+
         },
-        error: fbErrorHandler
+        error: function(e){
+            console.log(e);
+        }
     });
 }
 function getFbInfoWeb() {
-    FB.api('/me?fields=email,name', function(response) {
+    FB.api('/me?fields=email,first_name,last_name', function(response) {
         console.log(response);
-        alert(JSON.stringify(response));
+        //alert(JSON.stringify(response));
+        app.facebookLogin(response);
     });
 }
