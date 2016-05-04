@@ -167,9 +167,7 @@ var app={
     
     fbInit:function(){
         if(app.isApp){
-            window.sessionStorage['fbtoken']='';
             openFB.init({
-                tokenStore:false,
                 appId: app.fbAppId //app.fbAppId
             });
         }else{
@@ -611,6 +609,7 @@ var app={
         app.postAjaxData('site/updateuser?token='+app.token,data,func);
     },
     loadMessages:function(u_chat_id){
+        console.log('load message of id---> '+u_chat_id);
         app.loadPage('chatMsgTemplate');
         chat.messageTarget=$('#messageList');
         chat.messageInput=$('#messageInput');
@@ -623,7 +622,20 @@ var app={
         }else{
             chat.createDialog(chat.opponentId);
         }
-        chat.messageTarget.height($('body').height()-130);
+        chat.unreadMsg=0;
+        helper.updateMsgCount(chat.unreadMsg);
+
+        var heightchat=$('body').height()-130;
+        chat.messageTarget.height(heightchat);
+        chat.messageInput.on('focusin',function(){
+            console.log(heightchat-250);
+            chat.messageTarget.height(heightchat-250);
+        });
+        chat.messageInput.on('focusout',function(){
+            console.log("Focus out..........................");
+            console.log(heightchat);
+            chat.messageTarget.height(heightchat);
+        });
     },
 
     /*updateUser:function(data){
@@ -727,7 +739,9 @@ document.addEventListener("deviceready", function () {
     app.fbInit();
     if(!navigator.onLine){
         alert('No internet available');
-        //navigator.app.exitApp();
+        setTimeout(function(){
+            navigator.app.exitApp();
+        },2000);
     }
 }, false);
 

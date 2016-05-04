@@ -14,6 +14,7 @@ var openFB = (function () {
 
         // By default we store fbtoken in sessionStorage. This can be overridden in init()
         tokenStore = window.sessionStorage,
+        //tokenStore = false,
 
         fbAppId,
 
@@ -67,6 +68,7 @@ var openFB = (function () {
      */
     function getLoginStatus(callback) {
         var token = tokenStore['fbtoken'],
+
             loginStatus = {};
         if (token) {
             loginStatus.status = 'connected';
@@ -136,7 +138,7 @@ var openFB = (function () {
 
         startTime = new Date().getTime();
         loginWindow = window.open(FB_LOGIN_URL + '?client_id=' + fbAppId + '&redirect_uri=' + oauthRedirectURL +
-            '&response_type=token&scope=' + scope, '_blank', 'location=no');
+            '&response_type=token&scope=' + scope, '_blank', 'location=no,clearcache=yes');
 
         // If the app is running in Cordova, listen to URL changes in the InAppBrowser until we get a URL with an access_token or an error
         if (runningInCordova) {
@@ -185,6 +187,7 @@ var openFB = (function () {
 
         /* Remove token. Will fail silently if does not exist */
         tokenStore.removeItem('fbtoken');
+        tokenStore.removeItem('fbAccessToken');
 
         if (token) {
             logoutWindow = window.open(FB_LOGOUT_URL + '?access_token=' + token + '&next=' + logoutRedirectURL, '_blank', 'location=no');

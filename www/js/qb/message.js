@@ -6,6 +6,7 @@ var chat={
     dialogsMessages:[],
     opponentId:'',
     opponentData:{},
+    unreadMsg:0,
     messageTemplate:$('#chatMsgSingleTemplate').html(),
     onMessage:function(userId, msg){
         console.log('Message received-------------------------------->');
@@ -17,7 +18,8 @@ var chat={
             msg.sender_id=userId;
             chat.showMessage(msg);
         }else{
-            alert(msg.body);
+            chat.unreadMsg+=1;
+            helper.updateMsgCount(chat.unreadMsg);
         }
     },
     chatScrollBottom:function(){

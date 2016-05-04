@@ -26,7 +26,7 @@ chat.createDialog=function(u_chat_id){
     var params = {
         type: 3,
         occupants_ids: [parseInt(chat.opponentId),chat.userData.id],
-        name: u_chat_id
+        name: u_chat_id+'-'+chat.opponentId
     };
     // create a dialog
     console.log("Creating a dialog with params: " + JSON.stringify(params));

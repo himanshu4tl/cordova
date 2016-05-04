@@ -14,9 +14,10 @@ var helper={
     getDialogByChatId:function(u_chat_id){
         var dialogId='';
         $.each(chat.dialogList,function(index,val){
-            if(val.occupants_ids[0]==u_chat_id){dialogId= val._id;}
-            if(val.occupants_ids[1]==u_chat_id){dialogId= val._id;}
+            if(val.occupants_ids[0]==u_chat_id && val.occupants_ids[1]==chat.userData.id){dialogId= val._id;}
+            if(val.occupants_ids[1]==u_chat_id && val.occupants_ids[0]==chat.userData.id){dialogId= val._id;}
         });
+        console.log('currentdialog id ='+dialogId);
         return dialogId;
     },
     getDialogJIDByChatId:function(u_chat_id){
@@ -28,5 +29,13 @@ var helper={
     },
     getUserJID:function(id){
         return id+'-'+QBApp.appId+'@chat.quickblox.com';
+    },
+    updateMsgCount:function(count){
+        if(count){
+            $('#msg_ico').show().find('.msgCount').text(count);
+        }else{
+            $('#msg_ico').find('.msgCount').text('');
+        }
     }
+
 };
