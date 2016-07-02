@@ -34,7 +34,7 @@
 
                     <!--navigation btn goback class-->
                     <a  onclick="app.homeLink();" style="display: none;" data-activates="slide-out" class="nHeader goBack">
-                        <i class="fa fa-angle-left fa-2x" style="color:#ff7800"></i>
+                        <i class="fa fa-angle-left fa-2x" style="color:#fff"></i>
                     </a>
 
                     <!--Logo -->
@@ -44,7 +44,8 @@
 
                     <!--MEssage btn -->
                     <a id="msg_ico" class="msg_a dHeader2 auth" style="display: none;" onclick="app.chatLink();">
-                        <img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon">
+<!--                        <img src="img/ENGFeel_rakendus_avaleht_uus_06.jpg" class="msg_icon">-->
+<i class="fa fa-comments fa-2x msg_icon" aria-hidden="true" ></i>
                         <span class="msgCount"></span>
                     </a>
 
@@ -73,7 +74,7 @@
                 </div>
 
                 <a  data-activates="slide-out" class="button-collapse auth" style="display:none">
-                    <i class="mdi-navigation-menu dHeader" style="color:#666666"></i>
+                    <i class="mdi-navigation-menu dHeader" style="color:#fff"></i>
                 </a>
 
 
@@ -138,7 +139,7 @@
 
             <div class="owl-carousel">
             </div>
-            <div class="center" style="width: 100% !important;position: relative;top: -67px;z-index: 1;height: 100px;">
+            <div class="center" style="width: 100% !important;position: relative;top: -58px;z-index: 1;height: 30px;">
                 <img src="img/profile_bakground_bottom_03.png" width="100% !important" style="
     opacity: 1 !important;
     z-index: 100;
@@ -303,31 +304,31 @@
             <form class="col s12" role="form" id="signupForm" enctype="multipart/form-data" action="/site/signup" onsubmit="event.preventDefault();app.signupForm(this);" method="post">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="u_name" type="text" name="u_name"  class="validate">
+                        <input id="u_name" type="text" name="u_name"  class="validate" style="color:#fff;">
                         <label for="email">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="text" name="u_email" class="validate">
+                        <input id="email" type="text" name="u_email" class="validate" style="color:#fff;">
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" name="u_password" type="password" class="validate">
+                        <input id="password" name="u_password" type="password" class="validate" style="color:#fff;">
                         <label for="password" >Password</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="u_contact" type="text" name="u_contact" class="validate">
+                        <input id="u_contact" type="text" name="u_contact" class="validate" style="color:#fff;">
                         <label for="u_contact">Contact</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="u_age" type="number" name="u_age" class="validate">
+                        <input id="u_age" type="number" name="u_age" class="validate" style="color:#fff;">
                         <label for="u_age">Age</label>
                     </div>
                 </div>
@@ -431,9 +432,9 @@
                 <br>
                 <br>
                 <br>
-                <img width="60px" src="img/Feelwhite.png">
+                <!--<img width="60px" src="img/Feelwhite.png">-->
                 <br>
-                <p>feel version 1.0</p>
+                <p>version 1.0</p>
                 <br>
                 <br>
                 <div class="col s12 m12  center" >
@@ -450,7 +451,7 @@
     <script type="text/html" id="couponTemplate">
         <div class="couponss">
 
-        <h4 class="center">My coupons</h4>
+        <h4 class="center" style="color:#fff">My coupons</h4>
         <ul class="collection">
             <li class="collection-item row">
                 <div class="col s3 padding0">
@@ -569,7 +570,7 @@
         </div>
         <div class="row sendForm">
             <div class="col s12">
-                <input type="text" style="width: 80%;" id="messageInput">
+                <input type="text" style="width: 85%;color:white;" id="messageInput">
                 <button type="button" class="btn btn-floating " onclick="chat.clickSendMessage();"><i class="fa fa-send"></i></button>
             </div>
         </div>
@@ -614,17 +615,17 @@
 
             </div>
             <br>
-            <p>Show users aged: <span id="ageText" class="orange-text">25 - 30</span></p>
+            <p>Show users aged: <span id="ageText" >25 - 30</span></p>
 
             <div id="test5" class="margin10"></div>
 
             <br>
-                <p>Distance: <span class="orange-text"><span id="distanceText">_u_interest_distance_</span> km</span> </p>
+                <p>Distance: <span><span id="distanceText">_u_interest_distance_</span> km</span> </p>
                 <p class="range-field margin10">
                     <input type="range" id="distanceInput" min="0" max="100" value="_u_interest_distance_"/>
                 </p>
                 <p>Free coupon :
-                    <span ><span id="couponText" class="orange-text">_u_coupon_like_</span> likes</span>
+                    <span ><span id="couponText" >_u_coupon_like_</span> likes</span>
                     <a href="#aboutCoupon" class="modal-trigger right" style="color: #fff;"><i class="fa fa-question-circle" style="font-size: large;"></i>&nbsp;&nbsp;&nbsp;</a>
                 </p>
                 <p class="range-field margin10" >
@@ -633,19 +634,19 @@
             <div class="row ">
 
             <div class="col s6 padding5" >
-                <button onclick="app.notificationLink();" class="wordwrap btn  btn-round white black-text">Notifications</button>
+                <button onclick="app.notificationLink();" class="wordwrap btn  btn-round white" style="color:#fff" >Notifications</button>
 
             </div>
             <div class="col s6 padding5" >
-                <button class="wordwrap btn btn-round white black-text ">Report a problem</button>
+                <button class="wordwrap btn btn-round white " style="color:#fff">Report a problem</button>
             </div>
             </div>
             <div class="row">
             <div class="col s6 padding5" >
-                <button class="wordwrap btn btn-round white black-text">invite friends</button>
+                <button class="wordwrap btn btn-round white " style="color:#fff">invite friends</button>
             </div>
             <div class="col s6 padding5" >
-                <button class="wordwrap btn btn-round white black-text">need help?</button>
+                <button class="wordwrap btn btn-round white " style="color:#fff">need help?</button>
             </div>
             </div>
             <div class="col-s12" >
@@ -669,13 +670,13 @@
                 <input type="hidden" name="d_device_id">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="text" name="u_email" class="validate">
+                        <input id="email" type="text" name="u_email" class="validate" style="color:#fff;">
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" name="u_password" type="password" class="validate">
+                        <input id="password" name="u_password" type="password" class="validate" style="color:#fff;">
                         <label for="password" >Password</label>
                     </div>
                 </div>
@@ -692,7 +693,7 @@
                 <br>
                 <div class="row">
                     <div class="col s6 m6 ">
-                        <h5 class="center">Sign in with</h5>
+                        <h5 class="center" style="color:#fff;">Sign in with</h5>
                     </div>
                     <div class="col s6 m6">
                         <a href="#" onclick="myFacebookLogin();"><i class="fa fa-facebook-square fa-3x " style="color:#3b5998;vertical-align: middle;"></i>&nbsp;Facebook</a>
